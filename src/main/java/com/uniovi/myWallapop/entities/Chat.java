@@ -1,11 +1,12 @@
 package com.uniovi.myWallapop.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Chat {
+
     @EmbeddedId
     private ChatKey chatKey; //the identifier of the chat
 

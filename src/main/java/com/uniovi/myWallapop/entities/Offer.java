@@ -3,6 +3,7 @@ package com.uniovi.myWallapop.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -30,6 +31,6 @@ public class Offer {
     private User buyer;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @MapKey(name = "chat")
+    @MapKey(name = "chatKey")
     private Map<ChatKey, Chat> chats;
 }
