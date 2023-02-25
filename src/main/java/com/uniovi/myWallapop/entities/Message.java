@@ -1,9 +1,6 @@
 package com.uniovi.myWallapop.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,10 +16,13 @@ public class Message {
 
     private String text;
 
+    @ManyToOne
+    private Chat chat;
+
     public Message(){}
 
-    public Message(Date date, Long authorId, String text) {
-        this.date = date;
+    public Message(Long authorId, String text) {
+        this.date = new Date();
         this.authorId = authorId;
         this.text = text;
     }
@@ -57,6 +57,14 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     @Override

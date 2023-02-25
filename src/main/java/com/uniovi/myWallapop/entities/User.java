@@ -1,7 +1,9 @@
 package com.uniovi.myWallapop.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -22,21 +24,18 @@ public class User {
 
     // Esta lista representa las compras de cada usuario
     @OneToMany(mappedBy = "buyer")
-    private List<Offer> boughtOffers;
+    private Set<Offer> boughtOffers = new HashSet<>();
 
     // Esta lista representa las ofertas creadas por cada usuario
     @OneToMany(mappedBy = "seller")
-    private List<Offer> postedOffers;
+    private Set<Offer> postedOffers = new HashSet<>();
 
     public User(){}
 
-    public User(String name, String lastName, String email, String password, String passwordConfirm, String role) {
+    public User(String name, String lastName, String email) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
-        this.passwordConfirm = passwordConfirm;
-        this.role = role;
     }
 
     public Long getId() {
@@ -95,19 +94,19 @@ public class User {
         this.role = role;
     }
 
-    public List<Offer> getBoughtOffers() {
+    public Set<Offer> getBoughtOffers() {
         return boughtOffers;
     }
 
-    public void setBoughtOffers(List<Offer> boughtOffers) {
+    public void setBoughtOffers(Set<Offer> boughtOffers) {
         this.boughtOffers = boughtOffers;
     }
 
-    public List<Offer> getPostedOffers() {
+    public Set<Offer> getPostedOffers() {
         return postedOffers;
     }
 
-    public void setPostedOffers(List<Offer> postedOffers) {
+    public void setPostedOffers(Set<Offer> postedOffers) {
         this.postedOffers = postedOffers;
     }
 
