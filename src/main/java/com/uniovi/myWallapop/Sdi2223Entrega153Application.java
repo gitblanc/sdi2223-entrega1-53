@@ -1,4 +1,4 @@
-package com.uniovi.sdi2223entrega153;
+package com.uniovi.myWallapop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
