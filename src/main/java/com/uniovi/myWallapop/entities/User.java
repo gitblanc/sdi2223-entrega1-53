@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,7 @@ public class User {
 
     private String lastName;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
@@ -23,12 +25,15 @@ public class User {
     private String role;
 
     // Esta lista representa las compras de cada usuario
-    @OneToMany(mappedBy = "buyer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buyer")
     private Set<Offer> boughtOffers = new HashSet<>();
 
     // Esta lista representa las ofertas creadas por cada usuario
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seller")
     private Set<Offer> postedOffers = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Chat> chats = new HashSet<>();
 
     public User(){}
 

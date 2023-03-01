@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Entity
+@Table(name="offers")
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,7 @@ public class Offer {
     @JoinColumn(name = "buyer")
     private User buyer;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "offer")
     private Set<Chat> chats;
 
     public Offer() {
