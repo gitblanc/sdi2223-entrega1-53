@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name="offers")
 public class Offer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String title;
@@ -26,11 +26,11 @@ public class Offer {
     private boolean sold = false;
 
     @ManyToOne
-    @JoinColumn(name = "seller")
+    @JoinColumn(name = "seller_id")
     private User seller;
 
     @ManyToOne
-    @JoinColumn(name = "buyer")
+    @JoinColumn(name = "buyer_id")
     private User buyer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "offer")
