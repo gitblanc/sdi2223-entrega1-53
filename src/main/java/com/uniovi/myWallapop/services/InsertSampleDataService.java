@@ -31,9 +31,15 @@ public class InsertSampleDataService {
         User user3 = new User("Sergio", "Pérez h", "sodioido@gmail.com");
         user3.setPassword("123456");
 
-
+        usersService.addUser(user1);
+        usersService.addUser(user2);
+        usersService.addUser(user3);
+        
         Offer offer1 = new Offer("Oferta1", "EStA ES LA OFERTA MAS CHUPIWAY", 45.32, user1);
         Offer offer2 = new Offer("Oferta2", "EStA ES LA releche", 4456.78, user1);
+
+        offersService.addOffer(offer1);
+        offersService.addOffer(offer2);
 
         Chat chat1 = new Chat(offer1, user2);
         Chat chat2 = new Chat(offer2, user3);
@@ -44,34 +50,8 @@ public class InsertSampleDataService {
         chat1.addMessage(m1);
         chat2.addMessage(m2);
 
-        Set user1Offers = new HashSet<Offer>(){//los vendedores
-            {
-                add(offer1);
-                add(offer2);
-            }
-        };
-        user1.setPostedOffers(user1Offers);
-
-        Set offerChats = new HashSet<Chat>(){//los que harán los chats de compra
-            {
-                add(chat1);
-                add(chat2);
-            }
-        };
-        offer1.setChats(offerChats);
-
-        usersService.addUser(user1);
-        usersService.addUser(user2);
-        usersService.addUser(user3);
-
-        offersService.addOffer(offer1);
-        offersService.addOffer(offer2);
-//
-//        chatsService.addChat(chat1);
-//        chatsService.addChat(chat2);
-//
-//        messagesService.addMessage(m1);
-//        messagesService.addMessage(m2);
+        chatsService.addChat(chat1);
+        chatsService.addChat(chat2);
 
     }
 
