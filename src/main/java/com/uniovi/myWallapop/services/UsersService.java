@@ -45,4 +45,13 @@ public class UsersService {
         user.setPassword(user.getPassword());
         usersRepository.save(user);
     }
+
+    /**
+     * Devuelve el usuario identificado con el email recibido como parámetro
+     * @param email
+     * @return user
+     */
+    public User getUserByEmail(String email){
+        return usersRepository.findByEmail(email);
+    }
 }

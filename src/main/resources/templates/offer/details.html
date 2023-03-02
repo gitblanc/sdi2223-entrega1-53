@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body>
+  <nav th:replace="fragments/nav"></nav>
+
+  <div class="container" id="main-container">
+    <h2 th:text="#{offer.details.page.title}"></h2>
+    <div class="card">
+      <div class="card-header" th:text="#{offer.details.sellerName}"></div>
+      <div class="card-body">
+        <p class="card-text" th:text="${offer.seller.email}"></p>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header" th:text="#{offer.details.description}"></div>
+      <div class="card-body">
+        <p class="card-text" th:text="${offer.description}"></p>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header" th:text="#{offer.details.price}"></div>
+      <div class="card-body">
+        <p class="card-text" th:text="${offer.score}"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" th:text="#{offer.details.date}"></div>
+      <div class="card-body">
+        <p class="card-text" th:text="${offer.date}"></p>
+      </div>
+    </div>
+    <div class="card" th:if="${offer.isSold()}">
+      <div class="card-header" th:text="#{offer.details.buyerName}"></div>
+      <div class="card-body">
+        <p class="card-text" th:text="${offer.buyer.email}"></p>
+      </div>
+    </div>
+    <div class="card" th:unless="${offer.isSold()}">
+      <div class="card-header" th:text="#{offer.details.notSold}"></div>
+    </div>
+  </div>
+
+  <footer th:replace="fragments/footer"></footer>
+</body>
+</html>
