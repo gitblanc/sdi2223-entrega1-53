@@ -34,7 +34,7 @@ public class InsertSampleDataService {
         usersService.addUser(user1);
         usersService.addUser(user2);
         usersService.addUser(user3);
-
+        
         Offer offer1 = new Offer("Oferta1", "EStA ES LA OFERTA MAS CHUPIWAY", 45.32, user1);
         Offer offer2 = new Offer("Oferta2", "EStA ES LA releche", 4456.78, user1);
 
@@ -44,12 +44,15 @@ public class InsertSampleDataService {
         Chat chat1 = new Chat(offer1, user2);
         Chat chat2 = new Chat(offer2, user3);
 
-        chat1.addMessage(new Message(user2.getId(), "hola buenas tardes"));
-        chat2.addMessage(new Message(user2.getId(), "me caes mal"));
+        Message m1 = new Message(user2.getId(), "hola buenas tardes");
+        Message m2 = new Message(user2.getId(), "hola buenas tardes");
+
+        chat1.addMessage(m1);
+        chat2.addMessage(m2);
 
         chatsService.addChat(chat1);
         chatsService.addChat(chat2);
 
-
     }
+
 }
