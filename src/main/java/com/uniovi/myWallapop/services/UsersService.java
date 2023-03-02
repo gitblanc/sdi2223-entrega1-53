@@ -45,4 +45,17 @@ public class UsersService {
         user.setPassword(user.getPassword());
         usersRepository.save(user);
     }
+
+    public boolean existsEmail(String email) {
+        for(User u: getUsers()){
+            if(u.getEmail().equals((email)))
+                return true;
+        }
+        return false;
+    }
+
+    public void addUserWithoutEncrypt(User user) {
+        user.setPassword(user.getPassword());
+        usersRepository.save(user);
+    }
 }
