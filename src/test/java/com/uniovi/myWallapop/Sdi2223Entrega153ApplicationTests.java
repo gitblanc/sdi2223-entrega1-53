@@ -1,4 +1,4 @@
-package com.uniovi.sdi2223entrega153;
+package com.uniovi.myWallapop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
