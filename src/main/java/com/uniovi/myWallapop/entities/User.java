@@ -22,7 +22,7 @@ public class User {
     private String password;
 
     private String passwordConfirm;
-    private String role;
+    private String role = "ROLE_STANDARD";
 
     // Esta lista representa las compras de cada usuario
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buyer")
