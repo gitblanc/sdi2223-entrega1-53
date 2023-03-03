@@ -14,28 +14,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/css/", "/images/", "/script/", "/", "/signup", "/login/").permitAll()
-//                .antMatchers("/mark/add").hasAuthority("ROLE_PROFESSOR")
-//                .antMatchers("/mark/edit/").hasAuthority("ROLE_PROFESSOR")
-//                .antMatchers("/mark/delete/").hasAuthority("ROLE_PROFESSOR")
-//                .antMatchers("/profesor/add").hasAuthority("ROLE_ADMIN")
-//                .antMatchers("/profesor/delete/").hasAuthority("ROLE_ADMIN")
-//                .antMatchers("/profesor/details/").hasAnyAuthority("ROLE_PROFESSOR", "ROLE_ADMIN")
-//                .antMatchers("/mark/").hasAnyAuthority("ROLE_STUDENT", "ROLE_PROFESSOR", "ROLE_ADMIN")
-//                .antMatchers("/user/").hasAnyRole("ADMIN")
-//                .antMatchers("/profesor/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_PROFESSOR", "ROLE_ADMIN")
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/css/**", "/images/**", "/script/**", "/", "/signup", "/login/**").permitAll()
+                //.antMatchers("/mark/add").hasAuthority("ROLE_PROFESSOR")
+                //.antMatchers("/mark/edit/*").hasAuthority("ROLE_PROFESSOR")
+                //.antMatchers("/mark/delete/*").hasAuthority("ROLE_PROFESSOR")
+                //.antMatchers("/mark/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_PROFESSOR", "ROLE_ADMIN")
+                //.antMatchers("/user/**").hasAnyRole("ADMIN")
+                //.antMatchers("/professor/add").hasAnyRole("ADMIN")
+                //.antMatchers("/professor/delete/*").hasAnyRole("ADMIN")
+                //.antMatchers("/professor/details/*").hasAnyRole("ADMIN", "PROFESSOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/home")
+                .loginPage("/login").permitAll().defaultSuccessUrl("/home")
                 .and()
-                .logout()
-                .permitAll();
+                .logout().permitAll();
     }
 
     @Bean
