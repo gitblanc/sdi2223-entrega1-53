@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.*;
 
+
+/**
+ * Validador para el formulario de registro
+ */
 @Component
 public class SignUpFormValidator implements Validator {
     @Autowired
@@ -22,7 +26,11 @@ public class SignUpFormValidator implements Validator {
         User user = (User) target;
 
         if (usersService.existsEmail(user.getEmail())) {
-            errors.rejectValue("email", "Error.signup.emailAlreadyExists");
+            errors.rejectValue("email", "error.signup.emailAlreadyExists");
+        }
+
+        if(!user.getPassword().equals(user.getPasswordConfirm())){
+            errors.rejectValue("password", "error.signup.passwordandconfirmpasswordifferent");
         }
     }
 }

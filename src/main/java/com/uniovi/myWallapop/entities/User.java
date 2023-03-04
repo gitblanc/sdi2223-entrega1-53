@@ -3,6 +3,7 @@ package com.uniovi.myWallapop.entities;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,9 @@ public class User {
     private String password;
 
     private String passwordConfirm;
-    private String role = "ROLE_STANDARD";
+    private String role;
+
+    private double amount;
 
     // Esta lista representa las compras de cada usuario
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buyer")
@@ -41,6 +44,7 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.amount = 100;
     }
 
     public Long getId() {
@@ -115,35 +119,26 @@ public class User {
         this.postedOffers = postedOffers;
     }
 
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (getId() != null ? !getId().equals(user.getId()) : user.getId() != null) return false;
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
-            return false;
-        if (getEmail() != null ? !getEmail().equals(user.getEmail()) : user.getEmail() != null) return false;
-        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
-            return false;
-        if (getPasswordConfirm() != null ? !getPasswordConfirm().equals(user.getPasswordConfirm()) : user.getPasswordConfirm() != null)
-            return false;
-        return getRole() != null ? getRole().equals(user.getRole()) : user.getRole() == null;
+        return Double.compare(user.amount, amount) == 0 && id.equals(user.id) && name.equals(user.name) && lastName.equals(user.lastName) && email.equals(user.email) && password.equals(user.password) && passwordConfirm.equals(user.passwordConfirm) && role.equals(user.role);
     }
 
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getPasswordConfirm() != null ? getPasswordConfirm().hashCode() : 0);
-        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, lastName, email, password, passwordConfirm, role, amount);
     }
 
     @Override
@@ -156,6 +151,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", passwordConfirm='" + passwordConfirm + '\'' +
                 ", role='" + role + '\'' +
+                ", amount=" + amount +
                 '}';
     }
 }
