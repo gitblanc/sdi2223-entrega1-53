@@ -5,6 +5,7 @@ package com.uniovi.myWallapop.controllers;
 import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.services.SecurityService;
 import com.uniovi.myWallapop.services.UsersService;
+import com.uniovi.myWallapop.services.RolesService;
 import com.uniovi.myWallapop.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -40,8 +44,12 @@ public class UsersController {
     @Autowired
     private SecurityService securityService;
 
-//    @Autowired
-//    private RolesService rolesService;
+
+    /**
+     * Servicio de roles de usuario
+     */
+    @Autowired
+    private RolesService rolesService;
 
 
     @RequestMapping("/user/list")
@@ -69,11 +77,6 @@ public class UsersController {
         return "user/details";
     }
 
-    @RequestMapping("/user/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        usersService.deleteUser(id);
-        return "redirect:/user/list";
-    }
 
     @RequestMapping(value = "/user/edit/{id}")
     public String getEdit(Model model, @PathVariable Long id) {
@@ -93,6 +96,31 @@ public class UsersController {
     }
 
 
+//    /**
+//     * Responde a la petición user/delete/{id}
+//     * Eliminará el usuario seleccionado
+//     * @param id
+//     * @return
+//     */
+//    @RequestMapping("/user/delete/{id}")
+//    public String delete(@PathVariable Long id) {
+//        usersService.deleteUsers(id);
+//        return "redirect:/home";
+//    }
+
+
+    /**
+     * Responde a la petición /user/deleteusers
+     * Eliminará los usuarios con ids pasadas por parámetro
+     */
+    @RequestMapping(value = "/user/deleteusers", method = RequestMethod.GET)
+    public String deleteConfig(@RequestParam("ids") Long[] id)
+    {
+        usersService.deleteUsers(id);
+        return "redirect:/home";
+    }
+
+
     /**
      * Responde a la petición signup de tipo Post
      * Redirigirá a la vista home si no hay ningún error, en
@@ -102,12 +130,13 @@ public class UsersController {
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signup(@Validated User user, BindingResult result) {
+    public String signup(@Validated User user, BindingResult result,Model model) {
         signUpFormValidator.validate(user,result);
         if(result.hasErrors()){
+            model.addAttribute("user",user);
             return "signup";
         }
-        //user.setRole(rolesService.getRoles()[0]);
+        user.setRole(rolesService.getRoles()[0]);
         usersService.addUser(user);
         securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
         return "redirect:home";
@@ -125,6 +154,20 @@ public class UsersController {
 
 
     /**
+     * Responderá a la petición de /login-error
+     * Sirve para mostrar los mensajes de error en caso
+     * de fallo en el formulario de logeo
+     * @param model
+     * @return
+     */
+    @RequestMapping("/login-error")
+    public String login(Model model) {
+        model.addAttribute("errorMessage", "Usuario o contraseña inválida");
+        return "login";
+    }
+
+
+    /**
      * Responde a la petición home, pasando el usuario para
      * poder acceder a los atributos desde la vista
      * @param model
@@ -136,6 +179,8 @@ public class UsersController {
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
+        model.addAttribute("usersList", usersService.getUsers());
+        model.addAttribute("offersList", activeUser.getPostedOffers());
         return "home";
     }
 
