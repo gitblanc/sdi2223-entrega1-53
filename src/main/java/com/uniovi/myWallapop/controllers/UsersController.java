@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -76,11 +77,6 @@ public class UsersController {
         return "user/details";
     }
 
-    @RequestMapping("/user/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        usersService.deleteUser(id);
-        return "redirect:/user/list";
-    }
 
     @RequestMapping(value = "/user/edit/{id}")
     public String getEdit(Model model, @PathVariable Long id) {
@@ -97,6 +93,31 @@ public class UsersController {
         originalUser.setLastName(user.getLastName());
         usersService.addUserWithoutEncrypt(originalUser);
         return "redirect:/user/details/" + id;
+    }
+
+
+//    /**
+//     * Responde a la petición user/delete/{id}
+//     * Eliminará el usuario seleccionado
+//     * @param id
+//     * @return
+//     */
+//    @RequestMapping("/user/delete/{id}")
+//    public String delete(@PathVariable Long id) {
+//        usersService.deleteUsers(id);
+//        return "redirect:/home";
+//    }
+
+
+    /**
+     * Responde a la petición /user/deleteusers
+     * Eliminará los usuarios con ids pasadas por parámetro
+     */
+    @RequestMapping(value = "/user/deleteusers", method = RequestMethod.GET)
+    public String deleteConfig(@RequestParam("ids") Long[] id)
+    {
+        usersService.deleteUsers(id);
+        return "redirect:/home";
     }
 
 
@@ -159,6 +180,7 @@ public class UsersController {
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
         model.addAttribute("usersList", usersService.getUsers());
+        model.addAttribute("offersList", activeUser.getPostedOffers());
         return "home";
     }
 

@@ -15,32 +15,9 @@
         </p>
     </p>
 
-    <div class="table-responsive" sec:authorize="hasRole('ROLE_ADMIN')">
-        <table class="table table-hover" th:fragment="tableUsers" id="tableUsers" sec:authorize="hasRole('ROLE_ADMIN')">
-            <thead>
-            <tr>
-                <th scope="col">Email</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${usersList}" sec:authorize="hasRole('ROLE_ADMIN')">
-                <td th:text="${user.email}">example@gmail.com</td>
-                <td th:text="${user.name}">Juanito</td>
-                <td th:text="${user.lastName}">Sánchez</td>
 
-            </tr>
-            </tbody>
-        </table>
-        <div th:if="${#lists.isEmpty(usersList)}"> No users</div>
-    </div>
-
-<!--    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>-->
-<!--    <offers th:replace="fragments/offerslist"/>-->
+    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>
+    <offers sec:authorize="hasRole('ROLE_STANDARD')" th:replace="fragments/offerslist"/>
 
 </div>
 <footer th:replace="fragments/footer"/>
