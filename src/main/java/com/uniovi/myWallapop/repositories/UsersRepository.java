@@ -17,4 +17,9 @@ public interface UsersRepository extends CrudRepository<User, Long> {
     @Transactional
     @Query(nativeQuery = true, value = "DELETE FROM users WHERE id IN(?1)")
     void deleteUsersById(List<Long> ids);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE User SET amount = ?1 WHERE id = ?2")
+    void updateAmount(double amount, Long id);
 }
