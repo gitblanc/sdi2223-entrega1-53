@@ -35,16 +35,6 @@ public class Offer {
     public Offer() {
     }
 
-    /**
-     * Constructor para rellenar el usuario que crea la oferta
-     * La fecha es el momento de creación
-     * @param seller
-     */
-    public Offer(User seller) {
-        setSeller(seller);
-        this.date = new Date();
-    }
-
     public Offer(String title, String description, Double amount, User seller) {
         this.title = title;
         this.description = description;

@@ -31,7 +31,7 @@ public class AddOfferValidator implements Validator {
             errors.rejectValue("title", "Error.offer.title.length");
         }
         if(offer.getAmount() < 0){
-            errors.rejectValue("price", "Error.offer.price.negative");
+            errors.rejectValue("amount", "Error.offer.price.negative");
         }
     }
 

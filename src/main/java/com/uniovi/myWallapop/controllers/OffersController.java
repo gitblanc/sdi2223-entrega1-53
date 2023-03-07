@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.LinkedList;
 
 @Controller
@@ -52,14 +53,11 @@ public class OffersController {
     /**
      * Controlador para la petición GET del formulario de añadir oferta
      * @param model
-     * @param principal
      * @return
      */
     @RequestMapping(value = "/offer/add")
-    public String getOffer(Model model, Principal principal) {
-        String email = principal.getName();
-        User user = usersService.getUserByEmail(email);
-        model.addAttribute("offer", new Offer(user));
+    public String getOffer(Model model) {
+        model.addAttribute("offer", new Offer());
         return "offer/add";
     }
 
@@ -68,10 +66,15 @@ public class OffersController {
      * @param model
      * @param offer
      * @param result
+     * @param principal
      * @return
      */
     @RequestMapping(value = "/offer/add", method = RequestMethod.POST)
-    public String setOffer(Model model, @Validated Offer offer, BindingResult result) {
+    public String setOffer(Model model, @Validated Offer offer, BindingResult result,  Principal principal) {
+        String email = principal.getName();
+        User user = usersService.getUserByEmail(email);
+        offer.setSeller(user);
+        offer.setDate(new Date());
         addOfferValidator.validate(offer, result);
         if (result.hasErrors())
             return "offer/add";

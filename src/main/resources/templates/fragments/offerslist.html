@@ -18,6 +18,10 @@
             <td th:text="${offer.title}">Titulo1</td>
             <td th:text="${offer.description}">Descripcion1</td>
             <td th:text="${offer.amount}">0.0</td>
+            <td scope="row"><a th:href="${'/offer/details/' + offer.id}"
+                th:text="#{offer.list.table.details}"></a></td>
+            <td scope="row"><a th:href="${'/offer/delete/' + offer.id}"
+                th:text="#{offer.list.table.delete}"></a></td>
 
         </tr>
         </tbody>
