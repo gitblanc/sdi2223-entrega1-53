@@ -73,6 +73,7 @@ public class OffersService {
             offersRepository.deleteById(id);
         else
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+    }
 
     public List<Offer> getOffers() {
         List<Offer> offers = new ArrayList<Offer>();

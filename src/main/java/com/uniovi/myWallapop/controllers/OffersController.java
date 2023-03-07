@@ -23,7 +23,7 @@ import java.util.LinkedList;
 @Controller
 public class OffersController {
     @Autowired
-    private OffersService offersService
+    private OffersService offersService;
     @Autowired
     private UsersService usersService;
     @Autowired
@@ -95,7 +95,7 @@ public class OffersController {
     @RequestMapping("/offer/delete/{id}")
     public String deleteOffer(@PathVariable Long id, Principal principal) {
         offersService.deleteOffer(id, principal.getName());
-        return "redirect:/offer/listPosted";
+        return "redirect:/offer/list/posted";
     }
 
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)

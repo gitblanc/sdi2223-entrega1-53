@@ -15,7 +15,7 @@ public class Offer {
 
     private String description;
 
-    private Double price;
+    private Double amount;
 
     private Date date;
 
@@ -48,7 +48,7 @@ public class Offer {
     public Offer(String title, String description, Double amount, User seller) {
         this.title = title;
         this.description = description;
-        this.price = amount;
+        this.amount = amount;
         this.date = new Date();
         this.seller = seller;
     }
@@ -77,12 +77,12 @@ public class Offer {
         this.description = description;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setPrice(Double amount) {
-        this.price = amount;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     public Date getDate() {
@@ -137,7 +137,7 @@ public class Offer {
         if (getTitle() != null ? !getTitle().equals(offer.getTitle()) : offer.getTitle() != null) return false;
         if (getDescription() != null ? !getDescription().equals(offer.getDescription()) : offer.getDescription() != null)
             return false;
-        if (getPrice() != null ? !getPrice().equals(offer.getPrice()) : offer.getPrice() != null) return false;
+        if (getAmount() != null ? !getAmount().equals(offer.getAmount()) : offer.getAmount() != null) return false;
         if (getDate() != null ? !getDate().equals(offer.getDate()) : offer.getDate() != null) return false;
         if (getSeller() != null ? !getSeller().equals(offer.getSeller()) : offer.getSeller() != null) return false;
         return getBuyer() != null ? getBuyer().equals(offer.getBuyer()) : offer.getBuyer() == null;
@@ -148,7 +148,7 @@ public class Offer {
         int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        result = 31 * result + (getAmount() != null ? getAmount().hashCode() : 0);
         result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
         result = 31 * result + (isSold() ? 1 : 0);
         result = 31 * result + (getSeller() != null ? getSeller().hashCode() : 0);
@@ -162,7 +162,7 @@ public class Offer {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", amount=" + price +
+                ", amount=" + amount +
                 ", date=" + date +
                 ", sold=" + sold +
                 ", seller=" + seller +

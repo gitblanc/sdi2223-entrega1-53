@@ -71,8 +71,9 @@ public class UsersService {
      * @param email
      * @return user
      */
-    public User getUserByEmail(String email){
+    public User getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
+    }
 
     public boolean existsEmail(String email) {
         for(User u: getUsers()){

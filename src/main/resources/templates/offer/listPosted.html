@@ -25,7 +25,7 @@
         <tr th:each="offer : ${offersList}">
           <td scope="row" th:text="${offer.title}"></td>
           <td scope="row" th:text="${offer.description}"></td>
-          <td scope="row" th:text="${offer.price}+'€'"></td>
+          <td scope="row" th:text="${offer.amount}+'€'"></td>
           <td scope="row"><a th:href="${'/offer/details/' + offer.id}"
                              th:text="#{offer.list.table.details}"></a></td>
           <td scope="row"><a th:href="${'/offer/delete/' + offer.id}"
