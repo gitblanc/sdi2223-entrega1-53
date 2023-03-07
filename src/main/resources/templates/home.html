@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head"/>
+<body>
+<nav th:replace="fragments/nav"/>
+<div class="container" style="text-align: center">
+    <h3 th:text="#{home.message}">Este es tu perfil en MyWallapop</h3>
+    <p th:text="#{home.email}" > Email:
+        <p class="card-text" th:text="${user.email}" th:remove="tag">example@gmail.com</p>
+    </p>
+
+    <p th:text="#{home.amount}"> Monedero:
+        <p class="card-text" th:text="${user.amount}" th:remove="tag">53.5€
+            <p th:remove="tag"> €</p>
+        </p>
+    </p>
+
+
+    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>
+    <offers sec:authorize="hasRole('ROLE_STANDARD')" th:replace="fragments/offerslist"/>
+
+</div>
+<footer th:replace="fragments/footer"/>
+</body>
+</html>

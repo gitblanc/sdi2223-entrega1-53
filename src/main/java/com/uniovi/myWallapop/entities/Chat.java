@@ -30,6 +30,7 @@ public class Chat {
     }
 
     public void addMessage(Message message) {
+        message.setChat(this);
         this.messages.add(message);
     }
 
