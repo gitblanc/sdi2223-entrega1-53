@@ -1,7 +1,5 @@
 package com.uniovi.myWallapop.controllers;
 
-
-
 import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.services.SecurityService;
 import com.uniovi.myWallapop.services.UsersService;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
 
 @Controller
 public class UsersController {
