@@ -102,9 +102,13 @@ public class OffersController {
     }
 
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
-    public String setSoldTrue(@PathVariable Long id) {
+    public String setSoldTrue(Model model, @PathVariable Long id) {
         String error = offersService.buyOffer(id);
-        return "redirect:/offer/bought";
+        if (error==null) {
+            return "redirect::offer/list";
+        }
+        model.addAttribute("errorBuyingOffer", error);
+        return "offer/list";
     }
 
     @RequestMapping(value = "/offer/bought", method = RequestMethod.GET)
