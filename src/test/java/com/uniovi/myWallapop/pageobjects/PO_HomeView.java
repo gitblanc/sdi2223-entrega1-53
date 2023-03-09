@@ -25,16 +25,4 @@ public class PO_HomeView extends PO_NavView{
 //Esperamos a que se cargue el saludo de bienvenida en Español
         PO_HomeView.checkWelcomeToPage(driver, locale1);
     }
-
-    /**
-     * Devuelve el elemento HTML correspondiente a la propiedad de mensajes pasada.
-     * @param driver: navegador abierto
-     * @param language: idioma
-     * @param prop: propiedad del mensaje que se quiere obtener
-     * @return elemento HTML
-     */
-    static public List<WebElement> getText(WebDriver driver, int language, String prop) {
-        return SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString(prop, language),
-                getTimeout());
-    }
 }
