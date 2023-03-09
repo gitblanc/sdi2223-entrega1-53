@@ -50,4 +50,16 @@ public class PO_View {
 	static public List<WebElement> checkElementBy(WebDriver driver, String type, String text) {
 		return  SeleniumUtils.waitLoadElementsBy(driver, type, text, getTimeout());
 	}
+
+	/**
+	 * Devuelve el elemento HTML correspondiente a la propiedad de mensajes pasada.
+	 * @param driver: navegador abierto
+	 * @param language: idioma
+	 * @param prop: propiedad del mensaje que se quiere obtener
+	 * @return elemento HTML
+	 */
+	static public List<WebElement> getText(WebDriver driver, int language, String prop) {
+		return SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString(prop, language),
+				getTimeout());
+	}
 }

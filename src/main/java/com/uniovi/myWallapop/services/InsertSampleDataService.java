@@ -44,11 +44,15 @@ public class InsertSampleDataService {
         User user4 = new User("Admin", "Admin Username", "admin@email.com");
         user4.setPassword("admin");
         user4.setRole(rolesService.getRoles()[1]);
+        User user5 = new User("user05", "user05", "user05@email.com");
+        user5.setPassword("user05");
+        user5.setRole(rolesService.getRoles()[0]);
 
         usersService.addUser(user1);
         usersService.addUser(user2);
         usersService.addUser(user3);
         usersService.addUser(user4);
+        usersService.addUser(user5);
 
         Offer offer1 = new Offer("Oferta1", "EStA ES LA OFERTA MAS CHUPIWAY", 45.32, user1);
         Offer offer2 = new Offer("Oferta2", "EStA ES LA releche", 4456.78, user1);
