@@ -15,8 +15,9 @@
         </p>
     </p>
 
+    <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"></div>
 
-    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>
+<!--    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>-->
     <offers sec:authorize="hasRole('ROLE_STANDARD')" th:replace="fragments/offerslist"/>
 
 </div>

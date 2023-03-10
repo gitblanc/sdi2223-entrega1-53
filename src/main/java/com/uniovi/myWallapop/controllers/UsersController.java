@@ -5,6 +5,8 @@ import com.uniovi.myWallapop.services.SecurityService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.services.RolesService;
 import com.uniovi.myWallapop.validators.SignUpFormValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,12 @@ import java.util.List;
 
 @Controller
 public class UsersController {
+
+
+    /**
+     * Objeto de logeo
+     */
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Servicio donde estará la lógica realacionda con
@@ -93,27 +101,19 @@ public class UsersController {
     }
 
 
-//    /**
-//     * Responde a la petición user/delete/{id}
-//     * Eliminará el usuario seleccionado
-//     * @param id
-//     * @return
-//     */
-//    @RequestMapping("/user/delete/{id}")
-//    public String delete(@PathVariable Long id) {
-//        usersService.deleteUsers(id);
-//        return "redirect:/home";
-//    }
-
 
     /**
      * Responde a la petición /user/deleteusers
      * Eliminará los usuarios con ids pasadas por parámetro
      */
     @RequestMapping(value = "/user/deleteusers", method = RequestMethod.GET)
-    public String deleteConfig(@RequestParam("ids") Long[] id)
+    public String deleteConfig(@RequestParam(value = "ids", required = false) Long[] id)
     {
-        usersService.deleteUsers(id);
+        if(id != null && id.length != 0){
+           for(Long i: id)
+               log.info("Usuario con id "+i+" ha sido borrado");
+            usersService.deleteUsers(id);
+        }
         return "redirect:/home";
     }
 
@@ -130,12 +130,14 @@ public class UsersController {
     public String signup(@Validated User user, BindingResult result,Model model) {
         signUpFormValidator.validate(user,result);
         if(result.hasErrors()){
+            log.error("Error al registrar el usuario");
             model.addAttribute("user",user);
             return "signup";
         }
         user.setRole(rolesService.getRoles()[0]);
         usersService.addUser(user);
         securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+        log.info("Usuario con id "+user.getId()+" ha sido registrado");
         return "redirect:home";
     }
 
@@ -159,6 +161,7 @@ public class UsersController {
      */
     @RequestMapping("/login-error")
     public String login(Model model) {
+        log.error("Error en el logeo de usuario, nombre de usuario o contraseña incorrectos");
         model.addAttribute("errorMessage", "Usuario o contraseña inválida");
         return "login";
     }
@@ -178,6 +181,7 @@ public class UsersController {
         model.addAttribute("user", activeUser);
         model.addAttribute("usersList", usersService.getUsers());
         model.addAttribute("offersList", activeUser.getPostedOffers());
+        log.info("Acceso a la vista /home del usuario con id "+activeUser.getId());
         return "home";
     }
 
@@ -194,10 +198,5 @@ public class UsersController {
         return "signup";
     }
 
-    @RequestMapping("/user/list/update")
-    public String updateList(Model model) {
-        model.addAttribute("usersList", usersService.getUsers());
-        return "user/list :: tableUsers";
-    }
 
 }
