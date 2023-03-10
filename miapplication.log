@@ -775,3 +775,129 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2023-03-10 23:01:16.263  INFO 3312 --- [http-nio-8090-exec-2] c.u.m.controllers.UsersController        : Usuario con id 13 ha sido registrado
 2023-03-10 23:01:16.273  INFO 3312 --- [http-nio-8090-exec-1] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 13
 2023-03-10 23:01:22.351  INFO 3312 --- [http-nio-8090-exec-4] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 13
+2023-03-10 23:04:58.055  INFO 3312 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:04:58.058  INFO 3312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-10 23:04:58.064  INFO 3312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-10 23:06:33.694  INFO 16300 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on DESKTOP-8HG00E2 with PID 16300 (C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53\target\classes started by AaronUF in C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53)
+2023-03-10 23:06:33.700  INFO 16300 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-10 23:06:34.731  INFO 16300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-10 23:06:34.928  INFO 16300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 170 ms. Found 4 JPA repository interfaces.
+2023-03-10 23:06:36.479  INFO 16300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-10 23:06:36.506  INFO 16300 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-10 23:06:36.508  INFO 16300 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-10 23:06:36.912  INFO 16300 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-10 23:06:36.914  INFO 16300 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3090 ms
+2023-03-10 23:06:37.427  INFO 16300 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-10 23:06:37.584  INFO 16300 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-10 23:06:38.157  INFO 16300 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-10 23:06:38.461  INFO 16300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-10 23:06:38.475  WARN 16300 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-10 23:06:38.727  INFO 16300 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-10 23:06:38.752  INFO 16300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-10 23:06:38.842  INFO 16300 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-10 23:06:40.856  INFO 16300 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-10 23:06:40.882  INFO 16300 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:06:41.020  WARN 16300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-10 23:06:44.118  INFO 16300 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@988c126, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3fda8dae, org.springframework.security.web.context.SecurityContextPersistenceFilter@d28a235, org.springframework.security.web.header.HeaderWriterFilter@2d41bb5a, org.springframework.security.web.authentication.logout.LogoutFilter@61aa6300, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5357de0e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fc2933e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ce62e27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34e53c02, org.springframework.security.web.session.SessionManagementFilter@848d9bc, org.springframework.security.web.access.ExceptionTranslationFilter@3adeca1f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c5c2b17]
+2023-03-10 23:06:44.569  INFO 16300 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-10 23:06:45.101  INFO 16300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-10 23:06:45.125  INFO 16300 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 12.119 seconds (JVM running for 13.09)
+2023-03-10 23:06:45.391  INFO 16300 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-10 23:06:45.392  INFO 16300 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-10 23:06:45.395  INFO 16300 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-10 23:11:06.494  INFO 16300 --- [http-nio-8090-exec-7] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 1
+2023-03-10 23:19:56.017  INFO 16300 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:19:56.021  INFO 16300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-10 23:19:56.032  INFO 16300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-10 23:20:05.172  INFO 17484 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on DESKTOP-8HG00E2 with PID 17484 (C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53\target\classes started by AaronUF in C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53)
+2023-03-10 23:20:05.177  INFO 17484 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-10 23:20:06.253  INFO 17484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-10 23:20:06.424  INFO 17484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 145 ms. Found 4 JPA repository interfaces.
+2023-03-10 23:20:07.769  INFO 17484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-10 23:20:07.794  INFO 17484 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-10 23:20:07.795  INFO 17484 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-10 23:20:08.147  INFO 17484 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-10 23:20:08.148  INFO 17484 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2912 ms
+2023-03-10 23:20:08.602  INFO 17484 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-10 23:20:08.732  INFO 17484 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-10 23:20:09.158  INFO 17484 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-10 23:20:09.460  INFO 17484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-10 23:20:09.474  WARN 17484 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-10 23:20:09.723  INFO 17484 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-10 23:20:09.745  INFO 17484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-10 23:20:09.824  INFO 17484 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-10 23:20:11.688  INFO 17484 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-10 23:20:11.711  INFO 17484 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:20:11.827  WARN 17484 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-10 23:20:14.793  INFO 17484 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1fab0394, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28e24663, org.springframework.security.web.context.SecurityContextPersistenceFilter@848d9bc, org.springframework.security.web.header.HeaderWriterFilter@1aee6983, org.springframework.security.web.authentication.logout.LogoutFilter@3065efd0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7135e8cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1add3e03, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@746da54f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ee5c08d, org.springframework.security.web.session.SessionManagementFilter@3f62d56, org.springframework.security.web.access.ExceptionTranslationFilter@6e5af973, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3a663a45]
+2023-03-10 23:20:15.170  INFO 17484 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-10 23:20:15.677  INFO 17484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-10 23:20:15.704  INFO 17484 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 11.128 seconds (JVM running for 12.634)
+2023-03-10 23:20:15.867  INFO 17484 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-10 23:20:15.868  INFO 17484 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-10 23:20:15.871  INFO 17484 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-03-10 23:20:32.467  INFO 17484 --- [http-nio-8090-exec-4] c.u.m.controllers.UsersController        : Usuario con id 1 ha iniciado sesión
+2023-03-10 23:20:36.217  INFO 17484 --- [http-nio-8090-exec-3] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 1
+2023-03-10 23:20:46.413  INFO 17484 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:20:46.416  INFO 17484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-10 23:20:46.424  INFO 17484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-10 23:20:53.364  INFO 18912 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on DESKTOP-8HG00E2 with PID 18912 (C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53\target\classes started by AaronUF in C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53)
+2023-03-10 23:20:53.371  INFO 18912 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-10 23:20:54.852  INFO 18912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-10 23:20:55.122  INFO 18912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 242 ms. Found 4 JPA repository interfaces.
+2023-03-10 23:20:56.601  INFO 18912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-10 23:20:56.624  INFO 18912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-10 23:20:56.625  INFO 18912 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-10 23:20:56.983  INFO 18912 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-10 23:20:56.985  INFO 18912 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3529 ms
+2023-03-10 23:20:57.427  INFO 18912 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-10 23:20:57.553  INFO 18912 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-10 23:20:58.013  INFO 18912 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-10 23:20:58.276  INFO 18912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-10 23:20:58.287  WARN 18912 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-10 23:20:58.525  INFO 18912 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-10 23:20:58.551  INFO 18912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-10 23:20:58.637  INFO 18912 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-10 23:21:00.331  INFO 18912 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-10 23:21:00.353  INFO 18912 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:21:00.441  WARN 18912 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-10 23:21:03.560  INFO 18912 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@346690d6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2831c178, org.springframework.security.web.context.SecurityContextPersistenceFilter@766db6f9, org.springframework.security.web.header.HeaderWriterFilter@746da54f, org.springframework.security.web.authentication.logout.LogoutFilter@2c6a6ce3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@35fac3ba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@728535c6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75db328e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70e8c019, org.springframework.security.web.session.SessionManagementFilter@742dbac8, org.springframework.security.web.access.ExceptionTranslationFilter@4fc2933e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f996445]
+2023-03-10 23:21:03.754  INFO 18912 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-10 23:21:04.166  INFO 18912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-10 23:21:04.192  INFO 18912 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 11.397 seconds (JVM running for 12.984)
+2023-03-10 23:21:12.225  INFO 18912 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:21:12.229  INFO 18912 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-10 23:21:12.236  INFO 18912 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-10 23:21:20.776  INFO 23488 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on DESKTOP-8HG00E2 with PID 23488 (C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53\target\classes started by AaronUF in C:\Users\aaron\Desktop\UNI\tercero\SEGUNDO\SDI\Practica\Trabajo\sdi2223-entrega1-53)
+2023-03-10 23:21:20.781  INFO 23488 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-10 23:21:22.105  INFO 23488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-10 23:21:22.287  INFO 23488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 155 ms. Found 4 JPA repository interfaces.
+2023-03-10 23:21:23.855  INFO 23488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-10 23:21:23.881  INFO 23488 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-10 23:21:23.883  INFO 23488 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-10 23:21:24.252  INFO 23488 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-10 23:21:24.253  INFO 23488 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3413 ms
+2023-03-10 23:21:24.761  INFO 23488 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-10 23:21:24.920  INFO 23488 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-10 23:21:25.442  INFO 23488 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-10 23:21:25.751  INFO 23488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-10 23:21:25.767  WARN 23488 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-10 23:21:26.040  INFO 23488 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-10 23:21:26.073  INFO 23488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-10 23:21:26.187  INFO 23488 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-10 23:21:28.136  INFO 23488 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-10 23:21:28.168  INFO 23488 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-10 23:21:28.288  WARN 23488 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-10 23:21:31.524  INFO 23488 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7135e8cd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3efb863c, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d57b8f1, org.springframework.security.web.header.HeaderWriterFilter@dddcd91, org.springframework.security.web.authentication.logout.LogoutFilter@244f356, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@57ac2910, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39a2e77d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@448a6d00, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5527dbb0, org.springframework.security.web.session.SessionManagementFilter@79e9c14, org.springframework.security.web.access.ExceptionTranslationFilter@2d117280, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2ecc4be7]
+2023-03-10 23:21:31.950  INFO 23488 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-10 23:21:32.491  INFO 23488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-10 23:21:32.522  INFO 23488 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 12.272 seconds (JVM running for 13.436)
+2023-03-10 23:21:32.754  INFO 23488 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-10 23:21:32.755  INFO 23488 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-10 23:21:32.757  INFO 23488 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-10 23:21:38.457  INFO 23488 --- [http-nio-8090-exec-4] c.u.m.controllers.UsersController        : Usuario con id 1 ha iniciado sesión
+2023-03-10 23:21:42.723  INFO 23488 --- [http-nio-8090-exec-2] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 1
+2023-03-10 23:22:02.002  INFO 23488 --- [http-nio-8090-exec-1] c.u.m.controllers.UsersController        : Administrador ha iniciado sesión
+2023-03-10 23:22:09.107  INFO 23488 --- [http-nio-8090-exec-10] c.u.m.controllers.UsersController        : Usuario con id 2 ha sido borrado
+2023-03-10 23:22:09.108  INFO 23488 --- [http-nio-8090-exec-10] c.u.m.controllers.UsersController        : Usuario con id 3 ha sido borrado
+2023-03-10 23:22:13.024  INFO 23488 --- [http-nio-8090-exec-5] c.u.m.controllers.UsersController        : Acceso a la vista /home del usuario con id 4

@@ -57,49 +57,6 @@ public class UsersController {
     private RolesService rolesService;
 
 
-    @RequestMapping("/user/list")
-    public String getListado(Model model) {
-        model.addAttribute("usersList", usersService.getUsers());
-        return "user/list";
-    }
-
-    @RequestMapping(value = "/user/add")
-    public String getUser(Model model) {
-        //model.addAttribute("rolesList", rolesService.getRoles());
-        model.addAttribute("usersList", usersService.getUsers());
-        return "user/add";
-    }
-
-    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String setUser(@ModelAttribute User user) {
-        usersService.addUser(user);
-        return "redirect:/user/list";
-    }
-
-    @RequestMapping("/user/details/{id}")
-    public String getDetail(Model model, @PathVariable Long id) {
-        model.addAttribute("user", usersService.getUser(id));
-        return "user/details";
-    }
-
-
-    @RequestMapping(value = "/user/edit/{id}")
-    public String getEdit(Model model, @PathVariable Long id) {
-        User user = usersService.getUser(id);
-        model.addAttribute("user", user);
-        return "user/edit";
-    }
-
-    @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-    public String setEdit(@PathVariable Long id, @ModelAttribute User user) {
-        User originalUser = usersService.getUser(id);
-        originalUser.setEmail(user.getEmail());
-        originalUser.setName(user.getName());
-        originalUser.setLastName(user.getLastName());
-        usersService.addUserWithoutEncrypt(originalUser);
-        return "redirect:/user/details/" + id;
-    }
-
 
 
     /**
@@ -114,7 +71,7 @@ public class UsersController {
                log.info("Usuario con id "+i+" ha sido borrado");
             usersService.deleteUsers(id);
         }
-        return "redirect:/home";
+        return "redirect:/user/userslist";
     }
 
 
@@ -129,6 +86,7 @@ public class UsersController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signup(@Validated User user, BindingResult result,Model model) {
         signUpFormValidator.validate(user,result);
+        user.setAmount(100);
         if(result.hasErrors()){
             log.error("Error al registrar el usuario");
             model.addAttribute("user",user);
@@ -179,10 +137,40 @@ public class UsersController {
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
-        model.addAttribute("usersList", usersService.getUsers());
-        model.addAttribute("offersList", activeUser.getPostedOffers());
         log.info("Acceso a la vista /home del usuario con id "+activeUser.getId());
         return "home";
+    }
+
+
+    /**
+     * Responderá a la perición /default
+     * Redigirá a una petición dependiendo del
+     * role del usuario
+     * @param model
+     * @return
+     */
+    @RequestMapping("/default")
+    public String defaultAfterLogin(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        if(activeUser.getRole().equals("ROLE_ADMIN")){
+            log.info("Administrador ha iniciado sesión");
+            return "redirect:/user/userslist";
+        }else{
+            log.info("Usuario con id "+activeUser.getId()+" ha iniciado sesión");
+            return "redirect:/offer/list/posted";
+        }
+    }
+
+    @RequestMapping("/user/userslist")
+    public String getUsersList(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
+        model.addAttribute("usersList", usersService.getUsers());
+        return "user/userslist";
     }
 
 
