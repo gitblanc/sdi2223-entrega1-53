@@ -2,6 +2,7 @@ package com.uniovi.myWallapop;
 
 import com.uniovi.myWallapop.pageobjects.*;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -57,13 +58,15 @@ class Sdi2223Entrega153ApplicationTests {
 	 * porque no se reinicia la base de datos.
 	 */
 	@Test
-	@Order(1)
+	@Order(11)
 	void PR01(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_SignUpView.fillForm(driver, "emailvalido@gmail.com", "aaaa", "bbbb", "77777", "77777");
 		String checkText = "Este es tu perfil en MyWallapop";
 		List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
 		Assertions.assertEquals(checkText, result.get(0).getText());
+
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
 
 	/**
@@ -100,7 +103,7 @@ class Sdi2223Entrega153ApplicationTests {
 	@Order(4)
 	void PR04(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_SignUpView.fillForm(driver, "uo285176@uniovi.es", "aaaa", "bbbb", "77777", "77777");
+		PO_SignUpView.fillForm(driver, "user05@email.com", "aaaa", "bbbb", "77777", "77777");
 		List<WebElement> result = PO_SignUpView.checkElementByKey(driver, "error.signup.emailAlreadyExists",
 				PO_Properties.getSPANISH());
 		String checkText = PO_View.getP().getString("error.signup.emailAlreadyExists", PO_Properties.getSPANISH());
@@ -127,7 +130,7 @@ class Sdi2223Entrega153ApplicationTests {
 	@Order(6)
 	void PR06(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillLoginForm(driver, "uo285176@uniovi.es", "123456");
+		PO_LoginView.fillLoginForm(driver, "user01@email.com", "user01");
 		List<WebElement> result = PO_HomeView.checkElementBy(driver, "id", "tableOffers");
 		String checkText = "tableOffers";
 		Assertions.assertEquals(checkText , result.get(0).getAttribute("id"));
@@ -194,10 +197,82 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba11] Mostrar el listado de usuarios y comprobar que se muestran todos los que existen en el sistema.
 	 */
 	@Test
-	@Order(11)
+	@Order(1)
 	void PR11(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+		List<WebElement> usersList = PO_View.checkElementBy(driver, "free", "//tbody/tr");
+
+		Assertions.assertEquals(15, usersList.size());
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba12] Ir a la lista de usuarios, borrar el primer usuario de la lista, comprobar que la lista se actualiza
+	 * y dicho usuario desaparece.
+	 */
+	@Test
+	@Order(12)
+	void PR12(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+
+		WebElement firstUserBeforeDeletion = PO_AdminView.getUsersList(driver).get(0);
+		// La primera celda de la fila de un usuario es el correo
+		String firstUserBeforeDeletionEmail = firstUserBeforeDeletion.findElement(By.tagName("td")).getText();
+		PO_AdminView.deleteUsers(driver, 0);
+		Assertions.assertNotEquals(firstUserBeforeDeletionEmail, PO_AdminView.getUsersList(driver).get(0).findElement(By.tagName("td")).getText());
+
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba13] Ir a la lista de usuarios, borrar el último usuario de la lista, comprobar que la lista se actualiza
+	 * y dicho usuario desaparece.
+	 */
+	@Test
+	@Order(13)
+	void PR13(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+
+		List<WebElement> users = PO_AdminView.getUsersList(driver);
+		int indexLastUser = users.size() - 1;
+		String lastUserBeforeDeletionEmail = users.get(indexLastUser).findElement(By.tagName("td")).getText();
+		PO_AdminView.deleteUsers(driver, indexLastUser);
+		users = PO_AdminView.getUsersList(driver);
+		indexLastUser = users.size() - 1;
+		Assertions.assertNotEquals(lastUserBeforeDeletionEmail,
+				users.get(indexLastUser).findElement(By.tagName("td")).getText());
+
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba14] Ir a la lista de usuarios, borrar 3 usuarios, comprobar que la lista se actualiza y dichos
+	 * usuarios desaparecen.
+	 */
+	@Test
+	@Order(14)
+	void PR14(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+
+		List<WebElement> users = PO_AdminView.getUsersList(driver);
+
+		String email1 = users.get(1).findElement(By.tagName("td")).getText();
+		String email3 = users.get(3).findElement(By.tagName("td")).getText();
+		String email7 = users.get(7).findElement(By.tagName("td")).getText();
+
+		PO_AdminView.deleteUsers(driver, 1, 3, 7);
+		users = PO_AdminView.getUsersList(driver);
+
+		for (WebElement user: users) {
+			String emailUser = user.findElement(By.tagName("td")).getText();
+			Assertions.assertNotEquals(emailUser, email1);
+			Assertions.assertNotEquals(emailUser, email3);
+			Assertions.assertNotEquals(emailUser, email7);
+		}
 
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
