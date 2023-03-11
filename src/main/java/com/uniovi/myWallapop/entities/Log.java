@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name="logs")
 public class Log {
 
-    public enum Tipo {PET, ALTA, ALTA_ERR, LOGIN_EX, LOGIN_ERR, LOGOUT};
+    public enum Tipo {PET, ALTA, ALTA_ERR, LOGIN_EX, LOGIN_ERR, LOGOUT, OFFER_ERR};
     @Id
     @GeneratedValue
     private Long id;

@@ -1,6 +1,8 @@
 package com.uniovi.myWallapop.controllers;
 
+import com.uniovi.myWallapop.entities.Log;
 import com.uniovi.myWallapop.entities.User;
+import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,9 @@ public class HomeController {
     @Autowired
     private UsersService usersService;
 
+    @Autowired
+    private LogsService logsService;
+
 
     @RequestMapping
     public String index(Model model) {
@@ -26,6 +31,8 @@ public class HomeController {
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
+        String description = "Un usuario ha accedido a la vista index";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "index";
     }
 }
