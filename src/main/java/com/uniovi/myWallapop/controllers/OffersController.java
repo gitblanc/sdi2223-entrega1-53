@@ -5,6 +5,8 @@ import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.validators.AddOfferValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -32,6 +34,8 @@ public class OffersController {
     @Autowired
     private AddOfferValidator addOfferValidator;
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     /**
      * Controlador para la petición GET de la lista de ofertas propias
      * @param model
@@ -49,6 +53,7 @@ public class OffersController {
         model.addAttribute("user", user);
         model.addAttribute("offersList", offers.getContent());
         model.addAttribute("page", offers);
+        log.info("Usuario con id "+user.getId()+" ha accedido a la vista de ofertas publicadas");
         return "offer/listPosted";
     }
 
@@ -65,6 +70,7 @@ public class OffersController {
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
         model.addAttribute("offer", new Offer());
+        log.info("Usuario con id "+activeUser.getId()+" ha accedido a la vista /offer/add");
         return "offer/add";
     }
 

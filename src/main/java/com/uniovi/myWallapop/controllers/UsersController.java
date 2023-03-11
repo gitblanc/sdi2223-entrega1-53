@@ -1,12 +1,12 @@
 package com.uniovi.myWallapop.controllers;
 
+import com.uniovi.myWallapop.entities.Log;
 import com.uniovi.myWallapop.entities.User;
+import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.SecurityService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.services.RolesService;
 import com.uniovi.myWallapop.validators.SignUpFormValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,18 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 @Controller
 public class UsersController {
-
-
-    /**
-     * Objeto de logeo
-     */
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     /**
      * Servicio donde estará la lógica realacionda con
      * los usuarios
@@ -56,7 +46,11 @@ public class UsersController {
     @Autowired
     private RolesService rolesService;
 
-
+    /**
+     * Servicio de logs
+     */
+    @Autowired
+    private LogsService logsService;
 
 
     /**
@@ -64,11 +58,12 @@ public class UsersController {
      * Eliminará los usuarios con ids pasadas por parámetro
      */
     @RequestMapping(value = "/user/deleteusers", method = RequestMethod.GET)
-    public String deleteConfig(@RequestParam(value = "ids", required = false) Long[] id)
-    {
-        if(id != null && id.length != 0){
-           for(Long i: id)
-               log.info("Usuario con id "+i+" ha sido borrado");
+    public String deleteConfig(@RequestParam(value = "ids", required = false) Long[] id) {
+        if (id != null && id.length != 0) {
+            for (Long i : id) {
+                String description = "Usuario con id " + i + " ha sido borrado";
+                logsService.addLog(new Log(Log.Tipo.PET, description));
+            }
             usersService.deleteUsers(id);
         }
         return "redirect:/user/userslist";
@@ -79,34 +74,40 @@ public class UsersController {
      * Responde a la petición signup de tipo Post
      * Redirigirá a la vista home si no hay ningún error, en
      * caso contario volverá a la vista de registro
+     *
      * @param user
      * @param result
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signup(@Validated User user, BindingResult result,Model model) {
-        signUpFormValidator.validate(user,result);
+    public String signup(@Validated User user, BindingResult result, Model model) {
+        signUpFormValidator.validate(user, result);
         user.setAmount(100);
-        if(result.hasErrors()){
-            log.error("Error al registrar el usuario");
-            model.addAttribute("user",user);
+        if (result.hasErrors()) {
+            String description = "Error al registrar el usuario";
+            logsService.addLog(new Log(Log.Tipo.ALTA_ERR, description));
+            model.addAttribute("user", user);
             return "signup";
         }
         user.setRole(rolesService.getRoles()[0]);
         usersService.addUser(user);
         securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-        log.info("Usuario con id "+user.getId()+" ha sido registrado");
+        String description = "Usuario con id " + user.getId() + " ha sido registrado";
+        logsService.addLog(new Log(Log.Tipo.ALTA, description));
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "redirect:home";
     }
 
 
     /**
      * Responde a la petición /login
+     *
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        log.info("Acceso a la vista /login");
+        String description = "Acceso a la vista /login";
+        logsService.addLog(new Log(Log.Tipo.LOGIN_EX, description));
         return "login";
     }
 
@@ -115,13 +116,14 @@ public class UsersController {
      * Responderá a la petición de /login-error
      * Sirve para mostrar los mensajes de error en caso
      * de fallo en el formulario de logeo
+     *
      * @param model
      * @return
      */
     @RequestMapping("/login-error")
     public String login(Model model) {
-
-        log.error("Error en el logeo de usuario, nombre de usuario o contraseña incorrectos");
+        String description = "Error en el logeo de usuario, nombre de usuario o contraseña incorrectos";
+        logsService.addLog(new Log(Log.Tipo.LOGIN_ERR, description));
         model.addAttribute("errorMessage", "Usuario o contraseña inválida");
         return "login";
     }
@@ -130,6 +132,7 @@ public class UsersController {
     /**
      * Responde a la petición home, pasando el usuario para
      * poder acceder a los atributos desde la vista
+     *
      * @param model
      * @return
      */
@@ -139,7 +142,8 @@ public class UsersController {
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
-        log.info("Acceso a la vista /home del usuario con id "+activeUser.getId());
+        String description = "Acceso a la vista /home del usuario con id " + activeUser.getId();
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "home";
     }
 
@@ -148,6 +152,7 @@ public class UsersController {
      * Responderá a la perición /default
      * Redigirá a una petición dependiendo del
      * role del usuario
+     *
      * @param model
      * @return
      */
@@ -157,11 +162,13 @@ public class UsersController {
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
-        if(activeUser.getRole().equals("ROLE_ADMIN")){
-            log.info("Administrador ha iniciado sesión");
+        if (activeUser.getRole().equals("ROLE_ADMIN")) {
+            String description = "Administrador ha iniciado sesión";
+            logsService.addLog(new Log(Log.Tipo.LOGIN_EX, description));
             return "redirect:/user/userslist";
-        }else{
-            log.info("Usuario con id "+activeUser.getId()+" ha iniciado sesión");
+        } else {
+            String description = "Usuario con id " + activeUser.getId() + " ha iniciado sesión";
+            logsService.addLog(new Log(Log.Tipo.LOGIN_EX, description));
             return "redirect:/offer/list/posted";
         }
     }
@@ -173,7 +180,8 @@ public class UsersController {
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
         model.addAttribute("usersList", usersService.getUsers());
-        log.info("Acceso a la vista /user/userslist del usuario con id "+activeUser.getId());
+        String description = "Acceso a la vista /user/userslist del usuario con id " + activeUser.getId();
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "user/userslist";
     }
 
@@ -181,13 +189,15 @@ public class UsersController {
     /**
      * Responde a la petición signup de tipo GET
      * Le pasará a la vista el atributo user
+     *
      * @param model
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
         model.addAttribute("user", new User());
-        log.info("Acceso a la vista /signup");
+        String description = "Acceso a la vista /signup";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "signup";
     }
 
