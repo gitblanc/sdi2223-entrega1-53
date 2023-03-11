@@ -201,5 +201,31 @@ public class UsersController {
         return "signup";
     }
 
+    /**
+     * Responde a la petición de listar logs
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/user/logslist")
+    public String getLogsList(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
+        model.addAttribute("logslist", logsService.getLogs());
+        String description = "Acceso a la vista /user/logslist del usuario con id " + activeUser.getId();
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+        return "user/logslist";
+    }
 
+    /**
+     * Responde a la petición /user/deletlogs
+     * Eliminará todos los logs
+     */
+    @RequestMapping(value = "/user/deletelogs", method = RequestMethod.GET)
+    public String deleteLogsConfig() {
+        logsService.deleteALLLogs();
+        return "redirect:/user/logslist";
+    }
 }

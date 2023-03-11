@@ -6,6 +6,8 @@
 <!-- Barra de Navegación superior -->
 <nav th:replace="fragments/nav"/>
 <div class="container" style="text-align: center">
+    <h2 th:text="#{users.list.title}"></h2>
+    <p th:text="#{users.list.subtitle}"></p>
     <form th:action="@{/user/deleteusers}" th:object="${usersid}">
         <table class="table table-hover" th:fragment="tableUsers" id="tableUsers">
             <thead>
