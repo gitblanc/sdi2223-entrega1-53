@@ -66,6 +66,15 @@ public class UsersService {
         usersRepository.save(user);
     }
 
+    /**
+     * Devuelve el usuario identificado con el email recibido como parámetro
+     * @param email
+     * @return user
+     */
+    public User getUserByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
+
     public boolean existsEmail(String email) {
         for(User u: getUsers()){
             if(u.getEmail().equals((email)))
@@ -77,10 +86,6 @@ public class UsersService {
     public void addUserWithoutEncrypt(User user) {
         user.setPassword(user.getPassword());
         usersRepository.save(user);
-    }
-
-    public User getUserByEmail(String email) {
-        return usersRepository.findByEmail(email);
     }
 
 

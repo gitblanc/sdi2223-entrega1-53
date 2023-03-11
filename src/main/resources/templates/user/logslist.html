@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head"/>
+<body>
+<!-- Barra de Navegación superior -->
+<nav th:replace="fragments/nav"/>
+<div class="container" style="text-align: center">
+    <h2 th:text="#{logs.list.title}"></h2>
+    <p th:text="#{logs.list.subtitle}"></p>
+
+    <form th:action="@{/user/logsfiltered}">
+        <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" th:placeholder="#{logs.filter.input}"/>
+        <input type="submit" th:value="#{logs.filter.search}"/>
+    </form>
+
+    <form th:action="@{/user/deletelogs}" th:object="${logsid}">
+        <input th:if="${!#lists.isEmpty(logslist)}" th:action="@{/user/deletealllogs}" type="submit"
+               value="Delete all logs"/>
+
+        <table class="table table-hover" th:fragment="tableLogs" id="tableLogs">
+            <thead>
+            <tr>
+                <th scope="col" th:text="#{home.logs.tipo}">Tipo</th>
+                <th scope="col" th:text="#{home.logs.descripcion}">Descripción</th>
+                <th scope="col" th:text="#{home.logs.fecha}">Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="log : ${logslist}" sec:authorize="hasRole('ROLE_ADMIN')">
+                <td th:text="${log.tipo}">ejemplo</td>
+                <td th:text="${log.description}">descripcion</td>
+                <td th:text="${log.date}">fecha</td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if="${#lists.isEmpty(logslist)}" th:text="#{home.logs.emptylist}"> No logs</div>
+        </td>
+    </form>
+</div>
+<footer th:replace="fragments/footer"/>
+</body>
+</html>
