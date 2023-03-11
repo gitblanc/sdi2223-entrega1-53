@@ -50,10 +50,16 @@
             </li>
 
         </ul>
-
-        <p sec:authorize="isAuthenticated()" class="card-text" th:text="${user.email}" th:remove="tag" style="color:White;" >example@gmail.com</p>
-        <p sec:authorize="isAuthenticated()" class="card-text" th:text="${user.amount}" th:remove="tag" style="color:White;" >53.5€
-        <p sec:authorize="isAuthenticated()" style="color:White;" th:remove="tag" > €</p>
+        <div>
+            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.email}" style="color: white">
+                example@gmail.com
+            </ul>
+        </div>
+        <div>
+            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.amount} + ' €'" style="color: white">
+                53.5€
+            </ul>
+        </div>
 
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item dropdown">
@@ -79,7 +85,8 @@
                     style='font-size:16px'></i> <span
                     th:text="#{login.message}"></span> </a></li>
             <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/logout"> <i
-                    class='fas fa-sign-out-alt' style='font-size:16px'></i> <span th:text="#{disconnect.message}">Desconectar</span> </a></li>
+                    class='fas fa-sign-out-alt' style='font-size:16px'></i> <span th:text="#{disconnect.message}">Desconectar</span>
+            </a></li>
         </ul>
     </div>
 </nav>

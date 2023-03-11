@@ -143,9 +143,9 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "", "");
 		// Se debe indicar que el campo está vacío
-		List<WebElement> result = PO_SignUpView.checkElementByKey(driver, "Error.offer.empty",
+		List<WebElement> result = PO_SignUpView.checkElementByKey(driver, "error.login.userorpasswordincorrect",
 				PO_Properties.getSPANISH() );
-		String checkText = PO_HomeView.getP().getString("Error.offer.empty",
+		String checkText = PO_HomeView.getP().getString("error.login.userorpasswordincorrect",
 				PO_Properties.getSPANISH());
 		Assertions.assertEquals(checkText , result.get(0).getText());
 	}
@@ -187,7 +187,7 @@ class Sdi2223Entrega153ApplicationTests {
 	@Test
 	@Order(10)
 	void PR10(){
-		List<WebElement> elements = PO_HomeView.checkElementBy(driver, "@href", "logout");
+		List<WebElement> elements = PO_SignUpView.checkElementBy(driver, "@href", "logout");
 		Assertions.assertEquals(0, elements.size());
 	}
 

@@ -51,9 +51,7 @@ public class LogsService {
      * @return
      */
     public List<Log> getLogs() {
-        List<Log> logs = new ArrayList<Log>();
-        logsRepository.findAll().forEach(logs::add);
-        return logs;
+        return logsRepository.getLogsByDate();
     }
 
     /**
@@ -80,5 +78,41 @@ public class LogsService {
      */
     public void deleteALLLogs() {
         logsRepository.deleteAll();
+    }
+
+    /**
+     * Método que filtra los logs en base a su tipo
+     *
+     * @param tipo
+     * @return
+     */
+    public List<Log> getLogsByType(String tipo) {
+        return logsRepository.findByTipo(convertTypeToEnum(tipo));
+    }
+
+    /**
+     * Método que convierte un tipo String a el Enum de tipos disponibles
+     * @param tipo
+     * @return
+     */
+    private Log.Tipo convertTypeToEnum(String tipo) {
+        switch (tipo) {
+            case "pet":
+                return Log.Tipo.PET;
+            case "alta":
+                return Log.Tipo.ALTA;
+            case "alta_err":
+                return Log.Tipo.ALTA_ERR;
+            case "login_ex":
+                return Log.Tipo.LOGIN_EX;
+            case "login_err":
+                return Log.Tipo.LOGIN_ERR;
+            case "logout":
+                return Log.Tipo.LOGOUT;
+            case "offer_err":
+                return Log.Tipo.OFFER_ERR;
+            default:
+                return null;
+        }
     }
 }

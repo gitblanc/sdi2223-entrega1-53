@@ -8,6 +8,7 @@ import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.services.RolesService;
 import com.uniovi.myWallapop.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UsersController {
@@ -227,5 +231,31 @@ public class UsersController {
     public String deleteLogsConfig() {
         logsService.deleteALLLogs();
         return "redirect:/user/logslist";
+    }
+
+    /**
+     * Método que filtra los logs del sistema para admin
+     * @param model
+     * @param tipo
+     * @return
+     */
+    @RequestMapping("/user/logsfiltered")
+    public String filterLogs(Model model, @RequestParam("keyword") String tipo) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
+
+        if(tipo.isBlank() || tipo.toLowerCase().equals("all") || tipo.toLowerCase().equals("todo")){
+            model.addAttribute("logslist", logsService.getLogs());
+            model.addAttribute("keyword", tipo);
+        }else {
+            List<Log> logs = logsService.getLogsByType(tipo.toLowerCase());
+            model.addAttribute("logslist", logs);
+            model.addAttribute("keyword", tipo);
+        }
+        String description = "Acceso a la vista /user/logslist del usuario con id " + activeUser.getId() + " mediante filtrado";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+        return "user/logslist";
     }
 }
