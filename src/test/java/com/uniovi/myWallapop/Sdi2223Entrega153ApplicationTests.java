@@ -15,7 +15,8 @@ class Sdi2223Entrega153ApplicationTests {
 
 	static String PathFirefox = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	//static String Geckodriver = "C:\\Users\\uo277369\\Desktop\\PL-SDI-Sesión5-material\\geckodriver-v0.30.0-win64.exe";
-	static String Geckodriver = "C:\\Users\\mines\\Desktop\\wallapop\\geckodriver-v0.30.0-win64.exe";
+	//static String Geckodriver = "C:\\Users\\mines\\Desktop\\wallapop\\geckodriver-v0.30.0-win64.exe";
+	static String Geckodriver = "C:\\Users\\aaron\\Desktop\\UNI\\tercero\\SEGUNDO\\SDI\\Practica\\SDI-P5\\PL-SDI-Sesión5-material\\geckodriver-v0.30.0-win64.exe";
 	//static String Geckodriver = "C:\\Dev\\tools\\selenium\\geckodriver-v0.30.0-win64.exe";
 	//static String PathFirefox = "/Applications/Firefox.app/Contents/MacOS/firefox-bin";
 //static String Geckodriver = "/Users/USUARIO/selenium/geckodriver-v0.30.0-macos";
@@ -142,9 +143,9 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "", "");
 		// Se debe indicar que el campo está vacío
-		List<WebElement> result = PO_SignUpView.checkElementByKey(driver, "Error.offer.empty",
+		List<WebElement> result = PO_SignUpView.checkElementByKey(driver, "error.login.userorpasswordincorrect",
 				PO_Properties.getSPANISH() );
-		String checkText = PO_HomeView.getP().getString("Error.offer.empty",
+		String checkText = PO_HomeView.getP().getString("error.login.userorpasswordincorrect",
 				PO_Properties.getSPANISH());
 		Assertions.assertEquals(checkText , result.get(0).getText());
 	}
@@ -186,7 +187,7 @@ class Sdi2223Entrega153ApplicationTests {
 	@Test
 	@Order(10)
 	void PR10(){
-		List<WebElement> elements = PO_HomeView.checkElementBy(driver, "@href", "logout");
+		List<WebElement> elements = PO_SignUpView.checkElementBy(driver, "@href", "logout");
 		Assertions.assertEquals(0, elements.size());
 	}
 

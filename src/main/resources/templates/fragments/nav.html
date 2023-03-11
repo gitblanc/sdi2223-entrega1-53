@@ -11,7 +11,7 @@
             <li class="nav-item "><a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a></li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                   aria-haspopup="true" aria-expanded="false" sec:authorize="hasRole('ROLE_STANDARD')">
                     <span th:text="#{nav.offer}">Gestión de ofertas</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -26,7 +26,41 @@
                     </a>
                 </div>
             </li>
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span th:text="#{nav.user}">Gestión de usuarios</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/user/userslist">
+                        <span th:text="#{nav.user.list}">Ver lista de usuarios</span>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span th:text="#{nav.logs}">Gestión de logs</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/user/logslist">
+                        <span th:text="#{nav.logs.list}">Ver lista de logs</span>
+                    </a>
+                </div>
+            </li>
+
         </ul>
+        <div>
+            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.email}" style="color: white">
+                example@gmail.com
+            </ul>
+        </div>
+        <div>
+            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.amount} + ' €'" style="color: white">
+                53.5€
+            </ul>
+        </div>
+
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="btnLanguage" role="button" data-toggle="dropdown"
@@ -51,7 +85,8 @@
                     style='font-size:16px'></i> <span
                     th:text="#{login.message}"></span> </a></li>
             <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/logout"> <i
-                    class='fas fa-sign-out-alt' style='font-size:16px'></i> <span th:text="#{disconnect.message}">Desconectar</span> </a></li>
+                    class='fas fa-sign-out-alt' style='font-size:16px'></i> <span th:text="#{disconnect.message}">Desconectar</span>
+            </a></li>
         </ul>
     </div>
 </nav>

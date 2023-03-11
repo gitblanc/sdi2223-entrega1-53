@@ -15,10 +15,6 @@
         </p>
     </p>
 
-
-    <users sec:authorize="hasRole('ROLE_ADMIN')" th:replace="fragments/userslist"/>
-    <offers sec:authorize="hasRole('ROLE_STANDARD')" th:replace="fragments/offerslist"/>
-
 </div>
 <footer th:replace="fragments/footer"/>
 </body>
