@@ -106,6 +106,7 @@ public class UsersController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
+        log.info("Acceso a la vista /login");
         return "login";
     }
 
@@ -119,6 +120,7 @@ public class UsersController {
      */
     @RequestMapping("/login-error")
     public String login(Model model) {
+
         log.error("Error en el logeo de usuario, nombre de usuario o contraseña incorrectos");
         model.addAttribute("errorMessage", "Usuario o contraseña inválida");
         return "login";
@@ -154,6 +156,7 @@ public class UsersController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
         if(activeUser.getRole().equals("ROLE_ADMIN")){
             log.info("Administrador ha iniciado sesión");
             return "redirect:/user/userslist";
@@ -170,6 +173,7 @@ public class UsersController {
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
         model.addAttribute("usersList", usersService.getUsers());
+        log.info("Acceso a la vista /user/userslist del usuario con id "+activeUser.getId());
         return "user/userslist";
     }
 
@@ -183,6 +187,7 @@ public class UsersController {
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
         model.addAttribute("user", new User());
+        log.info("Acceso a la vista /signup");
         return "signup";
     }
 

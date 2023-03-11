@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,6 +46,7 @@ public class OffersController {
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
         offers = offersService.getPostedOffers(user, pageable);
 
+        model.addAttribute("user", user);
         model.addAttribute("offersList", offers.getContent());
         model.addAttribute("page", offers);
         return "offer/listPosted";
@@ -57,6 +60,10 @@ public class OffersController {
      */
     @RequestMapping(value = "/offer/add")
     public String getOffer(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
         model.addAttribute("offer", new Offer());
         return "offer/add";
     }
@@ -73,6 +80,7 @@ public class OffersController {
     public String setOffer(Model model, @Validated Offer offer, BindingResult result,  Principal principal) {
         String email = principal.getName();
         User user = usersService.getUserByEmail(email);
+        model.addAttribute("user", user);
         offer.setSeller(user);
         offer.setDate(new Date());
         addOfferValidator.validate(offer, result);
@@ -91,6 +99,10 @@ public class OffersController {
      */
     @RequestMapping("/offer/details/{id}")
     public String getDetail(Model model, @PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
         model.addAttribute("offer", offersService.getOffer(id));
         return "offer/details";
     }
@@ -115,6 +127,7 @@ public class OffersController {
     public String getBoughtOffers(Model model, Principal principal) {
         String email = principal.getName();
         User user = usersService.getUserByEmail(email);
+        model.addAttribute("user", user);
         model.addAttribute("offersList", user.getBoughtOffers().stream().toList()) ;
         return "offer/bought";
     }

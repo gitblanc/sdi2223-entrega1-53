@@ -11,7 +11,7 @@
             <li class="nav-item "><a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a></li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                   aria-haspopup="true" aria-expanded="false" sec:authorize="hasRole('ROLE_STANDARD')">
                     <span th:text="#{nav.offer}">Gestión de ofertas</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -26,7 +26,25 @@
                     </a>
                 </div>
             </li>
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span th:text="#{nav.user}">Gestión de usuarios</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/user/userslist">
+                        <span th:text="#{nav.user.list}">Ver lista de usuarios</span>
+                    </a>
+                </div>
+            </li>
+
         </ul>
+
+        <p sec:authorize="isAuthenticated()" class="card-text" th:text="${user.email}" th:remove="tag" style="color:White;" >example@gmail.com</p>
+        <p sec:authorize="isAuthenticated()" class="card-text" th:text="${user.amount}" th:remove="tag" style="color:White;" >53.5€
+        <p sec:authorize="isAuthenticated()" style="color:White;" th:remove="tag" > €</p>
+        </p>
+
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="btnLanguage" role="button" data-toggle="dropdown"
