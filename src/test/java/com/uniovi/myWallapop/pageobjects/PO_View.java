@@ -62,4 +62,8 @@ public class PO_View {
 		return SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString(prop, language),
 				getTimeout());
 	}
+
+	static public void checkTextNotPresent(WebDriver driver, String text) {
+		SeleniumUtils.waitTextIsNotPresentOnPage(driver, text, getTimeout());
+	}
 }
