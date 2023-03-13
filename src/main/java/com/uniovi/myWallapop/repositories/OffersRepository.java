@@ -27,5 +27,7 @@ public interface OffersRepository extends CrudRepository<Offer, Long> {
     @Transactional
     @Query("UPDATE Offer SET sold = ?1 WHERE id = ?2")
     void updateSold(Boolean sold, Long id);
- 
+
+    @Query("SELECT distinct o FROM Offer o WHERE (LOWER(o.title) = LOWER (?1))")
+    List<Offer> searchOfferByTitle(String searchText);
 }

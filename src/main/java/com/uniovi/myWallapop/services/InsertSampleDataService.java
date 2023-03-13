@@ -56,9 +56,18 @@ public class InsertSampleDataService {
 
         Offer offer1 = new Offer("Oferta1", "EStA ES LA OFERTA MAS CHUPIWAY", 45.32, user1);
         Offer offer2 = new Offer("Oferta2", "EStA ES LA releche", 4456.78, user1);
+        Offer offer3= new Offer("pruebisisima vaya", "a ver si funciona", 46.78, user1);
+        Offer offer4= new Offer("pruebisisima vaya", "a ver si funciona", 46.78, user2);
+        Offer offer5= new Offer("pruebisisima vaya por 2", "a ver si funciona", 46.78, user2);
+        Offer offer6= new Offer("phola que tal", "a ver si funciona", 46.78, user2);
+
 
         offersService.addOffer(offer1);
         offersService.addOffer(offer2);
+        offersService.addOffer(offer3);
+        offersService.addOffer(offer4);
+        offersService.addOffer(offer5);
+        offersService.addOffer(offer6);
 
         Chat chat1 = new Chat(offer1, user2);
         Chat chat2 = new Chat(offer2, user3);

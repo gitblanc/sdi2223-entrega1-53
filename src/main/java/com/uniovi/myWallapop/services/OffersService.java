@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.yaml.snakeyaml.error.Mark;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedList;
@@ -28,6 +27,8 @@ public class OffersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+
 
     @PostConstruct
     public void init() {
@@ -116,4 +117,23 @@ public class OffersService {
         offersRepository.updateSold(true, id);
         return null;
     }
+
+    public List<Offer> searchOfferByTitle(String searchText) {
+        List<Offer> offers = new ArrayList<>();
+        searchText = "%"+searchText+"%";
+        offers = offersRepository.searchOfferByTitle(searchText);
+        return offers;
+    }
+
+    public List<Offer> getAllOffers(User user) {
+        List<Offer> offers = new ArrayList<>();
+        List<Offer> allOffers = getOffers();
+        for(Offer o: allOffers) {
+            if(!o.getSeller().getEmail().equals(user.getEmail())) {
+                offers.add(o);
+            }
+        }
+        return offers;
+    }
+
 }
