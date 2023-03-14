@@ -150,7 +150,8 @@ public class OffersController {
 
 
     @RequestMapping("/offer/list")
-    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
+    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName,
+                               @RequestParam(value ="", required = false) String error) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
@@ -166,11 +167,15 @@ public class OffersController {
         model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
+        if(error != null && !error.isEmpty()) {
+            model.addAttribute("error", error);
+        }
+
         return "offer/list";
     }
 
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
-    public String setSoldTrue(Model model, @PathVariable Long id) {
+    public String setSoldTrue(@PathVariable Long id) {
         String error = offersService.buyOffer(id);
         if (error == null) {
             String description = "Se ha vendido la oferta: " + id;
@@ -179,7 +184,7 @@ public class OffersController {
         }
         String description = "No se ha podido vender la oferta: " + id;
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
-        return "redirect:/offer/list";
+        return "redirect:/offer/list?error="+error;
     }
 
 
