@@ -162,12 +162,11 @@ public class OffersController {
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
 
         if(searchName != null && !searchName.isEmpty()) {
-            model.addAttribute("allOffersList",
-                    offersService.searchOfferByTitle(pageable,searchName));
+            offers = offersService.searchOfferByTitle(pageable,searchName);
         } else {
-            model.addAttribute("allOffersList",
-                    offersService.getOffers(pageable));
+            offers = offersService.getOffers(pageable);
         }
+        model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
         return "offer/list";

@@ -2151,3 +2151,46 @@ org.springframework.expression.spel.SpelEvaluationException: EL1004E: Method cal
 2023-03-14 09:37:10.428  INFO 12340 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-03-14 09:37:10.430  INFO 12340 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-03-14 09:37:10.510  INFO 12340 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:38:40.950  INFO 12340 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:38:40.951  INFO 12340 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-14 09:38:40.955  INFO 12340 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-14 09:42:10.128  INFO 9436 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 18.0.2.1 on DESKTOP-IJLN5LA with PID 9436 (C:\Users\UO276967\Desktop\SDI\TGS\PRIMER TRABAJO\sdi2223-entrega1-53\target\classes started by UO276967 in C:\Users\UO276967\Desktop\SDI\TGS\PRIMER TRABAJO\sdi2223-entrega1-53)
+2023-03-14 09:42:10.132  INFO 9436 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-14 09:42:10.752  INFO 9436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 09:42:10.812  INFO 9436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 5 JPA repository interfaces.
+2023-03-14 09:42:11.295  INFO 9436 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-14 09:42:11.303  INFO 9436 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-14 09:42:11.304  INFO 9436 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-14 09:42:11.411  INFO 9436 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-14 09:42:11.412  INFO 9436 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1227 ms
+2023-03-14 09:42:11.585  INFO 9436 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 09:42:11.626  INFO 9436 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 09:42:11.788  INFO 9436 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 09:42:11.928  INFO 9436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-14 09:42:11.932  WARN 9436 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-14 09:42:12.087  INFO 9436 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-14 09:42:12.098  INFO 9436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-14 09:42:12.135  INFO 9436 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-14 09:42:12.900  INFO 9436 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 09:42:12.906  INFO 9436 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:42:12.949  WARN 9436 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 09:42:14.115  INFO 9436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@9c5d76b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7a14ab66, org.springframework.security.web.context.SecurityContextPersistenceFilter@f996445, org.springframework.security.web.header.HeaderWriterFilter@16120270, org.springframework.security.web.authentication.logout.LogoutFilter@2093bb6c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6f695077, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7282f7b1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f2afa8b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54780c40, org.springframework.security.web.session.SessionManagementFilter@1fab0394, org.springframework.security.web.access.ExceptionTranslationFilter@5527dbb0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a75183d]
+2023-03-14 09:42:14.242  INFO 9436 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-14 09:42:14.439  INFO 9436 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-14 09:42:14.448  INFO 9436 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 4.727 seconds (JVM running for 5.468)
+2023-03-14 09:42:14.566  INFO 9436 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 09:42:14.566  INFO 9436 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-14 09:42:14.568  INFO 9436 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-03-14 09:42:14.653  INFO 9436 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:42:38.030  INFO 9436 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Se ha vendido la oferta: 10
+2023-03-14 09:42:48.075 ERROR 9436 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 6
+2023-03-14 09:42:52.426 ERROR 9436 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 6
+2023-03-14 09:42:58.068 ERROR 9436 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 6
+2023-03-14 09:45:08.478  INFO 9436 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Se ha vendido la oferta: 9
+2023-03-14 09:45:14.815 ERROR 9436 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 8
+2023-03-14 09:45:16.893 ERROR 9436 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 8
+2023-03-14 09:45:19.400 ERROR 9436 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 13
+2023-03-14 09:45:24.267 ERROR 9436 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 13
+2023-03-14 09:46:07.245  INFO 9436 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:46:07.246  INFO 9436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-14 09:46:07.251  INFO 9436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
