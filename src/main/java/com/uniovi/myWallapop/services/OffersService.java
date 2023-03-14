@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.yaml.snakeyaml.error.Mark;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedList;
@@ -28,6 +27,8 @@ public class OffersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+
 
     @PostConstruct
     public void init() {
@@ -75,9 +76,8 @@ public class OffersService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
-    public List<Offer> getOffers() {
-        List<Offer> offers = new ArrayList<Offer>();
-        offersRepository.findAll().forEach(offers::add);
+    public Page<Offer> getOffers(Pageable pageable) {
+        Page<Offer> offers = offersRepository.findAll(pageable);
         return offers;
     }
 
@@ -116,4 +116,13 @@ public class OffersService {
         offersRepository.updateSold(true, id);
         return null;
     }
+
+    public Page<Offer> searchOfferByTitle(Pageable pageable,String searchText) {
+        Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
+        searchText = "%"+searchText+"%";
+        offers = offersRepository.searchOfferByTitle(pageable,searchText);
+        return offers;
+    }
+
+
 }

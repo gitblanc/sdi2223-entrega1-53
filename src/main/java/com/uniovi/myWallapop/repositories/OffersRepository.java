@@ -27,5 +27,9 @@ public interface OffersRepository extends CrudRepository<Offer, Long> {
     @Transactional
     @Query("UPDATE Offer SET sold = ?1 WHERE id = ?2")
     void updateSold(Boolean sold, Long id);
- 
+
+    @Query("SELECT o FROM Offer o WHERE (LOWER(o.title) LIKE LOWER (?1))")
+    Page<Offer> searchOfferByTitle(Pageable pageable,String searchText);
+
+    Page<Offer> findAll(Pageable pageable);
 }
