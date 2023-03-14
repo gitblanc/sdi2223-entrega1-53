@@ -7,8 +7,7 @@ import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.validators.AddOfferValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.uniovi.myWallapop.validators.BuyOfferValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.Date;
@@ -37,6 +37,9 @@ public class OffersController {
     private AddOfferValidator addOfferValidator;
     @Autowired
     private LogsService logsService;
+
+    @Autowired
+    private BuyOfferValidator buyOfferValidator;
 
     /**
      * Controlador para la petición GET de la lista de ofertas propias
@@ -137,20 +140,6 @@ public class OffersController {
         return "redirect:/offer/list/posted";
     }
 
-    @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
-    public String setSoldTrue(Model model, @PathVariable Long id) {
-        String error = offersService.buyOffer(id);
-        if (error == null) {
-            String description = "Se ha vendido la oferta: " + id;
-            logsService.addLog(new Log(Log.Tipo.PET, description));
-            return "redirect::offer/list";
-        }
-        model.addAttribute("errorBuyingOffer", error);
-        String description = "No se ha podido vender la oferta: " + id;
-        logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
-        return "offer/list";
-    }
-
     @RequestMapping(value = "/offer/bought", method = RequestMethod.GET)
     public String getBoughtOffers(Model model, Principal principal) {
         String email = principal.getName();
@@ -161,4 +150,42 @@ public class OffersController {
         logsService.addLog(new Log(Log.Tipo.PET, description));
         return "offer/bought";
     }
+
+
+    @RequestMapping("/offer/list")
+    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User activeUser = usersService.getUserByEmail(email);
+        model.addAttribute("user", activeUser);
+
+        Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
+
+        if(searchName != null && !searchName.isEmpty()) {
+            model.addAttribute("allOffersList",
+                    offersService.searchOfferByTitle(pageable,searchName));
+        } else {
+            model.addAttribute("allOffersList",
+                    offersService.getOffers(pageable));
+        }
+        model.addAttribute("page", offers);
+
+        return "offer/list";
+    }
+
+    @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
+    public String setSoldTrue(Model model, @PathVariable Long id) {
+        String error = offersService.buyOffer(id);
+        if (error == null) {
+            String description = "Se ha vendido la oferta: " + id;
+            logsService.addLog(new Log(Log.Tipo.PET, description));
+            return "redirect:/offer/list";
+        }
+        String description = "No se ha podido vender la oferta: " + id;
+        logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
+        return "redirect:/offer/list";
+    }
+
+
+
 }
