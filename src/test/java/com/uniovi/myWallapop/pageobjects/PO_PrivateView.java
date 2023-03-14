@@ -25,22 +25,4 @@ public class PO_PrivateView extends PO_NavView {
         By boton = By.className("btn");
         driver.findElement(boton).click();
     }
-
-    public static void writeIntoSearchBar(WebDriver driver, String searchText) {
-        String searchBarType = "class";
-        String searchBarText = "form-control";
-        List<WebElement> searchBarList =  PO_PrivateView.checkElementBy(driver, searchBarType, searchBarText);
-        // Tiene que haber una barra de búsqueda
-        Assertions.assertEquals(1, searchBarList.size());
-        WebElement searchBar = searchBarList.get(0);
-        // Escribimos en ella
-        searchBar.click();
-        searchBar.clear();
-        searchBar.sendKeys(searchText);
-        // Pinchamos el botón de buscar
-        By boton = By.className("btn");
-        driver.findElement(boton).click();
-        // Comprobamos que se recarga la página
-        PO_PrivateView.checkElementBy(driver, searchBarType, searchBarText);
-    }
 }

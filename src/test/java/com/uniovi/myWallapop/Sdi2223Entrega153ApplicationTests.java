@@ -437,7 +437,7 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_LoginView.fillLoginForm(driver, "user01@email.com", "user01");
 		//checkElementBy(driver, "class", "btn btn-primary");
 		PO_PrivateView.clickOfferOption(driver, "list");
-		PO_PrivateView.writeIntoSearchBar(driver, "");
+		PO_AllOffersView.writeIntoSearchBar(driver, "");
 
 		// Comprobamos que salen todas las ofertas del sistema
 		List<WebElement> offersList = PO_View.checkElementBy(driver, "free", "//tbody/tr");
@@ -470,7 +470,7 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
 		PO_PrivateView.clickOfferOption(driver, "list");
-		PO_PrivateView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
+		PO_AllOffersView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
 
 		// Comprobamos que la lista está vacía
 		PO_PrivateView.getText(driver, 0, "home.offer.emptylist");
@@ -488,11 +488,38 @@ class Sdi2223Entrega153ApplicationTests {
 	void PR22(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		PO_PrivateView.clickOfferOption(driver, "list");
-		PO_PrivateView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
+		PO_PrivateView.clickAllOffersOption(driver);
+		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-Eduardo-n2");
+		PO_AllOffersView.buyFirstOffer(driver);
 
-		// Comprobamos que la lista está vacía
-		PO_PrivateView.getText(driver, 0, "home.offer.emptylist");
+		// Comprobamos que el contador se actualiza
+		//  //*[@id="myNavbar"]/div[2]/ul
+		String saldoAhora = PO_View.checkElementBy(driver, "free", "//*[@id=\"myNavbar\"]/div[2]/ul").get(0).getText();
+
+		Assertions.assertEquals("80.0 €", saldoAhora);
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba23] Sobre una búsqueda determinada (a elección del desarrollador), comprar una oferta que deja
+	 * un saldo 0 en el contador del comprador. Comprobar que el contador se actualiza correctamente en la
+	 * vista del comprador.
+	 */
+	@Test
+	@Order(23)
+	void PR23(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
+		PO_PrivateView.clickAllOffersOption(driver);
+		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-Eduardo-n8");
+		PO_AllOffersView.buyFirstOffer(driver);
+
+		// Comprobamos que el contador se actualiza
+		//  //*[@id="myNavbar"]/div[2]/ul
+		String saldoAhora = PO_View.checkElementBy(driver, "free", "//*[@id=\"myNavbar\"]/div[2]/ul").get(0).getText();
+
+		Assertions.assertEquals("0.0 €", saldoAhora);
 
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
