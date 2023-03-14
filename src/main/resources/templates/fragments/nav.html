@@ -54,12 +54,13 @@
 
         </ul>
         <div>
-            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.email}" style="color: white">
+
+            <ul sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_STANDARD')" th:if="${user != null}" class="card-text" th:text="${user.email}" style="color: white">
                 example@gmail.com
             </ul>
         </div>
         <div>
-            <ul sec:authorize="isAuthenticated()" class="card-text" th:text="${user.amount} + ' €'" style="color: white">
+            <ul sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_STANDARD')" th:if="${user != null}"  class="card-text" th:text="${user.amount} + ' €'" style="color: white">
                 53.5€
             </ul>
         </div>
