@@ -1,4 +1,5 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div class="table-responsive" sec:authorize="hasRole('ROLE_STANDARD')">
     <table class="table table-hover" th:fragment="tableOffers" id="tableOffers">
@@ -17,6 +18,10 @@
             <td th:text="${offer.title}">Titulo1</td>
             <td th:text="${offer.description}">Descripcion1</td>
             <td th:text="${offer.amount}">0.0</td>
+            <td scope="row"><a th:href="${'/offer/details/' + offer.id}"
+                th:text="#{offer.list.table.details}"></a></td>
+            <td scope="row"><a th:href="${'/offer/delete/' + offer.id}"
+                th:text="#{offer.list.table.delete}"></a></td>
 
         </tr>
         </tbody>

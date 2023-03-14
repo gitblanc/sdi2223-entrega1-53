@@ -4,7 +4,7 @@ import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Modifying
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,5 +27,9 @@ public interface OffersRepository extends CrudRepository<Offer, Long> {
     @Transactional
     @Query("UPDATE Offer SET sold = ?1 WHERE id = ?2")
     void updateSold(Boolean sold, Long id);
- 
+
+    @Query("SELECT o FROM Offer o WHERE (LOWER(o.title) LIKE LOWER (?1))")
+    Page<Offer> searchOfferByTitle(Pageable pageable,String searchText);
+
+    Page<Offer> findAll(Pageable pageable);
 }
