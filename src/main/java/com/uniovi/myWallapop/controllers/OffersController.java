@@ -7,7 +7,6 @@ import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.validators.AddOfferValidator;
-import com.uniovi.myWallapop.validators.BuyOfferValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -38,8 +37,6 @@ public class OffersController {
     @Autowired
     private LogsService logsService;
 
-    @Autowired
-    private BuyOfferValidator buyOfferValidator;
 
     /**
      * Controlador para la petición GET de la lista de ofertas propias
