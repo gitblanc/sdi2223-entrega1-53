@@ -153,21 +153,20 @@ public class OffersController {
 
 
     @RequestMapping("/offer/list")
-    public String getAllOffers(Model model, @RequestParam(value ="", required = false) String searchName) {
+    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
 
-
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
 
         if(searchName != null && !searchName.isEmpty()) {
             model.addAttribute("allOffersList",
-                    offersService.searchOfferByTitle(searchName));
+                    offersService.searchOfferByTitle(pageable,searchName));
         } else {
             model.addAttribute("allOffersList",
-                    offersService.getAllOffers(activeUser));
+                    offersService.getOffers(pageable));
         }
         model.addAttribute("page", offers);
 
@@ -178,12 +177,10 @@ public class OffersController {
     public String setSoldTrue(Model model, @PathVariable Long id) {
         String error = offersService.buyOffer(id);
         if (error == null) {
-
             String description = "Se ha vendido la oferta: " + id;
             logsService.addLog(new Log(Log.Tipo.PET, description));
             return "redirect:/offer/list";
         }
-        model.addAttribute("errorBuyingOffer", error);
         String description = "No se ha podido vender la oferta: " + id;
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
         return "redirect:/offer/list";

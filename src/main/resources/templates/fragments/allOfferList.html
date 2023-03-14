@@ -3,15 +3,19 @@
 
 <div class="table-responsive" sec:authorize="hasRole('ROLE_STANDARD')">
 
-  <form th:action="@{/offer/list}">
-    <input type="text" name="searchText" class="form-control" size="50" th:placeholder="#{offer.filter.input}"/>
-    <input type="submit" th:value="#{offer.list.search}"/>
+  <form class="form-inline" action="/offer/list">
+    <div class="form-group">
+      <input name="searchName" type="text" class="form-control" size="50"
+             th:placeholder="#{offer.filter.input}">
+    </div>
+    <button type="submit" class="btn btn-primary" th:value="#{offer.list.search}">Buscar</button>
   </form>
+
 
   <table class="table table-hover" th:fragment="tableOffers" id="tableOffers">
     <thead>
     <tr>
-      <th scope="col" th:text="#{home.offer.title}">Texto descriptivo</th>
+      <th scope="col" th:text="#{home.offer.title}">Título</th>
       <th scope="col" th:text="#{home.offer.description}">Detalles</th>
       <th scope="col" th:text="#{home.offer.amount}">Precio</th>
       <th scope="col" th:text="#{home.offer.status}">Estado</th>

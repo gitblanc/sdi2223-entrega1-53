@@ -76,9 +76,8 @@ public class OffersService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
-    public List<Offer> getOffers() {
-        List<Offer> offers = new ArrayList<Offer>();
-        offersRepository.findAll().forEach(offers::add);
+    public Page<Offer> getOffers(Pageable pageable) {
+        Page<Offer> offers = offersRepository.findAll(pageable);
         return offers;
     }
 
@@ -118,22 +117,12 @@ public class OffersService {
         return null;
     }
 
-    public List<Offer> searchOfferByTitle(String searchText) {
-        List<Offer> offers = new ArrayList<>();
+    public Page<Offer> searchOfferByTitle(Pageable pageable,String searchText) {
+        Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
         searchText = "%"+searchText+"%";
-        offers = offersRepository.searchOfferByTitle(searchText);
+        offers = offersRepository.searchOfferByTitle(pageable,searchText);
         return offers;
     }
 
-    public List<Offer> getAllOffers(User user) {
-        List<Offer> offers = new ArrayList<>();
-        List<Offer> allOffers = getOffers();
-        for(Offer o: allOffers) {
-            if(!o.getSeller().getEmail().equals(user.getEmail())) {
-                offers.add(o);
-            }
-        }
-        return offers;
-    }
 
 }
