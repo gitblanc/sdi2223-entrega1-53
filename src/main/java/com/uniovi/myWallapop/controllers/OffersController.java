@@ -7,7 +7,6 @@ import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.validators.AddOfferValidator;
-import com.uniovi.myWallapop.validators.BuyOfferValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -38,8 +37,6 @@ public class OffersController {
     @Autowired
     private LogsService logsService;
 
-    @Autowired
-    private BuyOfferValidator buyOfferValidator;
 
     /**
      * Controlador para la petición GET de la lista de ofertas propias
@@ -162,12 +159,11 @@ public class OffersController {
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
 
         if(searchName != null && !searchName.isEmpty()) {
-            model.addAttribute("allOffersList",
-                    offersService.searchOfferByTitle(pageable,searchName));
+            offers = offersService.searchOfferByTitle(pageable,searchName);
         } else {
-            model.addAttribute("allOffersList",
-                    offersService.getOffers(pageable));
+            offers = offersService.getOffers(pageable);
         }
+        model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
         return "offer/list";
