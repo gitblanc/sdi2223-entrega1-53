@@ -15,8 +15,8 @@ import java.util.List;
 class Sdi2223Entrega153ApplicationTests {
 
 	static String PathFirefox = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	//static String Geckodriver = "C:\\Users\\uo277369\\Desktop\\PL-SDI-Sesión5-material\\geckodriver-v0.30.0-win64.exe";
-	static String Geckodriver = "C:\\Users\\mines\\Desktop\\wallapop\\geckodriver-v0.30.0-win64.exe";
+	static String Geckodriver = "C:\\Users\\uo277369\\Desktop\\PL-SDI-Sesión5-material\\geckodriver-v0.30.0-win64.exe";
+	//static String Geckodriver = "C:\\Users\\mines\\Desktop\\wallapop\\geckodriver-v0.30.0-win64.exe";
 	//static String Geckodriver = "C:\\Users\\aaron\\Desktop\\UNI\\tercero\\SEGUNDO\\SDI\\Practica\\SDI-P5\\PL-SDI-Sesión5-material\\geckodriver-v0.30.0-win64.exe";
 	//static String Geckodriver = "C:\\Dev\\tools\\selenium\\geckodriver-v0.30.0-win64.exe";
 	//static String PathFirefox = "/Applications/Firefox.app/Contents/MacOS/firefox-bin";
@@ -301,7 +301,7 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_PrivateView.clickAddOfferOption(driver);
 		//Ahora vamos a rellenar la oferta.
 		String checkText = "Oferta nueva 1";
-		PO_PrivateView.fillFormAddOffer(driver, checkText, "uwhfguwie", "25");
+		PO_PrivateView.fillFormAddOffer(driver, checkText, "uwhfguwie", "100");
 		//Esperamos a que se muestren los enlaces de paginación de la lista de ofertas publicadas
 		List<WebElement> elements = PO_View.checkElementBy(driver, "free", "//a[contains(@class, 'page-link')]");
 		//Nos vamos a la última página
@@ -469,7 +469,25 @@ class Sdi2223Entrega153ApplicationTests {
 	void PR21(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_PrivateView.clickOfferOption(driver, "list");
+		PO_PrivateView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
+
+		// Comprobamos que la lista está vacía
+		PO_PrivateView.getText(driver, 0, "home.offer.emptylist");
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba22] Sobre una búsqueda determinada (a elección del desarrollador), comprar una oferta que deja
+	 * un saldo positivo en el contador del comprador. Comprobar que el contador se actualiza correctamente
+	 * en la vista del comprador.
+	 */
+	@Test
+	@Order(22)
+	void PR22(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
 		PO_PrivateView.clickOfferOption(driver, "list");
 		PO_PrivateView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
 
