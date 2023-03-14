@@ -1,8 +1,10 @@
 package com.uniovi.myWallapop.controllers;
 
+import com.uniovi.myWallapop.entities.Chat;
 import com.uniovi.myWallapop.entities.Log;
 import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
+import com.uniovi.myWallapop.services.ChatsService;
 import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class OffersController {
@@ -36,6 +39,8 @@ public class OffersController {
     private AddOfferValidator addOfferValidator;
     @Autowired
     private LogsService logsService;
+    @Autowired
+    private ChatsService chatsService;
 
 
     /**
@@ -163,6 +168,7 @@ public class OffersController {
         } else {
             offers = offersService.getOffers(pageable);
         }
+
         model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 

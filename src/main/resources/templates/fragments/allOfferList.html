@@ -37,7 +37,9 @@
           <a th:href="${'/offer/' + offer.id + '/buy'}" th:text="#{offer.list.buy}"> Comprar</a>
         </div>
       </td>
-
+      <td>
+          <button th:href="${'/chat/' + offer.id}" th:text="#{offer.list.chat.open}">Abrir conversación</button>
+      </td>
 
     </tr>
     </tbody>

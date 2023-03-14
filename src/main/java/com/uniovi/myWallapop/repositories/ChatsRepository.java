@@ -12,5 +12,6 @@ public interface ChatsRepository extends CrudRepository<Chat, Long> {
             "( c.offer.id = o.id and o.seller.id = ?1)")
     List<Chat> getChatsByUserId(Long userId);
 
-
+    @Query("SELECT c FROM Chat c WHERE c.user=?1 AND c.offer=?2")
+    Chat getByUserAndOffer(Long userId, Long offerId);
 }

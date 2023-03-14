@@ -24,6 +24,11 @@ public class Chat {
 
     public Chat(){}
 
+    public Chat(User user, Offer offer){
+        this.user=user;
+        this.offer=offer;
+    }
+
     public Chat(Offer offer, User buyer) {
         this.offer=offer;
         this.user=buyer;
@@ -40,5 +45,29 @@ public class Chat {
 
     public Long getId() {
         return id;
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 }

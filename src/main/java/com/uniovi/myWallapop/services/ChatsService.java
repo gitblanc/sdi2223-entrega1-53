@@ -2,6 +2,7 @@ package com.uniovi.myWallapop.services;
 
 import com.uniovi.myWallapop.entities.Chat;
 import com.uniovi.myWallapop.entities.Message;
+import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.repositories.ChatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,21 @@ public class ChatsService {
         List<Chat> chats = getChatsByUserId(id);
         for(Chat c: chats)
             chatsRepository.deleteById(c.getId());
+    }
+
+    /**
+     * Devuelve el chat si ya existe entre el usuario que compra y el usuario que publica la oferta.
+     * Si no existe
+     * @param activeUser, el usuario posible comprador
+     * @param offer, la oferta (y por tanto el usuario que la publicó)
+     * @return el chat entre ambos usuarios
+     */
+    public Chat getChatOrCreate(User activeUser, Offer offer) {
+        Chat chat;
+        chat = chatsRepository.getByUserAndOffer(activeUser.getId(), offer.getId());
+        if(chat==null){
+            chat = new Chat(activeUser, offer);
+        }
+        return chat;
     }
 }
