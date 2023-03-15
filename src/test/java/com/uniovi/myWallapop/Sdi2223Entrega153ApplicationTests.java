@@ -59,7 +59,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * porque no se reinicia la base de datos.
 	 */
 	@Test
-	@Order(11)
+	@Order(1)
 	void PR01(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_SignUpView.fillForm(driver, "emailvalido@gmail.com", "aaaa", "bbbb", "77777", "77777");
@@ -68,13 +68,22 @@ class Sdi2223Entrega153ApplicationTests {
 		Assertions.assertEquals(checkText, result.get(0).getText());
 
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+
+		// Si se llega hasta aquí la prueba se ha superado, así que borramos el usuario nuevo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+		PO_AdminView.checkElementByKey(driver, "users.list.subtitle", 0);
+
+		PO_AdminView.deleteUsers(driver, 15);
+
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
 
 	/**
 	 * [Prueba2] Registro de Usuario con datos inválidos (email vacío, nombre vacío, apellidos vacíos).
 	 */
 	@Test
-	@Order(3)
+	@Order(2)
 	void PR02(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_SignUpView.fillForm(driver, "", "", "", "77777", "77777");
@@ -87,7 +96,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba3] Registro de Usuario con datos inválidos (repetición de contraseña inválida).
 	 */
 	@Test
-	@Order(4)
+	@Order(3)
 	void PR03(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_SignUpView.fillForm(driver, "emailvalido2@gmail.com", "aaaa", "bbbb", "77777", "66666");
@@ -101,7 +110,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba4] Registro de Usuario con datos inválidos (email existente).
 	 */
 	@Test
-	@Order(5)
+	@Order(4)
 	void PR04(){
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_SignUpView.fillForm(driver, "user05@email.com", "aaaa", "bbbb", "77777", "77777");
@@ -115,7 +124,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba5] Inicio de sesión con datos válidos (administrador).
 	 */
 	@Test
-	@Order(6)
+	@Order(5)
 	void PR05(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
@@ -131,7 +140,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba6] Inicio de sesión con datos válidos (usuario estándar).
 	 */
 	@Test
-	@Order(7)
+	@Order(6)
 	void PR06(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user01@email.com", "user01");
@@ -146,7 +155,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba7] Inicio de sesión con datos inválidos (usuario estándar, campo email y contraseña vacíos).
 	 */
 	@Test
-	@Order(8)
+	@Order(7)
 	void PR07(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "", "");
@@ -163,7 +172,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * incorrecta).
 	 */
 	@Test
-	@Order(9)
+	@Order(8)
 	void PR08(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user05@email.com", "passworwfegwedp");
@@ -179,11 +188,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * sesión (Login).
 	 */
 	@Test
-	@Order(10)
+	@Order(9)
 	void PR09(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user05@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 		List<WebElement> result = PO_LoginView.getText(driver, PO_Properties.getSPANISH(), "login.message");
 		Assertions.assertEquals(result.get(0).getText(),
@@ -194,7 +203,7 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba10] Comprobar que el botón cerrar sesión no está visible si el usuario no está autenticado.
 	 */
 	@Test
-	@Order(12)
+	@Order(10)
 	void PR10(){
 		String checkText = PO_View.getP().getString("disconnect.message", 0);
 		PO_View.checkTextNotPresent(driver, checkText);
@@ -204,11 +213,10 @@ class Sdi2223Entrega153ApplicationTests {
 	 * [Prueba11] Mostrar el listado de usuarios y comprobar que se muestran todos los que existen en el sistema.
 	 */
 	@Test
-	@Order(1)
+	@Order(11)
 	void PR11(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
-		//checkElementBy(driver, "class", "btn btn-primary");
 		List<WebElement> usersList = PO_View.checkElementBy(driver, "free", "//tbody/tr");
 
 		Assertions.assertEquals(15, usersList.size());
@@ -220,11 +228,10 @@ class Sdi2223Entrega153ApplicationTests {
 	 * y dicho usuario desaparece.
 	 */
 	@Test
-	@Order(13)
+	@Order(12)
 	void PR12(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
-		//checkElementBy(driver, "class", "btn btn-primary");
 
 		WebElement firstUserBeforeDeletion = PO_AdminView.getUsersList(driver).get(0);
 		// La primera celda de la fila de un usuario es el correo
@@ -240,11 +247,10 @@ class Sdi2223Entrega153ApplicationTests {
 	 * y dicho usuario desaparece.
 	 */
 	@Test
-	@Order(14)
+	@Order(13)
 	void PR13(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
-		//checkElementBy(driver, "class", "btn btn-primary");
 
 		List<WebElement> users = PO_AdminView.getUsersList(driver);
 		int indexLastUser = users.size() - 1;
@@ -263,11 +269,10 @@ class Sdi2223Entrega153ApplicationTests {
 	 * usuarios desaparecen.
 	 */
 	@Test
-	@Order(15)
+	@Order(14)
 	void PR14(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
-		//checkElementBy(driver, "class", "btn btn-primary");
 
 		List<WebElement> users = PO_AdminView.getUsersList(driver);
 
@@ -293,11 +298,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * Comprobar que la oferta sale en el listado de ofertas de dicho usuario.
 	 */
 	@Test
-	@Order(16)
+	@Order(15)
 	void PR15(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAddOfferOption(driver);
 		//Ahora vamos a rellenar la oferta.
 		String checkText = "Oferta nueva 1";
@@ -320,11 +325,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * botón Enviar. Comprobar que se muestra el mensaje de campo inválido.
 	 */
 	@Test
-	@Order(17)
+	@Order(16)
 	void PR16(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAddOfferOption(driver);
 		//Ahora vamos a rellenar la oferta.
 		PO_PrivateView.fillFormAddOffer(driver, "Oferta nueva 1", "uwhfguwie", "-25");
@@ -346,11 +351,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * existen para este usuario.
 	 */
 	@Test
-	@Order(18)
+	@Order(17)
 	void PR17(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user12@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickPostedOffersOption(driver);
 //Comprobamos que salen todas las del usuario.
 		List<WebElement> offersList = PO_View.checkElementBy(driver, "free", "//tbody/tr");
@@ -369,11 +374,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * que la oferta desaparece.
 	 */
 	@Test
-	@Order(19)
+	@Order(18)
 	void PR18(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickPostedOffersOption(driver);
 		List<WebElement> firstOfferRow = PO_View.checkElementBy(driver, "free", "//tbody/tr[1]/td");
 		String title = firstOfferRow.get(0).getText();
@@ -392,11 +397,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * que la oferta desaparece.
 	 */
 	@Test
-	@Order(20)
+	@Order(19)
 	void PR19(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
-		//checkElementBy(driver, "class", "btn btn-primary");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickPostedOffersOption(driver);
 
 		// Navegamos a la última página
@@ -429,10 +434,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * corresponde con el listado de las ofertas existentes en el sistema
 	 */
 	@Test
-	@Order(2)
+	@Order(20)
 	void PR20(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		PO_AllOffersView.writeIntoSearchBar(driver, "");
 
@@ -448,8 +454,8 @@ class Sdi2223Entrega153ApplicationTests {
 		}
 		// Estamos en la última página
 		tableRows = PO_View.checkElementBy(driver, "free", "//tbody/tr");
-		// Son 159 ofertas en total, por lo tanto la última página solo debe tener 4
-		Assertions.assertEquals(4, tableRows.size());
+
+		Assertions.assertEquals(3, tableRows.size());
 
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
@@ -459,10 +465,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * muestra la página que corresponde, con la lista de ofertas vacía
 	 */
 	@Test
-	@Order(22)
+	@Order(21)
 	void PR21(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		PO_AllOffersView.writeIntoSearchBar(driver, "noexistenoexistenoexiste");
 
@@ -478,10 +485,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * en la vista del comprador.
 	 */
 	@Test
-	@Order(23)
+	@Order(22)
 	void PR22(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user11@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user04-n2");
 		PO_AllOffersView.buyFirstOffer(driver);
@@ -501,10 +509,11 @@ class Sdi2223Entrega153ApplicationTests {
 	 * vista del comprador.
 	 */
 	@Test
-	@Order(24)
+	@Order(23)
 	void PR23(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user12@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user10-n10");
 		PO_AllOffersView.buyFirstOffer(driver);
@@ -528,6 +537,7 @@ class Sdi2223Entrega153ApplicationTests {
 	void PR24(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user13@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		// Primero compramos una oferta que nos deje con saldo insuficiente para la siguiente compra
 		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user11-n10");
@@ -551,6 +561,7 @@ class Sdi2223Entrega153ApplicationTests {
 	void PR25(){
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 		PO_PrivateView.clickAllOffersOption(driver);
 		// Primero compramos una oferta que nos deje con saldo insuficiente para la siguiente compra
 		String stringCheck = "Oferta-user11-n2";
@@ -561,6 +572,33 @@ class Sdi2223Entrega153ApplicationTests {
 		List<WebElement> offer = PO_View.checkElementBy(driver, "free", "//tbody/tr/td");
 		Assertions.assertEquals(stringCheck, offer.get(0).getText());
 
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+
+
+	/**
+	 * [Prueba29] Visualizar al menos cuatro páginas en español/inglés/español (comprobando que algunas de
+	 * las etiquetas cambian al idioma correspondiente).
+	 */
+	@Test
+	@Order(29)
+	void PR29(){
+		PO_HomeView.checkChangeLanguage(driver, "btnSpanish", "btnEnglish", 0, 1);
+
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+
+		PO_LoginView.checkChangeLanguage(driver, "btnSpanish", "btnEnglish", 0, 1);
+
+		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
+
+		PO_PrivateView.checkChangeLanguage(driver, "btnSpanish", "btnEnglish", 0, 1);
+
+		PO_PrivateView.clickAllOffersOption(driver);
+
+		PO_AllOffersView.checkChangeLanguage(driver, "btnSpanish", "btnEnglish", 0, 1);
 
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}

@@ -1,5 +1,6 @@
 package com.uniovi.myWallapop.pageobjects;
 
+import com.uniovi.myWallapop.util.SeleniumUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,9 +28,38 @@ public class PO_AllOffersView extends PO_NavView{
     }
 
     public static void buyFirstOffer(WebDriver driver) {
-        List<WebElement> offersList = PO_View.checkElementBy(driver, "free", "//tbody/tr[1]");
-        List<WebElement> offerToBuyRow = offersList.get(0).findElements(By.tagName("td"));
-        WebElement buyLink = offerToBuyRow.get(offerToBuyRow.size()-1).findElement(By.tagName("a"));
+        List<WebElement> offersToBuyRow = PO_View.checkElementBy(driver, "free", "//tbody/tr[1]");
+        List<WebElement> offerToBuyLink = offersToBuyRow.get(0).findElements(By.tagName("a"));
+
+        WebElement buyLink = offerToBuyLink.get(0);
+
         buyLink.click();
+    }
+
+    static public void checkSubtitle(WebDriver driver, int language) {
+        SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString("offer.list.all.subtitle", language),
+                getTimeout());
+    }
+
+    static public void checkTableHeaderStatus(WebDriver driver, int language) {
+        SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString("offer.list.table.status", language),
+                getTimeout());
+    }
+
+    static public void checkChangeLanguage(WebDriver driver, String textLanguage1, String textLanguage,
+                                           int locale1, int locale2) {
+//Esperamos a que se cargue el texto en Español
+        PO_AllOffersView.checkSubtitle(driver, locale1);
+        PO_AllOffersView.checkTableHeaderStatus(driver, locale1);
+//Cambiamos a segundo idioma
+        PO_HomeView.changeLanguage(driver, textLanguage);
+//Comprobamos que el texto haya cambiado a segundo idioma
+        PO_AllOffersView.checkSubtitle(driver, locale2);
+        PO_AllOffersView.checkTableHeaderStatus(driver, locale2);
+//Volvemos a Español.
+        PO_HomeView.changeLanguage(driver, textLanguage1);
+//Esperamos a que se cargue el texto en Español
+        PO_AllOffersView.checkSubtitle(driver, locale1);
+        PO_AllOffersView.checkTableHeaderStatus(driver, locale1);
     }
 }
