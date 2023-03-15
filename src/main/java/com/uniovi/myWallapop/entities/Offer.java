@@ -21,6 +21,8 @@ public class Offer {
 
     private boolean sold = false;
 
+    private boolean buy = true;
+
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private User seller;
@@ -113,6 +115,14 @@ public class Offer {
 
     public void setChats(Set<Chat> chats) {
         this.chats = chats;
+    }
+
+    public boolean isBuy() {
+        return buy;
+    }
+
+    public void setBuy(boolean buy) {
+        this.buy = buy;
     }
 
     @Override
