@@ -1,6 +1,8 @@
 package com.uniovi.myWallapop.repositories;
 
 import com.uniovi.myWallapop.entities.Chat;
+import com.uniovi.myWallapop.entities.Offer;
+import com.uniovi.myWallapop.entities.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,5 +15,5 @@ public interface ChatsRepository extends CrudRepository<Chat, Long> {
     List<Chat> getChatsByUserId(Long userId);
 
     @Query("SELECT c FROM Chat c WHERE c.user=?1 AND c.offer=?2")
-    Chat getByUserAndOffer(Long userId, Long offerId);
+    Chat getByUserAndOffer(User user, Offer offer);
 }

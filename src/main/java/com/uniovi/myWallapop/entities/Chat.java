@@ -1,8 +1,11 @@
 package com.uniovi.myWallapop.entities;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="chats", uniqueConstraints = {
@@ -20,7 +23,7 @@ public class Chat {
     private User user;
 
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-    private Set<Message> messages = new HashSet<>(); //the list of messages of the chat
+    private Set<Message> messages = new LinkedHashSet<>(); //the list of messages of the chat
 
     public Chat(){}
 
@@ -64,7 +67,9 @@ public class Chat {
     }
 
     public Set<Message> getMessages() {
-        return messages;
+        return messages.stream()
+                .sorted(Comparator.comparing(Message::getDate))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public void setMessages(Set<Message> messages) {

@@ -5,17 +5,21 @@ import com.uniovi.myWallapop.entities.Message;
 import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.repositories.ChatsRepository;
+import com.uniovi.myWallapop.repositories.MessagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChatsService {
     @Autowired
     private ChatsRepository chatsRepository;
+    @Autowired
+    private MessagesRepository messagesRepository;
 
     @PostConstruct
     public void init() {
@@ -51,10 +55,24 @@ public class ChatsService {
      */
     public Chat getChatOrCreate(User activeUser, Offer offer) {
         Chat chat;
-        chat = chatsRepository.getByUserAndOffer(activeUser.getId(), offer.getId());
+        chat = chatsRepository.getByUserAndOffer(activeUser, offer);
         if(chat==null){
             chat = new Chat(activeUser, offer);
+            addChat(chat);
         }
         return chat;
+    }
+
+    /**
+     * Añade un mensaje al chat.
+     * @param msg
+     */
+    public void addMessage(Message msg) {
+        messagesRepository.save(msg);
+    }
+
+    public Chat getChatById(Long chatId) {
+        Optional<Chat> chat = chatsRepository.findById(chatId);
+        return chat.get();
     }
 }

@@ -29,6 +29,17 @@
                     </a>
                 </div>
             </li>
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_STANDARD')">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span th:text="#{nav.chats}">Gestión de conversaciones</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/chat/list">
+                        <span th:text="#{nav.chat.list}">Ver lista de conversaciones</span>
+                    </a>
+                </div>
+            </li>
             <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
