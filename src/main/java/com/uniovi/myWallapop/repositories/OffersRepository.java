@@ -32,4 +32,7 @@ public interface OffersRepository extends CrudRepository<Offer, Long> {
     Page<Offer> searchOfferByTitle(Pageable pageable,String searchText);
 
     Page<Offer> findAll(Pageable pageable);
+
+    @Query("SELECT o FROM Offer o WHERE (o.seller) != ?1")
+    Page<Offer> getOfferThatYouCanBuy(Pageable pageable, User user);
 }
