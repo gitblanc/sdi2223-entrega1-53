@@ -39,6 +39,8 @@
         </div>
       </td>
       <td>
+        <a th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+      </td>
         <div th:if="${offer.buy}">
           <p th:text="#{offer.list.can.buy}" th:color="red"> </p>
         </div>

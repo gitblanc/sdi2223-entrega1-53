@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body>
+  <!-- Barra de Navegación superior -->
+  <nav th:replace="fragments/nav"/>
+  <div class="container">
+    <h2 th:text="#{chat.title}"></h2>
+    <h3 th:text="#{chat.subtitle}+${offer.title}"></h3>
+
+    <table class="table table-hover" id="messageList">
+    <thead>
+    <tr>
+      <th scope="col" th:text="#{chat.user}">Usuario</th>
+      <th scope="col" th:text="#{chat.date}">Fecha</th>
+      <th scope="col" th:text="#{chat.message}">Mensaje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${chat.getMessages()}">
+      <td th:text="${message.author.name + ' ' + message.author.lastName}">Autor</td>
+      <td th:text="${message.date}">Fecha</td>
+      <td th:text="${message.text}">Mensaje</td>
+    </tr>
+    </tbody>
+    </table>
+
+    <form class="form-horizontal" method="post" th:action="${'/chat/'+offer.id+'/'+chat.id+'/sendMessage'}" th:object="${message}">
+        <label class="control-label col-sm-2" for="text" th:text="#{chat.message}"></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="text" name="text"
+                 th:placeholder="#{chat.message.placeholder}" required="true" th:value="*{text}"/>
+          <span class="text-danger" th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></span>
+      </div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" th:text="#{chat.message.send}"></button>
+      </div>
+    </form>
+  </div>
+  <footer th:replace="fragments/footer"/>
+</body>
+</html>

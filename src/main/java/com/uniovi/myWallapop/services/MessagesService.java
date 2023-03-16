@@ -2,6 +2,7 @@ package com.uniovi.myWallapop.services;
 
 import com.uniovi.myWallapop.entities.Chat;
 import com.uniovi.myWallapop.entities.Message;
+import com.uniovi.myWallapop.entities.User;
 import com.uniovi.myWallapop.repositories.MessagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,13 @@ public class MessagesService {
         return messages;
     }
 
-    public List<Message> getMessagesByUserId(Long userid){
-        List<Message> userMessages = messagesRepository.getMessagesByUserId(userid);
+    public List<Message> getMessagesByUser(User user){
+        List<Message> userMessages = messagesRepository.getMessagesByUser(user);
         return userMessages;
     }
 
-    public void deleteMessagesWithUserId(Long id) {
-        List<Message> messages = getMessagesByUserId(id);
+    public void deleteMessagesWithUser(User user) {
+        List<Message> messages = getMessagesByUser(user);
         for(Message m: messages)
             messagesRepository.deleteById(m.getId());
     }
