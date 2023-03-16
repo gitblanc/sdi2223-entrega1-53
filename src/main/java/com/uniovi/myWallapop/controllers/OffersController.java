@@ -134,6 +134,12 @@ public class OffersController {
         return "offer/details";
     }
 
+    /**
+     * Controlador para la petición GET de borrar una oferta
+     * @param id
+     * @param principal
+     * @return
+     */
     @RequestMapping("/offer/delete/{id}")
     public String deleteOffer(@PathVariable Long id, Principal principal) {
         offersService.deleteOffer(id, principal.getName());
@@ -142,6 +148,12 @@ public class OffersController {
         return "redirect:/offer/list/posted";
     }
 
+    /**
+     * Controlador para la petición GET para la lista de ofertas compradas
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/offer/bought", method = RequestMethod.GET)
     public String getBoughtOffers(Model model, Principal principal) {
         String email = principal.getName();
@@ -154,6 +166,13 @@ public class OffersController {
     }
 
 
+    /**
+     * Controlador para la petición GET de listar todas las ofertas
+     * @param model
+     * @param pageable
+     * @param searchName
+     * @return
+     */
     @RequestMapping("/offer/list")
     public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -175,6 +194,12 @@ public class OffersController {
         return "offer/list";
     }
 
+    /**
+     * Controlador para la petición GET para comprar una oferta
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
     public String setSoldTrue(Model model, @PathVariable Long id) {
         String error = offersService.buyOffer(id);
@@ -187,7 +212,5 @@ public class OffersController {
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
         return "redirect:/offer/list";
     }
-
-
 
 }

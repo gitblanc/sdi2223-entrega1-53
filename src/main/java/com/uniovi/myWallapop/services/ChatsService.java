@@ -31,21 +31,38 @@ public class ChatsService {
     public void init() {
     }
 
+    /**
+     * Añade un chat
+     * @param chat
+     */
     public void addChat(Chat chat){
         chatsRepository.save(chat);
     }
 
+    /**
+     * Devuelve todos los chats
+     * @return
+     */
     public List<Chat> getChats() {
         List<Chat> chats = new ArrayList<Chat>();
         chatsRepository.findAll().forEach(chats::add);
         return chats;
     }
 
+    /**
+     * Devuelve los chats de un usuario
+     * @param userid
+     * @return
+     */
     public List<Chat> getChatsByUserId(Long userid){
         List<Chat> userChats = chatsRepository.getChatsByUserId(userid);
         return userChats;
     }
 
+    /**
+     * Borra todos los chats de un usuario
+     * @param id
+     */
     public void deleteChatsWithUserId(Long id) {
         List<Chat> chats = getChatsByUserId(id);
         for(Chat c: chats)

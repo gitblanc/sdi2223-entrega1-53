@@ -93,6 +93,11 @@ public class ChatsController {
         return "redirect:/chat/{offerId}"+"?otherUser="+otherUser;
     }
 
+    /**
+     * Petición GET para la lista de conversaciones del usuario
+     * @param model
+     * @return
+     */
     @RequestMapping("/chat/list")
     public String getAllOffers(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
