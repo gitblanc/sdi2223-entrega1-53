@@ -17,7 +17,7 @@ public class PO_NavView extends PO_View{
      * @param targetText: texto correspondiente a la búsqueda de la página destino.
      */
     public static void clickOption(WebDriver driver, String textOption, String criterio, String targetText) {
-//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
+//CLickamos en la opción y esperamos a que se cargue el enlace.
         List<WebElement> elements = SeleniumUtils.waitLoadElementsBy(driver, "@href", textOption,
                 getTimeout());
 //Tiene que haber un sólo elemento.
@@ -46,5 +46,23 @@ public class PO_NavView extends PO_View{
         List<WebElement> Selectedlanguage = SeleniumUtils.waitLoadElementsBy(driver, "id", textLanguage,
                 getTimeout());
         Selectedlanguage.get(0).click();
+    }
+
+    public static void clickPostedOffersOption(WebDriver driver) {
+        clickOfferOption(driver, "list/posted");
+    }
+
+    public static void clickAddOfferOption(WebDriver driver) {
+        clickOfferOption(driver, "add");
+    }
+
+    public static void clickOfferOption(WebDriver driver, String hrefOfferOption) {
+        //Pinchamos en la opción de menú de Ofertas: //li[contains(@id, 'offers-menu')]/a
+        List<WebElement> elements = checkElementBy(driver, "free", "//li[contains(@id, 'offers-menu')]/a");
+        elements.get(0).click();
+        //Esperamos a que aparezca la opción
+        elements = checkElementBy(driver, "free", "//a[contains(@href, 'offer/"+hrefOfferOption+"')]");
+        //Pinchamos en el enlace
+        elements.get(0).click();
     }
 }

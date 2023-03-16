@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.yaml.snakeyaml.error.Mark;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedList;
@@ -28,6 +27,8 @@ public class OffersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+
 
     @PostConstruct
     public void init() {
@@ -75,9 +76,8 @@ public class OffersService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
-    public List<Offer> getOffers() {
-        List<Offer> offers = new ArrayList<Offer>();
-        offersRepository.findAll().forEach(offers::add);
+    public Page<Offer> getOffers(Pageable pageable, User user) {
+        Page<Offer> offers = offersRepository.findAll(pageable);
         return offers;
     }
 
@@ -107,13 +107,44 @@ public class OffersService {
         if(user.getPostedOffers().contains(offer))
             return "error.buyoffer.youroffer";
 
-        user.setAmount(user.getAmount() - offer.getAmount());
+        if (user.getAmount() < offer.getAmount()) {
+            offer.setBuy(false);
+        }
+        double amount = user.getAmount() - offer.getAmount();
+        user.setAmount(amount);
         offer.setSold(true);
         user.getBoughtOffers().add(offer);
         offer.setBuyer(user);
+        offer.setBuy(true);
 
         usersRepository.updateAmount(user.getAmount(), user.getId());
         offersRepository.updateSold(true, id);
         return null;
     }
+
+    public String cannotBuyOffer(Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = usersRepository.findByEmail(email);
+        Offer offer = offersRepository.findById(id).get();
+
+        offer.setBuy(false);
+        return null;
+    }
+
+    public Page<Offer> searchOfferByTitle(Pageable pageable,String searchText) {
+        Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
+        searchText = "%"+searchText+"%";
+        offers = offersRepository.searchOfferByTitle(pageable,searchText);
+        return offers;
+    }
+
+    public Page<Offer> getOffersNotYours(Pageable pageable, User user) {
+        Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
+        offers = offersRepository.getOfferThatYouCanBuy(pageable, user);
+        return offers;
+    }
+
+
+
 }

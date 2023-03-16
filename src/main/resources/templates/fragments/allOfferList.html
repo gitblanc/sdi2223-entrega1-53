@@ -1,0 +1,59 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div class="table-responsive" sec:authorize="hasRole('ROLE_STANDARD')">
+
+  <form class="form-inline" action="/offer/list">
+    <div class="form-group">
+      <input name="searchName" type="text" class="form-control" size="50"
+             th:placeholder="#{offer.filter.input}">
+    </div>
+    <button type="submit" class="btn btn-primary" th:value="#{offer.list.search}">Buscar</button>
+  </form>
+
+
+  <table class="table table-hover" th:fragment="tableOffers" id="tableOffers">
+    <thead>
+    <tr>
+      <th scope="col" th:text="#{home.offer.title}">Título</th>
+      <th scope="col" th:text="#{home.offer.description}">Detalles</th>
+      <th scope="col" th:text="#{home.offer.amount}">Precio</th>
+      <th scope="col" th:text="#{home.offer.status}">Estado</th>
+      <th scope="col" th:text="#{home.offer.warning}">Advertencia</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="offer : ${allOffersList}" sec:authorize="hasRole('ROLE_STANDARD')">
+      <td th:text="${offer.title}">Titulo1</td>
+      <td th:text="${offer.description}">Descripcion1</td>
+      <td th:text="${offer.amount}">0.0</td>
+      <td>
+        <div th:if="${offer.sold}">
+           <p th:text="#{offer.list.sold}" > </p>
+        </div>
+        <div th:unless="${offer.sold}">
+          <a th:href="${'/offer/' + offer.id + '/buy'}" th:text="#{offer.list.buy}"> Comprar</a>
+        </div>
+      </td>
+      <td>
+        <div th:if="${offer.buy}">
+          <p th:text="#{offer.list.can.buy}" th:color="red"> </p>
+        </div>
+        <div th:unless="${offer.buy}">
+          <p th:text="#{offer.list.cannot.buy}" th:color="red"> </p>
+        </div>
+      </td>
+      <td>
+        <a th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+  <div th:if="${#lists.isEmpty(allOffersList)}" th:text="#{home.offer.emptylist}"> No offers</div>
+</div>
+
+</html>
