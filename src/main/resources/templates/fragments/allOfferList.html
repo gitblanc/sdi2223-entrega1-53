@@ -38,7 +38,7 @@
         </div>
       </td>
       <td>
-          <a th:href="${'/chat/' + offer.id}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+          <a th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
       </td>
 
     </tr>

@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr th:each="message : ${chat.getMessages()}">
-      <td th:text="${user.name + ' ' + user.lastName}">Autor</td>
+      <td th:text="${message.author.name + ' ' + message.author.lastName}">Autor</td>
       <td th:text="${message.date}">Fecha</td>
       <td th:text="${message.text}">Mensaje</td>
     </tr>

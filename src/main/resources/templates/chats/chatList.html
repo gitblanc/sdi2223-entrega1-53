@@ -10,19 +10,24 @@
 			<table class="table table-hover" id="tableChats">
 				<thead>
 				<tr>
+					<th scope="col" th:text="#{chat.list.user}">Email del usuario</th>
 					<th scope="col" th:text="#{chat.list.offerTitle}">Título</th>
-					<th scope="col" th:text="#{chat.list.user}">Usuario</th>
-					<th scope="col" th:text="#{chat.list.amount}">Precio</th>
 					<th scope="col"></th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr th:each="chat : ${chatsList}" sec:authorize="hasRole('ROLE_STANDARD')">
+					<td th:text="${chat.offer.seller.email}">User</td>
 					<td th:text="${chat.offer.title}">Titulo</td>
-					<td th:text="${chat.offer.seller.name}+' '+${chat.offer.seller.lastName}">User</td>
-					<td th:text="${chat.offer.amount}">0.0</td>
 					<td>
-						<a th:href="${'/chat/' + chat.offer.id}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+						<a th:if="${user.email == chat.offer.seller.email}"
+						   th:href="${'/chat/' + chat.offer.id + '?otherUser=' + chat.user.email}"
+						   th:text="#{offer.list.chat.open}">Abrir conversación
+						</a>
+						<a th:unless="${user.email == chat.offer.seller.email}"
+						   th:href="${'/chat/' + chat.offer.id + '?otherUser=' + chat.offer.seller.email}"
+						   th:text="#{offer.list.chat.open}">Abrir conversación
+						</a>
 					</td>
 
 				</tr>

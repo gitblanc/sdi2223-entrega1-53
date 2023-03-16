@@ -48,14 +48,14 @@ public class ChatsController {
      * @return
      */
     @RequestMapping("/chat/{offerId}")
-    public String openChat(Model model, @PathVariable Long offerId) {
+    public String openChat(Model model, @PathVariable Long offerId, @RequestParam String otherUser) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
         model.addAttribute("user", activeUser);
 
         Offer offer = offersService.getOffer(offerId);
-        Chat chat = chatsService.getChatOrCreate(activeUser, offer);
+        Chat chat = chatsService.getChatOrCreate(activeUser, offer, otherUser);
 
         model.addAttribute("message", new Message());
         model.addAttribute("offer", offer);
@@ -81,7 +81,7 @@ public class ChatsController {
         User user = usersService.getUserByEmail(email);
         model.addAttribute("user", user);
         msg.setDate(new Date());
-        msg.setAuthorId(user.getId());
+        msg.setAuthor(user);
         msg.setChat(chatsService.getChatById(chatId));
         messageValidator.validate(msg, result);
 
@@ -89,7 +89,8 @@ public class ChatsController {
             chatsService.addMessage(msg);
         }
 
-        return "redirect:/chat/{offerId}";
+        String otherUser = chatsService.findOtherUser(user, chatId);
+        return "redirect:/chat/{offerId}"+"?otherUser="+otherUser;
     }
 
     @RequestMapping("/chat/list")
