@@ -19,6 +19,7 @@
       <th scope="col" th:text="#{home.offer.description}">Detalles</th>
       <th scope="col" th:text="#{home.offer.amount}">Precio</th>
       <th scope="col" th:text="#{home.offer.status}">Estado</th>
+      <th scope="col" th:text="#{home.offer.warning}">Advertencia</th>
       <th scope="col"></th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -38,8 +39,16 @@
         </div>
       </td>
       <td>
-          <a th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+        <a th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
       </td>
+        <div th:if="${offer.buy}">
+          <p th:text="#{offer.list.can.buy}" th:color="red"> </p>
+        </div>
+        <div th:unless="${offer.buy}">
+          <p th:text="#{offer.list.cannot.buy}" th:color="red"> </p>
+        </div>
+      </td>
+
 
     </tr>
     </tbody>
