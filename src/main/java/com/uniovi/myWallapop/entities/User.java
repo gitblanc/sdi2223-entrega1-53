@@ -38,6 +38,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<Chat> chats = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="author")
+    private Set<Message> messages = new HashSet<>();
+
     public User(){}
 
     public User(String name, String lastName, String email) {

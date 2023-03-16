@@ -12,7 +12,8 @@ public class Message {
 
     private Date date;
 
-    private Long authorId;
+    @ManyToOne
+    private User author;
 
     private String text;
 
@@ -21,9 +22,9 @@ public class Message {
 
     public Message(){}
 
-    public Message(Long authorId, String text) {
+    public Message(User author, String text) {
         this.date = new Date();
-        this.authorId = authorId;
+        this.author = author;
         this.text = text;
     }
 
@@ -43,12 +44,12 @@ public class Message {
         this.date = date;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public String getText() {
@@ -71,22 +72,8 @@ public class Message {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Message message = (Message) o;
-
-        if (!Objects.equals(id, message.getId())) return false;
-        if (!Objects.equals(date, message.getDate())) return false;
-        if (!Objects.equals(authorId, message.getAuthorId())) return false;
-        return Objects.equals(text, message.getText());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
-        result = 31 * result + (text != null ? text.hashCode() : 0);
-        return result;
+        return Objects.equals(date, message.date) && Objects.equals(author, message.author) && Objects.equals(text, message.text) && Objects.equals(chat, message.chat);
     }
 
     @Override
@@ -94,8 +81,14 @@ public class Message {
         return "Message{" +
                 "id=" + id +
                 ", date=" + date +
-                ", authorId=" + authorId +
+                ", author=" + author +
                 ", text='" + text + '\'' +
+                ", chat=" + chat +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, author, text, chat);
     }
 }

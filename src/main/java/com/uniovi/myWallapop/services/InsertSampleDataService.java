@@ -147,8 +147,8 @@ public class InsertSampleDataService {
         Chat chat1 = new Chat(offer1, user2);
         Chat chat2 = new Chat(offer2, user3);
 
-        Message m1 = new Message(user2.getId(), "hola buenas tardes");
-        Message m2 = new Message(user2.getId(), "hola buenas tardes");
+        Message m1 = new Message(user2, "hola buenas tardes");
+        Message m2 = new Message(user2, "hola buenas tardes");
 
         chat1.addMessage(m1);
         chat2.addMessage(m2);

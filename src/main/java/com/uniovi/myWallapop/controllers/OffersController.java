@@ -1,8 +1,10 @@
 package com.uniovi.myWallapop.controllers;
 
+import com.uniovi.myWallapop.entities.Chat;
 import com.uniovi.myWallapop.entities.Log;
 import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
+import com.uniovi.myWallapop.services.ChatsService;
 import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class OffersController {
@@ -34,6 +37,8 @@ public class OffersController {
     private AddOfferValidator addOfferValidator;
     @Autowired
     private LogsService logsService;
+    @Autowired
+    private ChatsService chatsService;
 
 
     /**
@@ -127,6 +132,12 @@ public class OffersController {
         return "offer/details";
     }
 
+    /**
+     * Controlador para la petición GET de borrar una oferta
+     * @param id
+     * @param principal
+     * @return
+     */
     @RequestMapping("/offer/delete/{id}")
     public String deleteOffer(@PathVariable Long id, Principal principal) {
         offersService.deleteOffer(id, principal.getName());
@@ -135,6 +146,12 @@ public class OffersController {
         return "redirect:/offer/list/posted";
     }
 
+    /**
+     * Controlador para la petición GET para la lista de ofertas compradas
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/offer/bought", method = RequestMethod.GET)
     public String getBoughtOffers(Model model, Principal principal) {
         String email = principal.getName();
@@ -147,6 +164,13 @@ public class OffersController {
     }
 
 
+    /**
+     * Controlador para la petición GET de listar todas las ofertas
+     * @param model
+     * @param pageable
+     * @param searchName
+     * @return
+     */
     @RequestMapping("/offer/list")
     public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName,
                                @RequestParam(value ="", required = false) String error) {
@@ -162,6 +186,7 @@ public class OffersController {
         } else {
             offers = offersService.getOffersNotYours(pageable,activeUser);
         }
+
         model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
@@ -172,6 +197,12 @@ public class OffersController {
         return "offer/list";
     }
 
+    /**
+     * Controlador para la petición GET para comprar una oferta
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
     public String setSoldTrue(@PathVariable Long id) {
         String error = offersService.buyOffer(id);
@@ -185,7 +216,5 @@ public class OffersController {
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
         return "redirect:/offer/list?error="+error;
     }
-
-
 
 }
