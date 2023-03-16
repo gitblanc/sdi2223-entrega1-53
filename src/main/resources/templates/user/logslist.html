@@ -15,7 +15,7 @@
     </form>
 
     <form th:action="@{/user/deletelogs}" th:object="${logsid}">
-        <input th:if="${!#lists.isEmpty(logslist)}" th:action="@{/user/deletealllogs}" type="submit"
+        <input id="delete-button" th:if="${!#lists.isEmpty(logslist)}" th:action="@{/user/deletealllogs}" type="submit"
                value="Delete all logs"/>
 
         <table class="table table-hover" th:fragment="tableLogs" id="tableLogs">

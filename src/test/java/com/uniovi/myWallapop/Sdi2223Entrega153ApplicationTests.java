@@ -576,7 +576,92 @@ class Sdi2223Entrega153ApplicationTests {
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
 
+	/**
+	 * [Prueba26] Sobre una búsqueda determinada de ofertas (a elección de desarrollador), enviar un mensaje
+	 * a una oferta concreta. Se abriría dicha conversación por primera vez. Comprobar que el mensaje aparece
+	 * en la conversación.
+	 */
+	@Test
+	@Order(26)
+	void PR26(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user04@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
 
+		PO_PrivateView.clickAllOffersOption(driver);
+		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user06-n2");
+
+		PO_AllOffersView.openFirstOfferChat(driver);
+		PO_ChatView.checkTitle(driver);
+		String checkMessage = "hola user 06";
+		PO_ChatView.sendMessage(driver, checkMessage);
+
+		List<WebElement> messages = PO_ChatView.getMessages(driver);
+		WebElement message = messages.get(messages.size()-1);
+		WebElement author = message.findElement(By.className("author"));
+		WebElement messageText = message.findElement(By.className("message"));
+
+		Assertions.assertEquals("user04 apellido04", author.getText());
+		Assertions.assertEquals(checkMessage, messageText.getText());
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba27] Enviar un mensaje a una conversación ya existente accediendo desde el botón/enlace
+	 * “Conversación”. Comprobar que el mensaje aparece en la conversación.
+	 */
+	@Test
+	@Order(27)
+	void PR27(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user04@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
+
+		PO_PrivateView.clickAllOffersOption(driver);
+		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user06-n2");
+
+		PO_AllOffersView.openFirstOfferChat(driver);
+		PO_ChatView.checkTitle(driver);
+		String checkMessage = "adios me voy";
+		PO_ChatView.sendMessage(driver, checkMessage);
+
+		List<WebElement> messages = PO_ChatView.getMessages(driver);
+		WebElement message = messages.get(messages.size()-1);
+		WebElement author = message.findElement(By.className("author"));
+		WebElement messageText = message.findElement(By.className("message"));
+
+		Assertions.assertEquals("user04 apellido04", author.getText());
+		Assertions.assertEquals(checkMessage, messageText.getText());
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
+
+	/**
+	 * [Prueba28] Mostrar el listado de conversaciones ya abiertas. Comprobar que el listado contiene la
+	 * cantidad correcta de conversaciones.
+	 */
+	@Test
+	@Order(28)
+	void PR28(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
+
+		PO_PrivateView.clickAllOffersOption(driver);
+		PO_AllOffersView.writeIntoSearchBar(driver, "Oferta-user06-n3");
+
+		PO_AllOffersView.openFirstOfferChat(driver);
+		PO_ChatView.checkTitle(driver);
+		PO_ChatView.sendMessage(driver, "aaa");
+
+		PO_NavView.clickOpenChatsOption(driver);
+		List<WebElement> chats = PO_View.checkElementBy(driver, "free", "//tbody/tr");
+
+		Assertions.assertEquals(1, chats.size());
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
 
 	/**
 	 * [Prueba29] Visualizar al menos cuatro páginas en español/inglés/español (comprobando que algunas de
@@ -616,6 +701,18 @@ class Sdi2223Entrega153ApplicationTests {
 	}
 
 	/**
+	 * [Prueba31] Intentar acceder sin estar autenticado a la opción de listado de conversaciones. Se deberá
+	 * volver al formulario de login.
+	 */
+	@Test
+	@Order(31)
+	void PR31(){
+		driver.navigate().to(URL+"/chat/list");
+
+		PO_View.checkElementByKey(driver, "login.message", 0);
+	}
+
+	/**
 	 * [Prueba32] Estando autenticado como usuario estándar intentar acceder a una opción disponible solo
 	 * para usuarios administradores (visualizar logs). Se deberá indicar un mensaje
 	 * de acción prohibida.
@@ -643,24 +740,82 @@ class Sdi2223Entrega153ApplicationTests {
 		// Generar interacciones
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 
-		String log1Expectedtype = "LOGIN-ERR";
-		String log1ExpectedDescription = "user14@email.com";
+//		String log1ExpectedType = "LOGIN-ERR";
+//		String log1ExpectedDescription = "user14@email.com";
 		PO_LoginView.fillLoginForm(driver, "user14@email.com", "aaaaa");
 
-		String log2Expectedtype = "LOGIN-ERR";
-		String log2ExpectedDescription = "user10@email.com";
+//		String log2ExpectedType = "LOGIN-ERR";
+//		String log2ExpectedDescription = "user10@email.com";
 		PO_LoginView.fillLoginForm(driver, "user10@email.com", "bbbbb");
 
-		String log3Expectedtype = "LOGIN-EX";
-		String log3ExpectedDescription = "user14@email.com";
+//		String log3ExpectedType = "LOGIN-EX";
+//		String log3ExpectedDescription = "user14@email.com";
 		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
 
-		String log4Expectedtype = "LOGIN-PET";
-		String log4ExpectedDescription = "user14@email.com";
-
-
+//		String log4ExpectedType = "LOGIN-PET";
+//		String log4ExpectedMapping = "offer/add";
+//		String log4ExpectedHttpMethod = "GET";
 		PO_PrivateView.clickAddOfferOption(driver);
 
+//		String log5ExpectedType = "ALTA";
+//		String log5ExpectedMapping = "offer/add";
+//		String log5ExpectedHttpMethod = "POST";
+//		String log5ExpectedParam1 = "Oferta-user14-n11";
+//		String log5ExpectedParam2 = "descripcion";
+//		String log5ExpectedParam3 = "110";
+		PO_PrivateView.fillFormAddOffer(driver, "Oferta-user14-n11", "descripcion", "110");
+
+//		String log6ExpectedType = "LOGOUT";
+//		String log6ExpectedDescription = "user14@email.com";
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+
+//		String log7ExpectedType = "LOGIN-PET";
+//		String log7ExpectedMapping = "signup";
+//		String log7ExpectedHttpMethod = "GET";
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+
+//		String log8ExpectedType = "ALTA";
+//		String log8ExpectedMapping = "signup";
+//		String log8ExpectedHttpMethod = "POST";
+//		String log8ExpectedParam1 = "user123@email.com";
+//		String log8ExpectedParam2 = "user123";
+//		String log8ExpectedParam3 = "apellido123";
+//		String log8ExpectedParam4 = "77777";
+//		String log8ExpectedParam5 = "77777";
+		PO_SignUpView.fillForm(driver, "user123@email.com", "user123", "apellido123", "77777", "77777");
+
+//		String log9ExpectedType = "LOGOUT";
+//		String log9ExpectedDescription = "user123@email.com";
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+
+//		String log10ExpectedType = "LOGIN-EX";
+//		String log10ExpectedDescription = "admin@email.com";
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+
+		// Ver logs
+		PO_PrivateView.clickLogsOption(driver);
+
+		List<WebElement> logs = PO_View.checkElementBy(driver, "free", "//tbody/tr");
+		Assertions.assertTrue(logs.size() >= 10);
+	}
+
+	/**
+	 * [Prueba34] Estando autenticado como usuario administrador, ir a visualización de logs, pulsar el
+	 * botón/enlace borrar logs y comprobar que se eliminan los logs de la base de datos.
+	 */
+	@Test
+	@Order(34)
+	void PR34(){
+		// Generar interacciones
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+
+		PO_LoginView.fillLoginForm(driver, "admin@email.com", "admin");
+
+		PO_PrivateView.clickLogsOption(driver);
+
+		PO_View.checkElementBy(driver, "id", "delete-button");
+
+		List<WebElement> logs = PO_View.checkElementBy(driver, "free", "//tbody/tr");
+		Assertions.assertEquals(0, logs.size());
 	}
 }

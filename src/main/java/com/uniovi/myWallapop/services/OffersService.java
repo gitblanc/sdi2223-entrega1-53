@@ -100,16 +100,15 @@ public class OffersService {
         User user = usersRepository.findByEmail(email);
         Offer offer = offersRepository.findById(id).get();
 
-        if (user.getAmount() < offer.getAmount())
-            return "error.buyoffer.amount";
-        if(offer.isSold())
-            return "error.buyoffer.sold";
-        if(user.getPostedOffers().contains(offer))
-            return "error.buyoffer.youroffer";
-
         if (user.getAmount() < offer.getAmount()) {
             offer.setBuy(false);
+            return "error.buy.offer.amount";
         }
+        if(offer.isSold())
+            return "error.buy.offer.sold";
+        if(user.getPostedOffers().contains(offer))
+            return "error.buy.offer.your.offer";
+
         double amount = user.getAmount() - offer.getAmount();
         user.setAmount(amount);
         offer.setSold(true);

@@ -29,11 +29,18 @@ public class PO_AllOffersView extends PO_NavView{
 
     public static void buyFirstOffer(WebDriver driver) {
         List<WebElement> offersToBuyRow = PO_View.checkElementBy(driver, "free", "//tbody/tr[1]");
-        List<WebElement> offerToBuyLink = offersToBuyRow.get(0).findElements(By.tagName("a"));
+        List<WebElement> offerToBuyLink = offersToBuyRow.get(0).findElements(By.className("buy"));
 
         WebElement buyLink = offerToBuyLink.get(0);
 
         buyLink.click();
+    }
+
+    public static void openFirstOfferChat(WebDriver driver) {
+        List<WebElement> firstOfferRow = PO_View.checkElementBy(driver, "free", "//tbody/tr[1]");
+        WebElement chatLink= firstOfferRow.get(0).findElement(By.className("chat"));
+
+        chatLink.click();
     }
 
     static public void checkSubtitle(WebDriver driver, int language) {

@@ -29,7 +29,7 @@
                     </a>
                 </div>
             </li>
-            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_STANDARD')">
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_STANDARD')" id="chats-menu">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <span th:text="#{nav.chats}">Gestión de conversaciones</span>
@@ -51,7 +51,7 @@
                     </a>
                 </div>
             </li>
-            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+            <li class="nav-item dropdown active" sec:authorize="hasRole('ROLE_ADMIN')" id="logs-menu">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <span th:text="#{nav.logs}">Gestión de logs</span>

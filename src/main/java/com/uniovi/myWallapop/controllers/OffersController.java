@@ -199,9 +199,8 @@ public class OffersController {
 
     /**
      * Controlador para la petición GET para comprar una oferta
-     * @param model
-     * @param id
-     * @return
+     * @param id id de la oferta
+     * @return vista de todas las ofertas
      */
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
     public String setSoldTrue(@PathVariable Long id) {
