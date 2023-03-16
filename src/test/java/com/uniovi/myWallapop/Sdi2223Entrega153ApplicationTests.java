@@ -602,4 +602,65 @@ class Sdi2223Entrega153ApplicationTests {
 
 		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
 	}
+
+	/**
+	 * [Prueba30] Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se deberá volver al
+	 * formulario de login.
+	 */
+	@Test
+	@Order(30)
+	void PR30(){
+		driver.navigate().to(URL+"/user/userslist");
+
+		PO_View.checkElementByKey(driver, "login.message", 0);
+	}
+
+	/**
+	 * [Prueba32] Estando autenticado como usuario estándar intentar acceder a una opción disponible solo
+	 * para usuarios administradores (visualizar logs). Se deberá indicar un mensaje
+	 * de acción prohibida.
+	 */
+	@Test
+	@Order(32)
+	void PR32(){
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
+		PO_View.checkElementByKey(driver, "offer.list.subtitle", 0);
+
+		driver.navigate().to(URL+"/user/logslist");
+
+		PO_View.checkElementBy(driver, "text", "There was an unexpected error (type=Forbidden, status=403).");
+	}
+
+	/**
+	 * [Prueba33] Estando autenticado como usuario administrador visualizar todos los logs generados en una
+	 * serie de interacciones. Esta prueba deberá generar al menos dos interacciones de cada tipo y comprobar
+	 * que el listado incluye los logs correspondientes.
+	 */
+	@Test
+	@Order(33)
+	void PR33(){
+		// Generar interacciones
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+
+		String log1Expectedtype = "LOGIN-ERR";
+		String log1ExpectedDescription = "user14@email.com";
+		PO_LoginView.fillLoginForm(driver, "user14@email.com", "aaaaa");
+
+		String log2Expectedtype = "LOGIN-ERR";
+		String log2ExpectedDescription = "user10@email.com";
+		PO_LoginView.fillLoginForm(driver, "user10@email.com", "bbbbb");
+
+		String log3Expectedtype = "LOGIN-EX";
+		String log3ExpectedDescription = "user14@email.com";
+		PO_LoginView.fillLoginForm(driver, "user14@email.com", "user01");
+
+		String log4Expectedtype = "LOGIN-PET";
+		String log4ExpectedDescription = "user14@email.com";
+
+
+		PO_PrivateView.clickAddOfferOption(driver);
+
+		PO_PrivateView.clickOption(driver, "logout", "class", "btn btn-primary");
+	}
 }
