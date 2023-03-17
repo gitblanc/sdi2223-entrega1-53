@@ -21,46 +21,104 @@ public class Log {
     private String description;
 
     private Timestamp date;
+
+    /**
+     * Constructor sin parámetros
+     */
     public Log(){}
 
+
+    /**
+     * Constructor del Log con parámetros
+     * tipo y description
+     * @param tipo
+     * @param description
+     */
     public Log(Tipo tipo, String description) {
         this.tipo = tipo;
         this.description = description;
         this.date = new Timestamp(System.currentTimeMillis());
     }
 
+
+    /**
+     * Retorna el valor del atributo id
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+
+    /**
+     * Cambia el valor del atributo id
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+
+    /**
+     * Retorna el valor del atributo tipo
+     * @return
+     */
     public Tipo getTipo() {
         return tipo;
     }
 
+
+    /**
+     * Cambia el valor del atributo tipo
+     * @param tipo
+     */
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
+
+    /**
+     * Retorna el valor del atributo description
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+
+    /**
+     * Cambia el valor del atributo
+     * description
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+
+    /**
+     * Retorna el valor del atributo date
+     * @return
+     */
     public Timestamp getDate() {
         return date;
     }
 
+
+    /**
+     * Cambia el valor del atributo date
+     * @param date
+     */
     public void setDate(Timestamp date) {
         this.date = date;
     }
 
+
+    /**
+     * Método equals del Log
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,6 +133,11 @@ public class Log {
         return getDate() != null ? getDate().equals(log.getDate()) : log.getDate() == null;
     }
 
+
+    /**
+     * Método hashCode de Log
+     * @return
+     */
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
@@ -84,6 +147,11 @@ public class Log {
         return result;
     }
 
+
+    /**
+     * Método toString de Log
+     * @return
+     */
     @Override
     public String toString() {
         return "Log{" +
