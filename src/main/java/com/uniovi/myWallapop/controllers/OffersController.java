@@ -193,7 +193,8 @@ public class OffersController {
         if(error != null && !error.isEmpty()) {
             model.addAttribute("error", error);
         }
-
+        String description = "Usuario con id " + activeUser.getId() + " ha accedido a la vista /offer/list";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "offer/list";
     }
 
