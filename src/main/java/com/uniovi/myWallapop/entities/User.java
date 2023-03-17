@@ -2,7 +2,6 @@ package com.uniovi.myWallapop.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -51,9 +50,9 @@ public class User {
     /**
      * Constructor que recibe el nombre, apellido e email
      * del usuario
-     * @param name
-     * @param lastName
-     * @param email
+     * @param name String
+     * @param lastName String
+     * @param email String
      */
     public User(String name, String lastName, String email) {
         this.name = name;
@@ -65,7 +64,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo id
-     * @return
+     * @return Long
      */
     public Long getId() {
         return id;
@@ -74,7 +73,7 @@ public class User {
 
     /**
      * Cambiae el valor del atributo id
-     * @param id
+     * @param id Long
      */
     public void setId(Long id) {
         this.id = id;
@@ -83,7 +82,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo name
-     * @return
+     * @return String
      */
     public String getName() {
         return name;
@@ -92,7 +91,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo name
-     * @param name, nombre
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
@@ -101,7 +100,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo lastName
-     * @return
+     * @return String
      */
     public String getLastName() {
         return lastName;
@@ -110,7 +109,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo lastName
-     * @param lastName
+     * @param lastName String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -119,7 +118,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo email
-     * @return
+     * @return String
      */
     public String getEmail() {
         return email;
@@ -128,7 +127,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo email
-     * @param email
+     * @param email String
      */
     public void setEmail(String email) {
         this.email = email;
@@ -137,7 +136,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo password
-     * @return
+     * @return String
      */
     public String getPassword() {
         return password;
@@ -146,7 +145,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo password
-     * @param password
+     * @param password String
      */
     public void setPassword(String password) {
         this.password = password;
@@ -155,7 +154,7 @@ public class User {
 
     /**
      * Devuelve el valor del atributo passwordConfirm
-     * @return
+     * @return String
      */
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -164,7 +163,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo passwrodConfirm
-     * @param passwordConfirm
+     * @param passwordConfirm String
      */
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
@@ -173,7 +172,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo role
-     * @return
+     * @return String
      */
     public String getRole() {
         return role;
@@ -182,7 +181,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo role
-     * @param role
+     * @param role String
      */
     public void setRole(String role) {
         this.role = role;
@@ -191,7 +190,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo boughtOffers
-     * @return
+     * @return Set<Offer>
      */
     public Set<Offer> getBoughtOffers() {
         return boughtOffers;
@@ -200,7 +199,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo boughtOffers
-     * @param boughtOffers
+     * @param boughtOffers Set<Offer>
      */
     public void setBoughtOffers(Set<Offer> boughtOffers) {
         this.boughtOffers = boughtOffers;
@@ -209,7 +208,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo postedOffers
-     * @return
+     * @return Set<Offer>
      */
     public Set<Offer> getPostedOffers() {
         return postedOffers;
@@ -218,7 +217,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo postedOffers
-     * @param postedOffers
+     * @param postedOffers Set<Offer>
      */
     public void setPostedOffers(Set<Offer> postedOffers) {
         this.postedOffers = postedOffers;
@@ -227,7 +226,7 @@ public class User {
 
     /**
      * Retorna el valor del atributo amount
-     * @return
+     * @return double
      */
     public double getAmount() {
         return amount;
@@ -236,7 +235,7 @@ public class User {
 
     /**
      * Cambia el valor del atributo amount
-     * @param amount
+     * @param amount double
      */
     public void setAmount(double amount) {
         this.amount = amount;
@@ -245,8 +244,8 @@ public class User {
 
     /**
      * Método equals de User
-     * @param o
-     * @return
+     * @param o Object
+     * @return boolean
      */
     @Override
     public boolean equals(Object o) {
@@ -259,7 +258,7 @@ public class User {
 
     /**
      * Método hashCode de User
-     * @return
+     * @return int
      */
     @Override
     public int hashCode() {
@@ -269,7 +268,7 @@ public class User {
 
     /**
      * Método toString de User
-     * @return
+     * @return String
      */
     @Override
     public String toString() {
