@@ -813,9 +813,8 @@ class Sdi2223Entrega153ApplicationTests {
 
 		PO_PrivateView.clickLogsOption(driver);
 
-		PO_View.checkElementBy(driver, "id", "delete-button");
+		PO_View.checkElementBy(driver, "id", "delete-button").get(0).click();
 
-		List<WebElement> logs = PO_View.checkElementBy(driver, "free", "//tbody/tr");
-		Assertions.assertEquals(0, logs.size());
+		PO_View.checkElementByKey(driver, "home.logs.emptylist", 0);
 	}
 }

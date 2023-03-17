@@ -61,6 +61,9 @@ public class ChatsController {
         model.addAttribute("offer", offer);
         model.addAttribute("chat", chat);
 
+        String description = "Usuario con id " + activeUser.getId() + " ha accedido a la conversación con id " + offer.getId();
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+
         return "chats/chat";
     }
 
@@ -90,6 +93,10 @@ public class ChatsController {
         }
 
         String otherUser = chatsService.findOtherUser(user, chatId);
+
+        String description = "Usuario con id " + user.getId() + " ha enviado un mensaje en el chat con id " + chatId;
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+
         return "redirect:/chat/{offerId}"+"?otherUser="+otherUser;
     }
 
@@ -107,6 +114,9 @@ public class ChatsController {
 
         List<Chat> chats = chatsService.getChatsByUserId(activeUser.getId());
         model.addAttribute("chatsList", chats);
+
+        String description = "Usuario con id " + activeUser.getId() + " ha accedido a la vista /chat/list";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
 
         return "chats/chatList";
     }

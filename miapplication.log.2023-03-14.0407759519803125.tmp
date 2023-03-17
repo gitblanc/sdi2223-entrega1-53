@@ -1,0 +1,176 @@
+2023-03-14 09:18:54.752  INFO 11243 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on gitblanc.local with PID 11243 (/Users/blanc/Desktop/sdi2223-entrega1-53/target/classes started by blanc in /Users/blanc/Desktop/sdi2223-entrega1-53)
+2023-03-14 09:18:54.753  INFO 11243 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-14 09:18:55.086  INFO 11243 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 09:18:55.122  INFO 11243 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 5 JPA repository interfaces.
+2023-03-14 09:18:55.402  INFO 11243 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-14 09:18:55.413  INFO 11243 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-14 09:18:55.413  INFO 11243 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-14 09:18:55.513  INFO 11243 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-14 09:18:55.513  INFO 11243 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 743 ms
+2023-03-14 09:18:55.679  INFO 11243 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 09:18:55.722  INFO 11243 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 09:18:55.791  INFO 11243 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 09:18:55.829  INFO 11243 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-14 09:18:55.831  WARN 11243 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-14 09:18:56.066  INFO 11243 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-14 09:18:56.075  INFO 11243 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-14 09:18:56.094  INFO 11243 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-14 09:18:56.394  INFO 11243 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 09:18:56.399  INFO 11243 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:18:56.419  WARN 11243 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 09:18:58.361  INFO 11243 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2bb84aa5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4853f592, org.springframework.security.web.context.SecurityContextPersistenceFilter@28d7bd6b, org.springframework.security.web.header.HeaderWriterFilter@7c523bdd, org.springframework.security.web.authentication.logout.LogoutFilter@51efdb72, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5a9ef32e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f472245, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74ee97cb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52d434c1, org.springframework.security.web.session.SessionManagementFilter@351d726c, org.springframework.security.web.access.ExceptionTranslationFilter@3ab70d34, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b03c35c]
+2023-03-14 09:18:58.419  INFO 11243 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-14 09:18:58.506  INFO 11243 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-14 09:18:58.512  INFO 11243 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 3.933 seconds (JVM running for 4.766)
+2023-03-14 09:19:13.145  INFO 11243 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 09:19:13.145  INFO 11243 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-14 09:19:13.148  INFO 11243 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-03-14 09:19:13.199  INFO 11243 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Un usuario ha accedido a la vista index
+2023-03-14 09:19:43.164  INFO 11243 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Un usuario ha accedido a la vista index
+2023-03-14 09:19:43.798  INFO 11243 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:19:48.903  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:19:59.332 ERROR 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Error en el logeo de usuario, nombre de usuario o contraseña incorrectos
+2023-03-14 09:20:14.040 ERROR 11243 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Error en el logeo de usuario, nombre de usuario o contraseña incorrectos
+2023-03-14 09:20:27.999 ERROR 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Error en el logeo de usuario, nombre de usuario o contraseña incorrectos
+2023-03-14 09:21:02.048  INFO 11243 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha iniciado sesión
+2023-03-14 09:21:02.114  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:21.932  INFO 11243 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:23.561  INFO 11243 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:25.889  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:27.658  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:30.497  INFO 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:32.001  INFO 11243 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:34.753  INFO 11243 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:40.899  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:42.480  INFO 11243 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:43.477  INFO 11243 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:44.280  INFO 11243 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:47.849  INFO 11243 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:51.702  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:52.615  INFO 11243 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:55.982  INFO 11243 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:58.019  INFO 11243 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:22:59.669  INFO 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:23:02.498  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:23:04.803  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a los detalles de la oferta3
+2023-03-14 09:26:45.205  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:26:54.937  INFO 11243 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Administrador ha iniciado sesión
+2023-03-14 09:26:54.958  INFO 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/userslist del usuario con id 1
+2023-03-14 09:27:00.750  INFO 11243 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1
+2023-03-14 09:27:17.092  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:27:22.258  INFO 11243 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:27:41.303  INFO 11243 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:27:45.573  INFO 11243 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:14.518  INFO 11243 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:21.200  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:27.190  INFO 11243 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:36.041  INFO 11243 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:51.139  INFO 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:28:55.360  INFO 11243 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:29:58.073  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1 mediante filtrado
+2023-03-14 09:30:18.318  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:30:27.498  INFO 11243 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Administrador ha iniciado sesión
+2023-03-14 09:30:27.510  INFO 11243 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/userslist del usuario con id 1
+2023-03-14 09:30:31.623  INFO 11243 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Acceso a la vista /user/logslist del usuario con id 1
+2023-03-14 09:32:40.629  INFO 11243 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:32:51.015 ERROR 11243 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Error en el logeo de usuario, nombre de usuario o contraseña incorrectos
+2023-03-14 09:33:16.526  INFO 11243 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha iniciado sesión
+2023-03-14 09:33:16.545  INFO 11243 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:33:22.150  INFO 11243 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:33:23.274  INFO 11243 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:47:26.307  WARN 11243 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s860ms), soft-evicting connections from pool.
+2023-03-14 09:50:25.594  INFO 11243 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:50:25.605  INFO 11243 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-14 09:50:25.610  INFO 11243 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-14 09:50:46.747  INFO 13485 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on gitblanc.local with PID 13485 (/Users/blanc/Desktop/sdi2223-entrega1-53/target/classes started by blanc in /Users/blanc/Desktop/sdi2223-entrega1-53)
+2023-03-14 09:50:46.748  INFO 13485 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-14 09:50:47.103  INFO 13485 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 09:50:47.139  INFO 13485 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 5 JPA repository interfaces.
+2023-03-14 09:50:47.370  INFO 13485 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-14 09:50:47.374  INFO 13485 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-14 09:50:47.375  INFO 13485 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-14 09:50:47.488  INFO 13485 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-14 09:50:47.488  INFO 13485 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 723 ms
+2023-03-14 09:50:47.558  INFO 13485 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 09:50:47.583  INFO 13485 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 09:50:47.652  INFO 13485 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 09:50:47.691  INFO 13485 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-14 09:50:47.693  WARN 13485 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-14 09:50:47.838  INFO 13485 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-14 09:50:47.851  INFO 13485 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-14 09:50:47.868  INFO 13485 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-14 09:50:48.160  INFO 13485 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 09:50:48.164  INFO 13485 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:50:48.188  WARN 13485 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 09:50:50.053  INFO 13485 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4803bf73, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@13731ff4, org.springframework.security.web.context.SecurityContextPersistenceFilter@6ad0cd43, org.springframework.security.web.header.HeaderWriterFilter@6b756a62, org.springframework.security.web.authentication.logout.LogoutFilter@6761f75b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4e826fd4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7fe0ca60, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31f5ffb9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ce8084a, org.springframework.security.web.session.SessionManagementFilter@6e0f259e, org.springframework.security.web.access.ExceptionTranslationFilter@24ee6faa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@468646ea]
+2023-03-14 09:50:50.110  INFO 13485 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-14 09:50:50.192  INFO 13485 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-14 09:50:50.197  INFO 13485 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 3.601 seconds (JVM running for 4.315)
+2023-03-14 09:50:56.824  INFO 13485 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 09:50:56.824  INFO 13485 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-14 09:50:56.827  INFO 13485 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-03-14 09:50:56.885  INFO 13485 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:50:59.830  INFO 13485 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Un usuario ha accedido a la vista index
+2023-03-14 09:51:01.962  INFO 13485 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 09:51:11.025  INFO 13485 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:51:14.061  INFO 13485 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:51:15.729  INFO 13485 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:51:16.907  INFO 13485 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 09:52:26.069  INFO 13485 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a /offer/bought
+2023-03-14 09:52:46.622  INFO 13485 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a /offer/bought
+2023-03-14 09:52:49.577 ERROR 13485 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 3
+2023-03-14 09:53:03.343  INFO 13485 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Se ha vendido la oferta: 14
+2023-03-14 09:53:18.968  INFO 13485 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a /offer/bought
+2023-03-14 09:58:20.278  INFO 13485 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : Se ha vendido la oferta: 16
+2023-03-14 09:59:54.759  INFO 13485 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 09:59:54.761  INFO 13485 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-14 09:59:54.764  INFO 13485 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-14 10:00:15.006  INFO 14156 --- [main] c.u.m.Sdi2223Entrega153Application       : Starting Sdi2223Entrega153Application using Java 17.0.6 on gitblanc.local with PID 14156 (/Users/blanc/Desktop/sdi2223-entrega1-53/target/classes started by blanc in /Users/blanc/Desktop/sdi2223-entrega1-53)
+2023-03-14 10:00:15.008  INFO 14156 --- [main] c.u.m.Sdi2223Entrega153Application       : No active profile set, falling back to 1 default profile: "default"
+2023-03-14 10:00:15.341  INFO 14156 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 10:00:15.376  INFO 14156 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 5 JPA repository interfaces.
+2023-03-14 10:00:15.602  INFO 14156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-03-14 10:00:15.606  INFO 14156 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-14 10:00:15.606  INFO 14156 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-14 10:00:15.737  INFO 14156 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-14 10:00:15.737  INFO 14156 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 710 ms
+2023-03-14 10:00:15.808  INFO 14156 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 10:00:15.834  INFO 14156 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 10:00:15.901  INFO 14156 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 10:00:15.940  INFO 14156 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-14 10:00:15.942  WARN 14156 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2023-03-14 10:00:16.089  INFO 14156 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (característica no soportada)
+2023-03-14 10:00:16.099  INFO 14156 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-14 10:00:16.117  INFO 14156 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2023-03-14 10:00:16.413  INFO 14156 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 10:00:16.417  INFO 14156 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 10:00:16.434  WARN 14156 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 10:00:18.305  INFO 14156 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@180e33b0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@270be080, org.springframework.security.web.context.SecurityContextPersistenceFilter@b6b746b, org.springframework.security.web.header.HeaderWriterFilter@4d9cf71d, org.springframework.security.web.authentication.logout.LogoutFilter@fdf029a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5eff5e4c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56b48163, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f7a65e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@752ffce3, org.springframework.security.web.session.SessionManagementFilter@5db66c3, org.springframework.security.web.access.ExceptionTranslationFilter@39fc17be, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@254d8ef6]
+2023-03-14 10:00:18.367  INFO 14156 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-14 10:00:18.448  INFO 14156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-03-14 10:00:18.453  INFO 14156 --- [main] c.u.m.Sdi2223Entrega153Application       : Started Sdi2223Entrega153Application in 3.608 seconds (JVM running for 4.041)
+2023-03-14 10:00:23.807  INFO 14156 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 10:00:23.808  INFO 14156 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-14 10:00:23.810  INFO 14156 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-14 10:00:23.860  INFO 14156 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Un usuario ha accedido a la vista index
+2023-03-14 10:00:25.230  INFO 14156 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Acceso a la vista /login
+2023-03-14 10:00:29.979  INFO 14156 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha iniciado sesión
+2023-03-14 10:00:30.003  INFO 14156 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:00:33.417  INFO 14156 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:00:34.650  INFO 14156 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:19.591  INFO 14156 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:24.231  INFO 14156 --- [http-nio-8090-exec-9] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:27.327  INFO 14156 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:29.231  INFO 14156 --- [http-nio-8090-exec-8] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:36.773  INFO 14156 --- [http-nio-8090-exec-7] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:01:36.921  INFO 14156 --- [http-nio-8090-exec-1] c.u.myWallapop.services.LogsService      : Usuario con id 2 ha accedido a la vista de ofertas publicadas
+2023-03-14 10:02:05.032 ERROR 14156 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 3
+2023-03-14 10:02:12.484  INFO 14156 --- [http-nio-8090-exec-6] c.u.myWallapop.services.LogsService      : Se ha vendido la oferta: 22
+2023-03-14 10:02:13.540 ERROR 14156 --- [http-nio-8090-exec-4] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 7
+2023-03-14 10:02:14.554 ERROR 14156 --- [http-nio-8090-exec-3] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 7
+2023-03-14 10:02:14.704 ERROR 14156 --- [http-nio-8090-exec-10] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 7
+2023-03-14 10:02:25.081 ERROR 14156 --- [http-nio-8090-exec-5] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 7
+2023-03-14 10:02:34.257 ERROR 14156 --- [http-nio-8090-exec-2] c.u.myWallapop.services.LogsService      : No se ha podido vender la oferta: 7
+2023-03-14 10:51:27.733  INFO 14156 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 10:51:27.739  INFO 14156 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-14 10:51:27.744  INFO 14156 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
