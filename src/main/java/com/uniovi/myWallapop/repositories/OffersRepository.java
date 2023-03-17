@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface OffersRepository extends CrudRepository<Offer, Long> {
-    @Query("SELECT r FROM Offer r WHERE r.seller = ?1 ORDER BY r.id ASC")
+    @Query("SELECT r FROM Offer r WHERE r.seller = ?1 ORDER BY r.amount ASC")
     Page<Offer> findAllByUser(Pageable pageable, User user);
 
     @Query("SELECT distinct o FROM Offer o WHERE o.buyer.id = ?1 or o.seller.id = ?1")
@@ -32,4 +32,7 @@ public interface OffersRepository extends CrudRepository<Offer, Long> {
     Page<Offer> searchOfferByTitle(Pageable pageable,String searchText);
 
     Page<Offer> findAll(Pageable pageable);
+
+    @Query("SELECT o FROM Offer o WHERE (o.seller) != ?1")
+    Page<Offer> getOfferThatYouCanBuy(Pageable pageable, User user);
 }

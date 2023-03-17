@@ -115,14 +115,23 @@ public class InsertSampleDataService {
 
 
         Offer offer1 = new Offer("Oferta1", "EStA ES LA OFERTA MAS CHUPIWAY", 45.32, user1);
+        user1.getPostedOffers().add(offer1);
         Offer offer2 = new Offer("Oferta2", "EStA ES LA releche", 4456.78, user1);
+        user1.getPostedOffers().add(offer2);
         Offer offer3= new Offer("pruebisisima vaya", "a ver si funciona", 46.78, user1);
+        user1.getPostedOffers().add(offer3);
         Offer offer4= new Offer("pruebisisima vaya", "a ver si funciona", 46.78, user2);
+        user2.getPostedOffers().add(offer4);
         Offer offer5= new Offer("pruebisisima vaya por 2", "a ver si funciona", 5.2, user2);
+        user2.getPostedOffers().add(offer5);
         Offer offer6= new Offer("phola que tal", "a ver si funciona", 50.2, user2);
+        user2.getPostedOffers().add(offer6);
         Offer offer7= new Offer("pruea pagl", "fucionara", 48.2, user3);
+        user3.getPostedOffers().add(offer7);
         Offer offer8= new Offer("usqueda total vaya", " funciona", 50.2, user3);
+        user3.getPostedOffers().add(offer8);
         Offer offer9= new Offer("ultimo", " funcionaaaa", 50.4, user3);
+        user3.getPostedOffers().add(offer9);
 
         offersService.addOffer(offer1);
         offersService.addOffer(offer2);
@@ -138,8 +147,8 @@ public class InsertSampleDataService {
         Chat chat1 = new Chat(offer1, user2);
         Chat chat2 = new Chat(offer2, user3);
 
-        Message m1 = new Message(user2.getId(), "hola buenas tardes");
-        Message m2 = new Message(user2.getId(), "hola buenas tardes");
+        Message m1 = new Message(user2, "hola buenas tardes");
+        Message m2 = new Message(user2, "hola buenas tardes");
 
         chat1.addMessage(m1);
         chat2.addMessage(m2);
