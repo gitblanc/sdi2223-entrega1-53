@@ -29,8 +29,8 @@ public class Message {
     /**
      * Constructor que recibe por parámetros
      * el autor del mensaje y el tecto de este
-     * @param author
-     * @param text
+     * @param author, autor del mensaje
+     * @param text, texto del mensaje
      */
     public Message(User author, String text) {
         this.date = new Date();
@@ -41,7 +41,7 @@ public class Message {
 
     /**
      * Retorna el valor del atributo id
-     * @return
+     * @return id del mensaje
      */
     public Long getId() {
         return id;
@@ -50,7 +50,7 @@ public class Message {
 
     /**
      * Cambia el valor del atributo id
-     * @param id
+     * @param id, id del mensaje
      */
     public void setId(Long id) {
         this.id = id;
@@ -59,7 +59,7 @@ public class Message {
 
     /**
      * Retorna el valor del atributo date
-     * @return
+     * @return fecha del mensaje
      */
     public Date getDate() {
         return date;
@@ -68,7 +68,7 @@ public class Message {
 
     /**
      * Cambia el valor del atributo date
-     * @param date
+     * @param date, fecha del mensaje
      */
     public void setDate(Date date) {
         this.date = date;
@@ -77,7 +77,7 @@ public class Message {
 
     /**
      * Retorna el valor del atributo author
-     * @return
+     * @return autor del mensaje
      */
     public User getAuthor() {
         return author;
@@ -87,7 +87,7 @@ public class Message {
     /**
      * Cambia el valor del atributo
      * author
-     * @param author
+     * @param author, autor del mensaje
      */
     public void setAuthor(User author) {
         this.author = author;
@@ -96,7 +96,7 @@ public class Message {
 
     /**
      * Retorna el valor del atributo text
-     * @return
+     * @return texto del mensaje
      */
     public String getText() {
         return text;
@@ -105,7 +105,7 @@ public class Message {
 
     /**
      * Cambia el valor del atributo text
-     * @param text
+     * @param text, texto del mensaje
      */
     public void setText(String text) {
         this.text = text;
@@ -114,7 +114,7 @@ public class Message {
 
     /**
      * Devuelve el valor del atributo chat
-     * @return
+     * @return chat al que pertenece el mensaje
      */
     public Chat getChat() {
         return chat;
@@ -123,7 +123,7 @@ public class Message {
 
     /**
      * Cambia el valor del atributo chat
-     * @param chat
+     * @param chat, chat al que pertenece el mensaje
      */
     public void setChat(Chat chat) {
         this.chat = chat;
@@ -132,8 +132,8 @@ public class Message {
 
     /**
      * Método equals de Message
-     * @param o
-     * @return
+     * @param o, el otro mensaje
+     * @return true si son iguales, false si no
      */
     @Override
     public boolean equals(Object o) {
@@ -146,7 +146,7 @@ public class Message {
 
     /**
      * Método toString de Message
-     * @return
+     * @return cadena que representa el mensaje
      */
     @Override
     public String toString() {
@@ -162,7 +162,7 @@ public class Message {
 
     /**
      * Método hashCode de Message
-     * @return
+     * @return hashcode del mensaje
      */
     @Override
     public int hashCode() {

@@ -31,8 +31,8 @@ public class Log {
     /**
      * Constructor del Log con parámetros
      * tipo y description
-     * @param tipo
-     * @param description
+     * @param tipo, tipo del mensaje log
+     * @param description, descripción del mensaje log
      */
     public Log(Tipo tipo, String description) {
         this.tipo = tipo;
@@ -43,7 +43,7 @@ public class Log {
 
     /**
      * Retorna el valor del atributo id
-     * @return
+     * @return id del log
      */
     public Long getId() {
         return id;
@@ -52,7 +52,7 @@ public class Log {
 
     /**
      * Cambia el valor del atributo id
-     * @param id
+     * @param id, id del log
      */
     public void setId(Long id) {
         this.id = id;
@@ -61,7 +61,7 @@ public class Log {
 
     /**
      * Retorna el valor del atributo tipo
-     * @return
+     * @return tipo del log
      */
     public Tipo getTipo() {
         return tipo;
@@ -70,7 +70,7 @@ public class Log {
 
     /**
      * Cambia el valor del atributo tipo
-     * @param tipo
+     * @param tipo, tipo del log
      */
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
@@ -79,7 +79,7 @@ public class Log {
 
     /**
      * Retorna el valor del atributo description
-     * @return
+     * @return descripción del log
      */
     public String getDescription() {
         return description;
@@ -89,7 +89,7 @@ public class Log {
     /**
      * Cambia el valor del atributo
      * description
-     * @param description
+     * @param description, descripción del log
      */
     public void setDescription(String description) {
         this.description = description;
@@ -98,7 +98,7 @@ public class Log {
 
     /**
      * Retorna el valor del atributo date
-     * @return
+     * @return fecha del log
      */
     public Timestamp getDate() {
         return date;
@@ -107,7 +107,7 @@ public class Log {
 
     /**
      * Cambia el valor del atributo date
-     * @param date
+     * @param date, fecha del log
      */
     public void setDate(Timestamp date) {
         this.date = date;
@@ -116,8 +116,8 @@ public class Log {
 
     /**
      * Método equals del Log
-     * @param o
-     * @return
+     * @param o, el otro log
+     * @return true si son iguales, false si no
      */
     @Override
     public boolean equals(Object o) {
@@ -136,7 +136,7 @@ public class Log {
 
     /**
      * Método hashCode de Log
-     * @return
+     * @return hashcode del log
      */
     @Override
     public int hashCode() {
@@ -150,7 +150,7 @@ public class Log {
 
     /**
      * Método toString de Log
-     * @return
+     * @return string que representa el log
      */
     @Override
     public String toString() {

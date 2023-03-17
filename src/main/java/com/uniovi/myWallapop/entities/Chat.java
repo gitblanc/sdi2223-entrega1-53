@@ -36,8 +36,8 @@ public class Chat {
     /**
      * Constructor que recibe el usuario con el que se hace
      * el chat y la oferta asociada
-     * @param user
-     * @param offer
+     * @param user, usuario que crea el chat
+     * @param offer, oferta que está mirando
      */
     public Chat(User user, Offer offer){
         this.user=user;
@@ -48,8 +48,8 @@ public class Chat {
     /**
      * Constructor que recibe el usuario con el que se hace
      * el chat y la oferta asociada
-     * @param buyer
-     * @param offer
+     * @param buyer, oferta
+     * @param offer, usuario
      */
     public Chat(Offer offer, User buyer) {
         this.offer=offer;
@@ -59,7 +59,7 @@ public class Chat {
 
     /**
      * Añade un mensaje a la lista
-     * @param message
+     * @param message, mensaje nuevo del chat
      */
     public void addMessage(Message message) {
         message.setChat(this);
@@ -69,7 +69,7 @@ public class Chat {
 
     /**
      * Cambia el valor del atributo id
-     * @param id
+     * @param id, id del chat
      */
     public void setId(Long id) {
         this.id = id;
@@ -78,7 +78,7 @@ public class Chat {
 
     /**
      * Devuelve el valor del atributo id
-     * @return
+     * @return id del chat
      */
     public Long getId() {
         return id;
@@ -87,7 +87,7 @@ public class Chat {
 
     /**
      * Devuelve el valor del atributo offer
-     * @return
+     * @return oferta del chat
      */
     public Offer getOffer() {
         return offer;
@@ -96,7 +96,7 @@ public class Chat {
 
     /**
      * Cambia el valor del atributo offer
-     * @param offer
+     * @param offer, oferta del chat
      */
     public void setOffer(Offer offer) {
         this.offer = offer;
@@ -105,7 +105,7 @@ public class Chat {
 
     /**
      * Devuelve el valor del atributo user
-     * @return
+     * @return usuario posible comprador
      */
     public User getUser() {
         return user;
@@ -114,7 +114,7 @@ public class Chat {
 
     /**
      * Cambia el valor del atributo user
-     * @param user
+     * @param user, usuario posible comprador
      */
     public void setUser(User user) {
         this.user = user;
@@ -123,7 +123,7 @@ public class Chat {
 
     /**
      * Recupera la lista de mensajes del chat
-     * @return
+     * @return lista de mensajes del chat ordenados por fecha
      */
     public Set<Message> getMessages() {
         return messages.stream()
@@ -134,7 +134,7 @@ public class Chat {
 
     /**
      * Cambia el valor del atributo messages
-     * @param messages
+     * @param messages, lista de mensajes del chat
      */
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
