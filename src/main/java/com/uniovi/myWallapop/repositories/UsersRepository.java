@@ -17,11 +17,20 @@ public interface UsersRepository extends CrudRepository<User, Long> {
      */
     User findByEmail(String email);
 
+    /**
+     * Elimina los usuarios segun su id
+     * @param ids
+     */
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = "DELETE FROM users WHERE id IN(?1)")
     void deleteUsersById(List<Long> ids);
 
+    /**
+     * Actualiza la cantidad del dinero segun los parametros de cantidad e id
+     * @param amount
+     * @param id
+     */
     @Modifying
     @Transactional
     @Query("UPDATE User SET amount = ?1 WHERE id = ?2")

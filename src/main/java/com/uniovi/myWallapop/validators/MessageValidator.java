@@ -20,6 +20,11 @@ public class MessageValidator implements Validator {
         return User.class.equals(aClass);
     }
 
+    /**
+     * Método que valida el formulario de los mensajes
+     * @param target
+     * @param errors
+     */
     @Override
     public void validate(Object target, Errors errors) {
         Message msg = (Message) target;
