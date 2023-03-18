@@ -21,6 +21,11 @@ public class SignUpFormValidator implements Validator {
         return User.class.equals(aClass);
     }
 
+    /**
+     * Método que valida que el formulario del login tenga
+     * @param target
+     * @param errors
+     */
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;

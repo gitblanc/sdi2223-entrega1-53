@@ -20,6 +20,10 @@ public class SecurityService {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * Método que devuleve el String de un usuario determinado
+     * @return
+     */
     public String findLoggedInEmail() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
         if (userDetails instanceof UserDetails) {
@@ -28,6 +32,11 @@ public class SecurityService {
         return null;
     }
 
+    /**
+     * Método que hace el login de un usuario
+     * @param email
+     * @param password
+     */
     public void autoLogin(String email, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
         UsernamePasswordAuthenticationToken aToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());

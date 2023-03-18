@@ -35,6 +35,10 @@ public class UsersService {
     public void init() {
     }
 
+    /**
+     * Método que devueve una lista de usuarios
+     * @return
+     */
     public List<User> getUsers() {
         List<User> users = new ArrayList<User>();
         usersRepository.findAll().forEach(users::add);
@@ -48,19 +52,36 @@ public class UsersService {
         return users;
     }
 
+    /**
+     * Método que devuelve un usuario qcuyo id coincida con el que se le pasa por parámetro
+     * @param id
+     * @return
+     */
     public User getUser(Long id) {
         return usersRepository.findById(id).get();
     }
 
+    /**
+     * Método que agrega un usuario
+     * @param user
+     */
     public void addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
     }
 
+    /**
+     * Método que elimina un usuario
+     * @param id
+     */
     public void deleteUser(Long id) {
         usersRepository.deleteById(id);
     }
 
+    /**
+     * Método que modifica la contraeña de un usuario y la guarda en la base de datos
+     * @param user
+     */
     public void addUserFromModify(User user) {
         user.setPassword(user.getPassword());
         usersRepository.save(user);
@@ -75,6 +96,11 @@ public class UsersService {
         return usersRepository.findByEmail(email);
     }
 
+    /**
+     * Método que devuelve true si existe un email que se le pasa por parámetro
+     * @param email
+     * @return
+     */
     public boolean existsEmail(String email) {
         for(User u: getUsers()){
             if(u.getEmail().equals((email)))
@@ -83,6 +109,10 @@ public class UsersService {
         return false;
     }
 
+    /**
+     * Método que agrega un usuario a la base de datos
+     * @param user
+     */
     public void addUserWithoutEncrypt(User user) {
         user.setPassword(user.getPassword());
         usersRepository.save(user);
