@@ -1,11 +1,9 @@
 package com.uniovi.myWallapop.pageobjects;
 
-import org.junit.jupiter.api.Assertions;
+import com.uniovi.myWallapop.util.SeleniumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class PO_PrivateView extends PO_NavView {
     public static void fillFormAddOffer(WebDriver driver, String titlep, String descriptionp, String amountp) {
@@ -26,19 +24,30 @@ public class PO_PrivateView extends PO_NavView {
         driver.findElement(boton).click();
     }
 
-    public static void writeIntoSearchBar(WebDriver driver, String searchText) {
-        List<WebElement> searchBarList =  PO_PrivateView.checkElementBy(driver, "id", "searchBar");
-        // Tiene que haber una barra de búsqueda
-        Assertions.assertEquals(1, searchBarList.size());
-        WebElement searchBar = searchBarList.get(0);
-        // Escribimos en ella
-        searchBar.click();
-        searchBar.clear();
-        searchBar.sendKeys(searchText);
-        // Pinchamos el botón de buscar
-        By boton = By.className("btn");
-        driver.findElement(boton).click();
-        // Comprobamos que se recarga la página
-        PO_PrivateView.checkElementBy(driver, "id", "searchBar");
+    static public void checkSubtitle(WebDriver driver, int language) {
+        SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString("offer.list.subtitle", language),
+                getTimeout());
+    }
+
+    static public void checkTableHeaderDetails(WebDriver driver, int language) {
+        SeleniumUtils.waitLoadElementsBy(driver, "text", p.getString("offer.list.table.details", language),
+                getTimeout());
+    }
+
+    static public void checkChangeLanguage(WebDriver driver, String textLanguage1, String textLanguage,
+                                           int locale1, int locale2) {
+//Esperamos a que se cargue el texto en Español
+        PO_PrivateView.checkSubtitle(driver, locale1);
+        PO_PrivateView.checkTableHeaderDetails(driver, locale1);
+//Cambiamos a segundo idioma
+        PO_HomeView.changeLanguage(driver, textLanguage);
+//Comprobamos que el texto haya cambiado a segundo idioma
+        PO_PrivateView.checkSubtitle(driver, locale2);
+        PO_PrivateView.checkTableHeaderDetails(driver, locale2);
+//Volvemos a Español.
+        PO_HomeView.changeLanguage(driver, textLanguage1);
+//Esperamos a que se cargue el texto en Español
+        PO_PrivateView.checkSubtitle(driver, locale1);
+        PO_PrivateView.checkTableHeaderDetails(driver, locale1);
     }
 }

@@ -35,7 +35,7 @@
            <p th:text="#{offer.list.sold}" > </p>
         </div>
         <div th:unless="${offer.sold}">
-          <a th:href="${'/offer/' + offer.id + '/buy'}" th:text="#{offer.list.buy}"> Comprar</a>
+          <a class="buy" th:href="${'/offer/' + offer.id + '/buy'}" th:text="#{offer.list.buy}"> Comprar</a>
         </div>
       </td>
       <td>
@@ -46,7 +46,9 @@
           <p th:text="#{offer.list.cannot.buy}" th:color="red"> </p>
         </div>
       </td>
-
+      <td>
+        <a class="chat" th:href="${'/chat/' + offer.id+ '?otherUser=' + offer.seller.email}" th:text="#{offer.list.chat.open}">Abrir conversación</a>
+      </td>
 
     </tr>
     </tbody>

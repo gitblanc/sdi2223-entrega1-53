@@ -98,7 +98,7 @@ public class UsersService {
         for(User user: getUsers()){
             for(Long id: usersids){
                 if(user.getId().equals(id)){
-                    messagesService.deleteMessagesWithUserId(id);
+                    messagesService.deleteMessagesWithUser(user);
                     chatsService.deleteChatsWithUserId(id);
                     offersService.deleteOffersWithUserId(id);
                 }

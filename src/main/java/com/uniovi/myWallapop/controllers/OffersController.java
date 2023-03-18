@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.Date;
@@ -127,6 +126,12 @@ public class OffersController {
         return "offer/details";
     }
 
+    /**
+     * Controlador para la petición GET de borrar una oferta
+     * @param id
+     * @param principal
+     * @return
+     */
     @RequestMapping("/offer/delete/{id}")
     public String deleteOffer(@PathVariable Long id, Principal principal) {
         offersService.deleteOffer(id, principal.getName());
@@ -135,6 +140,12 @@ public class OffersController {
         return "redirect:/offer/list/posted";
     }
 
+    /**
+     * Controlador para la petición GET para la lista de ofertas compradas
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/offer/bought", method = RequestMethod.GET)
     public String getBoughtOffers(Model model, Principal principal) {
         String email = principal.getName();
@@ -147,8 +158,16 @@ public class OffersController {
     }
 
 
+    /**
+     * Controlador para la petición GET de listar todas las ofertas
+     * @param model
+     * @param pageable
+     * @param searchName
+     * @return
+     */
     @RequestMapping("/offer/list")
-    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
+    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName,
+                               @RequestParam(value ="", required = false) String error) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
@@ -161,14 +180,25 @@ public class OffersController {
         } else {
             offers = offersService.getOffersNotYours(pageable,activeUser);
         }
+
         model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
+        if(error != null && !error.isEmpty()) {
+            model.addAttribute("error", error);
+        }
+        String description = "Usuario con id " + activeUser.getId() + " ha accedido a la vista /offer/list";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "offer/list";
     }
 
+    /**
+     * Controlador para la petición GET para comprar una oferta
+     * @param id id de la oferta
+     * @return vista de todas las ofertas
+     */
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
-    public String setSoldTrue(Model model, @PathVariable Long id) {
+    public String setSoldTrue(@PathVariable Long id) {
         String error = offersService.buyOffer(id);
         if (error == null) {
             String description = "Se ha vendido la oferta: " + id;
@@ -178,9 +208,7 @@ public class OffersController {
         offersService.cannotBuyOffer(id);
         String description = "No se ha podido vender la oferta: " + id;
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
-        return "redirect:/offer/list";
+        return "redirect:/offer/list?error="+error;
     }
-
-
 
 }

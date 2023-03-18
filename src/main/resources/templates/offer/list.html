@@ -7,7 +7,7 @@
 <div class="container">
     <h2 th:text="#{offer.list.all.title}"></h2>
     <p th:text="#{offer.list.all.subtitle}"></p>
-
+    <span class="text-danger" th:if="${error != null}" th:text="#{${error}}"></span>
     <div class="table-responsive">
         <offers sec:authorize="hasRole('ROLE_STANDARD')" th:replace="fragments/allOfferList"/>
     </div>

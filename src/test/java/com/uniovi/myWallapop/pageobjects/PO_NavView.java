@@ -65,4 +65,28 @@ public class PO_NavView extends PO_View{
         //Pinchamos en el enlace
         elements.get(0).click();
     }
+
+    public static void clickAllOffersOption(WebDriver driver) {
+        //Pinchamos en la opción de menú de Ofertas: //li[contains(@id, 'offers-menu')]/a
+        List<WebElement> elements = checkElementBy(driver, "free", "//li[contains(@id, 'offers-menu')]/a");
+        elements.get(0).click();
+        //Esperamos a que aparezca la opción
+        elements = checkElementBy(driver, "free", "//a[contains(@href, 'offer/list')]");
+        //Pinchamos en el segundo enlace porque el primero es el offer/list/posted
+        elements.get(1).click();
+    }
+
+    public static void clickOpenChatsOption(WebDriver driver) {
+        List<WebElement> elements = checkElementBy(driver, "free", "//li[contains(@id, 'chats-menu')]/a");
+        elements.get(0).click();
+        elements = checkElementBy(driver, "free", "//a[contains(@href, 'chat/list')]");
+        elements.get(0).click();
+    }
+
+    public static void clickLogsOption(WebDriver driver) {
+        List<WebElement> elements = checkElementBy(driver, "free", "//li[contains(@id, 'logs-menu')]/a");
+        elements.get(0).click();
+        elements = checkElementBy(driver, "free", "//a[contains(@href, 'user/logslist')]");
+        elements.get(0).click();
+    }
 }
