@@ -76,17 +76,32 @@ public class OffersService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
+    /**
+     * Método que devuelve todas las ofertas que haya
+     * @param pageable
+     * @param user
+     * @return
+     */
     public Page<Offer> getOffers(Pageable pageable, User user) {
         Page<Offer> offers = offersRepository.findAll(pageable);
         return offers;
     }
 
+    /**
+     * Método que devuelve todoas las ofertas dependiendo del id del usuario
+     * @param userid
+     * @return
+     */
     public List<Offer> getOffersByUserId(Long userid){
         List<Offer> userOffers = offersRepository.getOffersByUserId(userid);
         return userOffers;
     }
 
 
+    /**
+     * Método que elimina una oferta de un determinado usuario
+     * @param id
+     */
     public void deleteOffersWithUserId(Long id) {
         List<Offer> offers = getOffersByUserId(id);
         for(Offer o: offers)
@@ -94,22 +109,26 @@ public class OffersService {
     }
 
 
+    /**
+     * Método que compra una oferta dependiendo de un id
+     * @param id
+     * @return
+     */
     public String buyOffer(Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User user = usersRepository.findByEmail(email);
         Offer offer = offersRepository.findById(id).get();
 
-        if (user.getAmount() < offer.getAmount())
-            return "error.buyoffer.amount";
-        if(offer.isSold())
-            return "error.buyoffer.sold";
-        if(user.getPostedOffers().contains(offer))
-            return "error.buyoffer.youroffer";
-
         if (user.getAmount() < offer.getAmount()) {
             offer.setBuy(false);
+            return "error.buy.offer.amount";
         }
+        if(offer.isSold())
+            return "error.buy.offer.sold";
+        if(user.getPostedOffers().contains(offer))
+            return "error.buy.offer.your.offer";
+
         double amount = user.getAmount() - offer.getAmount();
         user.setAmount(amount);
         offer.setSold(true);
@@ -122,6 +141,11 @@ public class OffersService {
         return null;
     }
 
+    /**
+     * Método que identifica que esa oferta no puede ser comprada
+     * @param id
+     * @return
+     */
     public String cannotBuyOffer(Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -132,6 +156,12 @@ public class OffersService {
         return null;
     }
 
+    /**
+     * Método que devuelve las ofertas que contengan una determinaa cadena de texto
+     * @param pageable
+     * @param searchText
+     * @return
+     */
     public Page<Offer> searchOfferByTitle(Pageable pageable,String searchText) {
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
         searchText = "%"+searchText+"%";
@@ -139,6 +169,12 @@ public class OffersService {
         return offers;
     }
 
+    /**
+     * Método que devuleve las ofertas publicadas que no son de un determinado usuario
+     * @param pageable
+     * @param user
+     * @return
+     */
     public Page<Offer> getOffersNotYours(Pageable pageable, User user) {
         Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
         offers = offersRepository.getOfferThatYouCanBuy(pageable, user);

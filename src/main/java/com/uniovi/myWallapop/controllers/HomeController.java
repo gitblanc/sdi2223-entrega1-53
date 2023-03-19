@@ -25,6 +25,11 @@ public class HomeController {
     private LogsService logsService;
 
 
+    /**
+     * Añade el usuario con el que se ha registrado
+     * @param model
+     * @return
+     */
     @RequestMapping
     public String index(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

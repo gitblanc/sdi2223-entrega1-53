@@ -30,17 +30,30 @@ public class MessagesService {
         messagesRepository.save(message);
     }
 
+    /**
+     * Método que devuelve todos los mensajes que haya en la base de datos
+     * @return
+     */
     public List<Message> getMessages() {
         List<Message> messages = new ArrayList<Message>();
         messagesRepository.findAll().forEach(messages::add);
         return messages;
     }
 
+    /**
+     * Método que devuelve todos los mensajes de un usuario determinado
+     * @param user
+     * @return
+     */
     public List<Message> getMessagesByUser(User user){
         List<Message> userMessages = messagesRepository.getMessagesByUser(user);
         return userMessages;
     }
 
+    /**
+     * Método que elimina todos los mensajes de un usuario determinadpo
+     * @param user
+     */
     public void deleteMessagesWithUser(User user) {
         List<Message> messages = getMessagesByUser(user);
         for(Message m: messages)

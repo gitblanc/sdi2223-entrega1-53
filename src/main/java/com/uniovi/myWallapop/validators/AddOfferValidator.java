@@ -19,6 +19,11 @@ public class AddOfferValidator implements Validator {
         return User.class.equals(aClass);
     }
 
+    /**
+     * Método que hace la validación del formulario de añadir una oferta
+     * @param target
+     * @param errors
+     */
     @Override
     public void validate(Object target, Errors errors) {
         Offer offer = (Offer) target;

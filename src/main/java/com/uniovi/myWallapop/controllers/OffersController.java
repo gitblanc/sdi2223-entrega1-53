@@ -1,10 +1,8 @@
 package com.uniovi.myWallapop.controllers;
 
-import com.uniovi.myWallapop.entities.Chat;
 import com.uniovi.myWallapop.entities.Log;
 import com.uniovi.myWallapop.entities.Offer;
 import com.uniovi.myWallapop.entities.User;
-import com.uniovi.myWallapop.services.ChatsService;
 import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
@@ -20,12 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 @Controller
 public class OffersController {
@@ -37,8 +33,6 @@ public class OffersController {
     private AddOfferValidator addOfferValidator;
     @Autowired
     private LogsService logsService;
-    @Autowired
-    private ChatsService chatsService;
 
 
     /**
@@ -172,7 +166,8 @@ public class OffersController {
      * @return
      */
     @RequestMapping("/offer/list")
-    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName) {
+    public String getAllOffers(Model model,Pageable pageable, @RequestParam(value ="", required = false) String searchName,
+                               @RequestParam(value ="", required = false) String error) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User activeUser = usersService.getUserByEmail(email);
@@ -189,17 +184,21 @@ public class OffersController {
         model.addAttribute("allOffersList", offers.getContent());
         model.addAttribute("page", offers);
 
+        if(error != null && !error.isEmpty()) {
+            model.addAttribute("error", error);
+        }
+        String description = "Usuario con id " + activeUser.getId() + " ha accedido a la vista /offer/list";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
         return "offer/list";
     }
 
     /**
      * Controlador para la petición GET para comprar una oferta
-     * @param model
-     * @param id
-     * @return
+     * @param id id de la oferta
+     * @return vista de todas las ofertas
      */
     @RequestMapping(value = "/offer/{id}/buy", method = RequestMethod.GET)
-    public String setSoldTrue(Model model, @PathVariable Long id) {
+    public String setSoldTrue(@PathVariable Long id) {
         String error = offersService.buyOffer(id);
         if (error == null) {
             String description = "Se ha vendido la oferta: " + id;
@@ -209,7 +208,7 @@ public class OffersController {
         offersService.cannotBuyOffer(id);
         String description = "No se ha podido vender la oferta: " + id;
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
-        return "redirect:/offer/list";
+        return "redirect:/offer/list?error="+error;
     }
 
 }
