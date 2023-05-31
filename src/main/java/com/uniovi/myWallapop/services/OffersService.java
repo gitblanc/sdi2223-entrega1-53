@@ -182,5 +182,10 @@ public class OffersService {
     }
 
 
-
+    public void editOffer(Offer offer) {
+        Offer originalOffer = getOffer(offer.getId());
+        originalOffer.setAmount(offer.getAmount());
+        originalOffer.setTitle(offer.getTitle());
+        originalOffer.setDescription(offer.getDescription());
+    }
 }

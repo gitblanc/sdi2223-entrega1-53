@@ -22,6 +22,8 @@
                 th:text="#{offer.list.table.details}"></a></td>
             <td scope="row"><a th:href="${'/offer/delete/' + offer.id}"
                 th:text="#{offer.list.table.delete}"></a></td>
+            <td th:if="${!offer.sold}" scope="row"><a th:href="${'/offer/edit/' + offer.id}"
+                               th:text="#{offer.list.table.edit}"></a></td>
 
         </tr>
         </tbody>

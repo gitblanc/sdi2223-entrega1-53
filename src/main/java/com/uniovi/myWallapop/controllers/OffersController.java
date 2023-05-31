@@ -7,6 +7,7 @@ import com.uniovi.myWallapop.services.LogsService;
 import com.uniovi.myWallapop.services.OffersService;
 import com.uniovi.myWallapop.services.UsersService;
 import com.uniovi.myWallapop.validators.AddOfferValidator;
+import com.uniovi.myWallapop.validators.EditOfferValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,6 +32,8 @@ public class OffersController {
     private UsersService usersService;
     @Autowired
     private AddOfferValidator addOfferValidator;
+    @Autowired
+    private EditOfferValidator editOfferValidator;
     @Autowired
     private LogsService logsService;
 
@@ -104,6 +107,64 @@ public class OffersController {
         offersService.addOffer(offer);
         logsService.addLog(new Log(Log.Tipo.PET, description));
         return "redirect:/offer/list/posted";
+    }
+
+    /**
+     * Controlador para la petición POST de editar una oferta
+     * @param id
+     * @param model
+     * @param principal
+     * @return
+     */
+    @RequestMapping(value = "/offer/edit/{id}", method = RequestMethod.POST)
+    public String editOfferPost(@PathVariable Long id, Model model, Principal principal, @Validated Offer offer,BindingResult result) {
+        String email = principal.getName();
+        User user = usersService.getUserByEmail(email);
+        Offer offerToEdit = offersService.getOffer(id);
+        if (!offerToEdit.getSeller().equals(user)) {
+            return "redirect:/";
+        }
+        if (offerToEdit.isSold()) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("offer", offer);
+        editOfferValidator.validate(offer, result);
+
+        String description = "Usuario con id " + user.getId() + " ha hecho petición POST /offer/edit";
+        if (result.hasErrors()) {
+            logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
+            return "offer/edit";
+        }
+
+        offersService.editOffer(offer);
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+        return "redirect:/offer/list/posted";
+    }
+
+    /**
+     * Controlador para la petición GET de editar una oferta
+     * @param id
+     * @param model
+     * @param principal
+     * @return
+     */
+    @RequestMapping(value = "/offer/edit/{id}", method = RequestMethod.GET)
+    public String editOffer(@PathVariable Long id, Model model, Principal principal) {
+        String email = principal.getName();
+        User user = usersService.getUserByEmail(email);
+        Offer offer = offersService.getOffer(id);
+        if (!offer.getSeller().equals(user)) {
+            return "redirect:/";
+        }
+        if (offer.isSold()) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("offer", offer);
+        String description = "Usuario con id " + user.getId() + " ha accedido a la vista /offer/edit";
+        logsService.addLog(new Log(Log.Tipo.PET, description));
+        return "offer/edit";
     }
 
     /**
@@ -210,5 +271,4 @@ public class OffersController {
         logsService.addLog(new Log(Log.Tipo.OFFER_ERR, description));
         return "redirect:/offer/list?error="+error;
     }
-
 }
